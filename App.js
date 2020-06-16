@@ -11,9 +11,6 @@ export default function App() {
       <Text style={styles.firstPage}>
         What can I do for you today?
       </Text>
-      <Button>
-        
-      </Button>
     </View>
   );
 }
