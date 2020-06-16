@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View, Animated } from 'react-native';
+import logo from './assets/logo.png';
+import { SplashScreen } from 'expo'
+SplashScreen.preventAutoHide();
+setTimeout(SplashScreen.hide, 4000);
 
 export default function App() {
   return (
