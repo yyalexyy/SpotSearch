@@ -1,7 +1,8 @@
 //import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
 import {Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
-import logo from './assets/logo.png';
+//import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import {
   createDrawerNavigator,
@@ -14,6 +15,7 @@ import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 4000);
 
+
 /**
  * Home Screen
  * @param {*} param0 
@@ -25,7 +27,7 @@ Ex. Display a button, and then:
 */
 function Home({ navigation }){
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.firstPage}>
         What can I do for you today?
       </Text>
@@ -44,40 +46,51 @@ function Home({ navigation }){
         onPress={() => Alert.alert('Hello I have been pushed')}/>
       </View>
 
-    </View>
+    </SafeAreaView>
   );
 }
-
+/**
+ * Recent Screen
+ */
 function Recent(){
   return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Recent Screen</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
+/**
+ * Favorites Screen
+ */
 function Favorites(){
   return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Favorites Screen</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
+/**
+ * Drawer Navigator Custom Content 
+ * @param {*} props 
+ */
 function CustomDrawerContent(props){
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem
+      {/* <DrawerItem
         label="Close drawer"
         onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-      />
+      /> */}
     </DrawerContentScrollView>
   );
 }
 
-const Drawer = createDrawerNavigator();
-
+const Drawer = createDrawerNavigator();     //creating drawer navigator
+/**
+ * Drawer Navigator Base
+ */
 function MyDrawer() {
     return (
     <Drawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
@@ -90,12 +103,17 @@ function MyDrawer() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+    //To ensure content isn't hidden behind hardware elements (Need to code Landscape Mode if the app supports in teh future)
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
+
+//Dont really need logo for now (cuz we dont have logo in any screen)
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -104,13 +122,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     flex: 1,
     flexDirection: 'column', 
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  logo: {
-    width: 305,
-    height: 159,
-    marginBottom: 10,
-  },
+  // logo: {
+  //   width: 305,
+  //   height: 159,
+  //   marginBottom: 10,
+  // },
   firstPage: {
     color: '#9F9F9F',
     fontSize: 25,
@@ -120,7 +139,7 @@ const styles = StyleSheet.create({
   },
   box1: {
     position: 'absolute',
-    top: 100,
+    top: 125,
     backgroundColor: '#9F9F9F',
     margin: 10,
     padding: 30,
@@ -129,7 +148,7 @@ const styles = StyleSheet.create({
   },
   box2: {
     position: "absolute",
-    top: 250,
+    top: 275,
     padding: 30,
     width: 280,
     backgroundColor: '#9F9F9F',
