@@ -1,23 +1,40 @@
-import React from 'react';
+//import 'react-native-gesture-handler';      //Dont add any other import above this
+import * as React from 'react';
 import {Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 import logo from './assets/logo.png';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
 import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 4000);
 
-export default function App() {
+/**
+ * Home Screen
+ * @param {*} param0 
+ */
+/*Decide how to get the drawable sidebar.
+Ex. Display a button, and then: 
+    onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
+    to open the sidebar when button pressed.
+*/
+function Home({ navigation }){
   return (
     <View style={styles.container}>
-
       <Text style={styles.firstPage}>
         What can I do for you today?
       </Text>
 
       <View style={styles.box1}>
         <Button 
-        color='white'
-        title="Looking for a place to eat"
-        onPress={() => Alert.alert('Hello I have been pushed')}/>
+          color='white'
+          title="Looking for a place to eat"
+          onPress={() => Alert.alert('Hello I have been pushed')}/>
       </View>
 
       <View style={styles.box2}>
@@ -26,8 +43,56 @@ export default function App() {
         title="Looking for a place to "
         onPress={() => Alert.alert('Hello I have been pushed')}/>
       </View>
-      
+
     </View>
+  );
+}
+
+function Recent(){
+  return(
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Recent Screen</Text>
+    </View>
+  );
+}
+
+function Favorites(){
+  return(
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Favorites Screen</Text>
+    </View>
+  );
+}
+
+function CustomDrawerContent(props){
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Close drawer"
+        onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+    return (
+    <Drawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Recent" component={Recent} />
+      <Drawer.Screen name="Favorites" component={Favorites} />
+    </Drawer.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
   );
 }
 
