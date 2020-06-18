@@ -51,7 +51,11 @@ function HomePage({ navigation }){
   );
 }
 
-function BudgetPage({ navigation }){
+/**
+ * Budget Screen
+ * @param {*} param0 
+ */
+function BudgetPage({ navigation }){      //We can make param as {route} to grab different info thats passed to screen 
   return (
     <SafeAreaView style={styles.container}>
         <Text style={styles.firstPage}>
@@ -69,6 +73,10 @@ function BudgetPage({ navigation }){
   );
 }
 
+/**
+ * Max Distance Screen
+ * @param {*} param0 
+ */
 function maxDistancePage({ navigation }){
   return (
     <SafeAreaView style={styles.container}>
@@ -87,6 +95,10 @@ function maxDistancePage({ navigation }){
   );
 }
 
+/**
+ * Rating Screen
+ * @param {*} param0 
+ */
 function ratingPage({ navigation }){
   return (
     <SafeAreaView style={styles.container}>
@@ -105,6 +117,10 @@ function ratingPage({ navigation }){
   );
 }
 
+/**
+ * Result Screen
+ * @param {*} param0 
+ */
 function resultPage({ navigation }){
   return (
     <SafeAreaView style={styles.container}>
@@ -155,9 +171,9 @@ function CustomDrawerContent(props){
 }
 
 const Drawer = createDrawerNavigator();     //creating drawer navigator
-const HomeStack = createStackNavigator();
+const HomeStack = createStackNavigator();   
 
-
+//Component to render HomeStack navigator
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
@@ -167,18 +183,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
   </HomeStack.Navigator>
 )
-
-
-
-// function HomeScreen(){
-//   return (
-//     <Stack.Navigator initialRouteName="Home"> 
-//           <Stack.Screen name="Home" component={Home} />
-//           <Stack.Screen name="Budget" component={Budget} />
-//     </Stack.Navigator>
-//     );
-// }
-
 
 
 /**
