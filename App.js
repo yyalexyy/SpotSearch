@@ -1,9 +1,10 @@
-//import 'react-native-gesture-handler';      //Dont add any other import above this
+import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import {ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -12,7 +13,7 @@ import {
 } from '@react-navigation/drawer';
 
 import { SplashScreen } from 'expo'
-SplashScreen.preventAutoHide();
+SplashScreen.preventAutoHide();       //diplaying the splash screen
 setTimeout(SplashScreen.hide, 3000);
 
 /**
@@ -31,7 +32,7 @@ function Separate() {
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
 
-function Home({ navigation }){
+function HomePage({ navigation }){
   return (
     <SafeAreaView>
       <Text style={styles.textColor1}>What are you looking for today?</Text>
@@ -40,7 +41,8 @@ function Home({ navigation }){
         <View style = {{marginBottom: 100}}>
           <View style = {styles.boxes} backgroundColor = '#5ae6a4'>
           <Button title = "Food Areas"
-            color = 'white'/>
+            color = 'white'
+            onPress={() => navigation.push('BudgetPage')}/>
           </View>
           <View style = {styles.boxes} backgroundColor = '#cbe35f'>
             <Button title = "Hang Out Spots"
@@ -76,6 +78,87 @@ function Home({ navigation }){
     </SafeAreaView>
   );
 }
+
+/**
+ * Budget Screen
+ * @param {*} param0 
+ */
+function BudgetPage({ navigation }){      //We can make param as {route} to grab different info thats passed to screen 
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Great, what is your budget mate?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="Budget $$"
+            onPress={() => navigation.push('maxDistancePage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+/**
+ * Max Distance Screen
+ * @param {*} param0 
+ */
+function maxDistancePage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Cool, what is your max distance?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="1 mile"
+            onPress={() => navigation.push('ratingPage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+/**
+ * Rating Screen
+ * @param {*} param0 
+ */
+function ratingPage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Any rating preference?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="5 star"
+            onPress={() => navigation.push('resultPage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+/**
+ * Result Screen
+ * @param {*} param0 
+ */
+function resultPage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Chick-fil-A
+        </Text>
+    </SafeAreaView>
+  );
+}
+
 /**
  * Recent Screen
  */
@@ -115,18 +198,34 @@ function CustomDrawerContent(props){
 }
 
 const Drawer = createDrawerNavigator();     //creating drawer navigator
+const HomeStack = createStackNavigator();   
+
+//Component to render HomeStack navigator
+const HomeStackScreen = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
+    <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ title:"Budget" }} />
+    <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }} />
+    <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
+    <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
+  </HomeStack.Navigator>
+)
+
+
 /**
  * Drawer Navigator Base
  */
 function MyDrawer() {
     return (
     <Drawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen 
+      name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
       <Drawer.Screen name="Recent" component={Recent} />
       <Drawer.Screen name="Favorites" component={Favorites} />
     </Drawer.Navigator>
   );
 }
+
 
 export default function App() {
   return (
