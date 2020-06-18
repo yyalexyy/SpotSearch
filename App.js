@@ -1,9 +1,10 @@
-//import 'react-native-gesture-handler';      //Dont add any other import above this
+import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
 import {Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -12,7 +13,7 @@ import {
 } from '@react-navigation/drawer';
 
 import { SplashScreen } from 'expo'
-SplashScreen.preventAutoHide();
+SplashScreen.preventAutoHide();       //diplaying the splash screen
 setTimeout(SplashScreen.hide, 4000);
 
 
@@ -25,7 +26,7 @@ Ex. Display a button, and then:
     onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
     to open the sidebar when button pressed.
 */
-function Home({ navigation }){
+function HomePage({ navigation }){
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.firstPage}>
@@ -36,7 +37,7 @@ function Home({ navigation }){
         <Button 
           color='white'
           title="Looking for a place to eat"
-          onPress={() => Alert.alert('Hello I have been pushed')}/>
+          onPress={() => navigation.push('BudgetPage')}/>
       </View>
 
       <View style={styles.box2}>
@@ -49,6 +50,72 @@ function Home({ navigation }){
     </SafeAreaView>
   );
 }
+
+function BudgetPage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Great, what is your budget mate?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="Budget $$"
+            onPress={() => navigation.push('maxDistancePage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+function maxDistancePage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Cool, what is your max distance?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="1 mile"
+            onPress={() => navigation.push('ratingPage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+function ratingPage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Any rating preference?
+        </Text>
+
+        <View style={styles.box1}>
+          <Button 
+            color='white'
+            title="5 star"
+            onPress={() => navigation.push('resultPage')}/>
+        </View>
+
+    </SafeAreaView>
+  );
+}
+
+function resultPage({ navigation }){
+  return (
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.firstPage}>
+          Chick-fil-A
+        </Text>
+    </SafeAreaView>
+  );
+}
+
+
 /**
  * Recent Screen
  */
@@ -88,18 +155,46 @@ function CustomDrawerContent(props){
 }
 
 const Drawer = createDrawerNavigator();     //creating drawer navigator
+const HomeStack = createStackNavigator();
+
+
+const HomeStackScreen = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
+    <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ title:"Budget" }} />
+    <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }} />
+    <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
+    <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
+  </HomeStack.Navigator>
+)
+
+
+
+// function HomeScreen(){
+//   return (
+//     <Stack.Navigator initialRouteName="Home"> 
+//           <Stack.Screen name="Home" component={Home} />
+//           <Stack.Screen name="Budget" component={Budget} />
+//     </Stack.Navigator>
+//     );
+// }
+
+
+
 /**
  * Drawer Navigator Base
  */
 function MyDrawer() {
     return (
     <Drawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen 
+      name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
       <Drawer.Screen name="Recent" component={Recent} />
       <Drawer.Screen name="Favorites" component={Favorites} />
     </Drawer.Navigator>
   );
 }
+
 
 export default function App() {
   return (
