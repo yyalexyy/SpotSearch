@@ -1,7 +1,7 @@
 //import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import {Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import {ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import {
@@ -13,8 +13,7 @@ import {
 
 import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();
-setTimeout(SplashScreen.hide, 4000);
-
+setTimeout(SplashScreen.hide, 3000);
 
 /**
  * Home Screen
@@ -25,26 +24,54 @@ Ex. Display a button, and then:
     onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
     to open the sidebar when button pressed.
 */
+
+function Separate() {
+  return <View style = {{marginVertical: 30,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,}} />
+}
+
 function Home({ navigation }){
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.firstPage}>
-        What can I do for you today?
-      </Text>
+    <SafeAreaView>
+      <Text style={styles.textColor1}>What are you looking for today?</Text>
+    
+      <ScrollView style = {{marginBottom: 30}}>
+        <View style = {{marginBottom: 100}}>
+          <View style = {styles.boxes} backgroundColor = '#5ae6a4'>
+          <Button title = "Food Areas"
+            color = 'white'/>
+          </View>
+          <View style = {styles.boxes} backgroundColor = '#cbe35f'>
+            <Button title = "Hang Out Spots"
+            color = 'white'/>
+          </View>
+          <View style = {styles.boxes} backgroundColor = '#7ca7eb'>
+            <Button title = "Vacation Spot"
+            color = 'white'/>
+          </View><View style = {styles.boxes} backgroundColor = '#3e4037'>
+            <Button title = "Rest Areas"
+            color = 'white'/>
+          </View><View style = {styles.boxes}>
+            <Button title = "Recreational Locations"
+            color = 'white'/>
+          </View><View style = {styles.boxes}>
+            <Button title = ""
+            color = 'white'/>
+          </View><View style = {styles.boxes}>
+            <Button title = ""
+            color = 'white'/>
+          </View><View style = {styles.boxes}>
+            <Button title = ""
+            color = 'white'/>
+          </View><View style = {styles.boxes}>
+            <Button title = ""
+            color = 'white'/>
+          </View>
 
-      <View style={styles.box1}>
-        <Button 
-          color='white'
-          title="Looking for a place to eat"
-          onPress={() => Alert.alert('Hello I have been pushed')}/>
-      </View>
-
-      <View style={styles.box2}>
-        <Button 
-        color='white'
-        title="Looking for a place to "
-        onPress={() => Alert.alert('Hello I have been pushed')}/>
-      </View>
+        </View>
+      </ScrollView>
+    
 
     </SafeAreaView>
   );
@@ -119,7 +146,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 50,
     left: 20, 
-    backgroundColor: '#FFFFFF',
     flex: 1,
     flexDirection: 'column', 
     justifyContent: 'space-between',
@@ -130,30 +156,24 @@ const styles = StyleSheet.create({
   //   height: 159,
   //   marginBottom: 10,
   // },
-  firstPage: {
+
+  textColor1: {
+    marginLeft: 30,
+    marginRight: 30,
     color: '#9F9F9F',
-    fontSize: 25,
-    marginHorizontal: 15,
-    marginBottom: 15,
-    marginTop: 15,
+    fontSize: 30,
+    alignContent: 'center',
+    marginBottom: 20,
+    marginTop: 25,
+    fontWeight: 'bold'
   },
-  box1: {
-    position: 'absolute',
-    top: 125,
-    backgroundColor: '#9F9F9F',
-    margin: 10,
-    padding: 30,
-    textAlign: "center",
-    borderRadius: 45, 
-  },
-  box2: {
-    position: "absolute",
-    top: 275,
-    padding: 30,
-    width: 280,
-    backgroundColor: '#9F9F9F',
-    margin: 10,
-    
-    borderRadius: 45, 
-  },
+
+  boxes: {
+    marginTop: 30, 
+    padding: 30, 
+    backgroundColor: '#9F9F9F', 
+    marginLeft: 50, 
+    marginRight: 50, 
+    borderRadius: 45
+  }
 });
