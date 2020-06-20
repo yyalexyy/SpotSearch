@@ -34,18 +34,19 @@ function Separate() {
 
 function HomePage({ navigation }){
   return (
-    <SafeAreaView>
+    <SafeAreaView backgroundColor = '#ffffff'>
       <Text style={styles.textColor1}>What are you looking for today?</Text>
     
       <ScrollView style = {{marginBottom: 30}}>
         <View style = {{marginBottom: 100}}>
-          <View style = {styles.boxes} backgroundColor = '#5ae6a4'>
+          <View style = {styles.boxes} backgroundColor = '#50cc92'>
           <Button title = "Food Areas"
             color = 'white'
+            fontWeight = 'bold'
             onPress={() => navigation.push('BudgetPage')}/>
           </View>
           <View style = {styles.boxes} backgroundColor = '#cbe35f'>
-            <Button title = "Hang Out Spots"
+            <Button title = "Dinner Dates"
             color = 'white'/>
           </View>
           <View style = {styles.boxes} backgroundColor = '#7ca7eb'>
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignContent: 'center',
     marginBottom: 20,
-    marginTop: 25,
+    marginTop: 0,
     fontWeight: 'bold'
   },
 
@@ -273,6 +274,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#9F9F9F', 
     marginLeft: 50, 
     marginRight: 50, 
-    borderRadius: 45
+    borderRadius: 45,
   }
 });
