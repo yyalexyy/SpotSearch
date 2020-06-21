@@ -16,15 +16,8 @@ import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();       //diplaying the splash screen
 setTimeout(SplashScreen.hide, 3000);
 
-/**
- * Home Screen
- * @param {*} param0 
- */
-/*Decide how to get the drawable sidebar.
-Ex. Display a button, and then: 
-    onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
-    to open the sidebar when button pressed.
-*/
+import { HomePage, BudgetPage, maxDistancePage, ratingPage, resultPage } from './Screens';
+
 
 function Separate() {
   return <View style = {{marginVertical: 30,
@@ -32,132 +25,6 @@ function Separate() {
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
 
-function HomePage({ navigation }){
-  return (
-    <SafeAreaView>
-      <Text style={styles.textColor1}>What are you looking for today?</Text>
-    
-      <ScrollView style = {{marginBottom: 30}}>
-        <View style = {{marginBottom: 100}}>
-          <View style = {styles.boxes} backgroundColor = '#5ae6a4'>
-          <Button title = "Food Areas"
-            color = 'white'
-            onPress={() => navigation.push('BudgetPage')}/>
-          </View>
-          <View style = {styles.boxes} backgroundColor = '#cbe35f'>
-            <Button title = "Hang Out Spots"
-            color = 'white'/>
-          </View>
-          <View style = {styles.boxes} backgroundColor = '#7ca7eb'>
-            <Button title = "Vacation Spot"
-            color = 'white'/>
-          </View><View style = {styles.boxes} backgroundColor = '#3e4037'>
-            <Button title = "Rest Areas"
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = "Recreational Locations"
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View>
-
-        </View>
-      </ScrollView>
-    
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Budget Screen
- * @param {*} param0 
- */
-function BudgetPage({ navigation }){      //We can make param as {route} to grab different info thats passed to screen 
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Great, what is your budget mate?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="Budget $$"
-            onPress={() => navigation.push('maxDistancePage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Max Distance Screen
- * @param {*} param0 
- */
-function maxDistancePage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Cool, what is your max distance?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="1 mile"
-            onPress={() => navigation.push('ratingPage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Rating Screen
- * @param {*} param0 
- */
-function ratingPage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Any rating preference?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="5 star"
-            onPress={() => navigation.push('resultPage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Result Screen
- * @param {*} param0 
- */
-function resultPage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Chick-fil-A
-        </Text>
-    </SafeAreaView>
-  );
-}
 
 /**
  * Recent Screen
@@ -204,7 +71,9 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
-    <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ title:"Budget" }} />
+    <HomeStack.Screen name="BudgetPage" component={BudgetPage}
+      options={({ route }) => ({ title: route.params.name })}
+    />
     <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }} />
     <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
     <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
@@ -237,42 +106,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-
-//Dont really need logo for now (cuz we dont have logo in any screen)
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 50,
-    left: 20, 
-    flex: 1,
-    flexDirection: 'column', 
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  // logo: {
-  //   width: 305,
-  //   height: 159,
-  //   marginBottom: 10,
-  // },
-
-  textColor1: {
-    marginLeft: 30,
-    marginRight: 30,
-    color: '#9F9F9F',
-    fontSize: 30,
-    alignContent: 'center',
-    marginBottom: 20,
-    marginTop: 25,
-    fontWeight: 'bold'
-  },
-
-  boxes: {
-    marginTop: 30, 
-    padding: 30, 
-    backgroundColor: '#9F9F9F', 
-    marginLeft: 50, 
-    marginRight: 50, 
-    borderRadius: 45
-  }
-});
