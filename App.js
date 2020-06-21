@@ -12,11 +12,33 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
+
+import {
+  useTheme,
+  Avatar,
+  Title,
+  Caption,
+  Paragraph,
+  Drawer,
+  TouchableRipple,
+  Switch
+} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+// importing screen pages from screens folder
+import { Recent } from './screens/Recent';
+import { Favorites } from './screens/Favorites';
+import { HomePage } from './screens/HomePage';
+import { LowBudgetPage, HighBudgetPage } from './screens/BudgetsPage';
+import { MaxDistancePage } from './screens/MaxDistancePage';
+import { RatingPage } from './screens/RatingPage';
+import { ResultPage } from './screens/ResultPage';
+
+//diplaying the splash screen
 import { SplashScreen } from 'expo'
-SplashScreen.preventAutoHide();       //diplaying the splash screen
+SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
-import { HomePage, LowBudgetPage, HighBudgetPage, maxDistancePage, ratingPage, resultPage } from './Screens';
 
 
 function Separate() {
@@ -26,29 +48,8 @@ function Separate() {
 }
 
 
-/**
- * Recent Screen
- */
-function Recent(){
-  return(
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Recent Screen</Text>
-    </SafeAreaView>
-  );
-}
 
-/**
- * Favorites Screen
- */
-function Favorites(){
-  return(
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Favorites Screen</Text>
-    </SafeAreaView>
-  );
-}
-
-const Drawer = createDrawerNavigator();     //creating drawer navigator
+const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
 const HomeStack = createStackNavigator();   
 
 //Component to render HomeStack navigator
@@ -57,9 +58,9 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
     <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ title:"Budget" }} />
     <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
-    <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }}  />
-    <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
-    <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
+    <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
+    <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
+    <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
   </HomeStack.Navigator>
 )
 
@@ -71,12 +72,54 @@ const HomeStackScreen = () => (
 function CustomDrawerContent(props){
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-       <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-      /> 
+      <View>
+          <DrawerItem
+            icon={({ color, size }) => (
+              <Icon
+                name="home-outline"
+                color={color}
+                size={size}
+              />
+            )}
+            label="Home"
+            onPress={() => props.navigation.navigate('HomePage')}
+          />
+
+          <DrawerItem
+              icon={({ color, size }) => (
+                <Icon
+                  name="clock-outline"
+                  color={color}
+                  size={size}
+                />
+              )}
+              label="Recent"
+              onPress={() => props.navigation.navigate('Recent')}
+          />
+
+          <DrawerItem
+              icon={({ color, size }) => (
+                <Icon
+                  name="heart-outline"
+                  color={color}
+                  size={size}
+                />
+              )}
+              label="Favorites"
+              onPress={() => props.navigation.navigate('Favorites')}
+          />
+
+          {/*<DrawerItemList {...props} />     <- only list them*/}     
+
+          <DrawerItem
+            label="Close drawer"
+            onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
+          />
+      </View>
+      
     </DrawerContentScrollView>
+
+
   );
 }
 /**
@@ -84,12 +127,12 @@ function CustomDrawerContent(props){
  */
 function MyDrawer() {
     return (
-    <Drawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen 
+    <SideBarDrawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
+      <SideBarDrawer.Screen 
       name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
-      <Drawer.Screen name="Recent" component={Recent} />
-      <Drawer.Screen name="Favorites" component={Favorites} />
-    </Drawer.Navigator>
+      <SideBarDrawer.Screen name="Recent" component={Recent} />
+      <SideBarDrawer.Screen name="Favorites" component={Favorites} />
+    </SideBarDrawer.Navigator>
   );
 }
 
@@ -103,3 +146,49 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  drawerContent: {
+    flex: 1,
+  },
+  userInfoSection: {
+    paddingLeft: 20,
+  },
+  title: {
+    fontSize: 16,
+    marginTop: 3,
+    fontWeight: 'bold',
+  },
+  caption: {
+    fontSize: 14,
+    lineHeight: 14,
+  },
+  row: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  section: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  paragraph: {
+    fontWeight: 'bold',
+    marginRight: 3,
+  },
+  drawerSection: {
+    marginTop: 15,
+  },
+  bottomDrawerSection: {
+      marginBottom: 15,
+      borderTopColor: '#f4f4f4',
+      borderTopWidth: 1
+  },
+  preference: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+});

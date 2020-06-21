@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';      //Dont add any other import above this
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
 import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
@@ -11,11 +11,6 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
-import { SplashScreen } from 'expo'
-SplashScreen.preventAutoHide();       //diplaying the splash screen
-setTimeout(SplashScreen.hide, 3000);
-
 
 
 /**
@@ -111,113 +106,8 @@ export const HomePage = ({ navigation }) => {
     );
 }
 
-  /**
- * Low Budget Screen
- * @param {route} param0 to grab different info thats passed to screen 
- */
-export const LowBudgetPage = ({ navigation }) => {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.firstPage}>
-                Great, what is your budget mate?
-            </Text>
 
-            <View style={styles.leftBox}>
-                <Button 
-                color='#9957B8'
-                title="Budget $$"
-                onPress={() => navigation.push('maxDistancePage')}/>
-            </View>
-
-        </SafeAreaView>
-    );
-}
-
-/**
- * High Budget Page
- * @param {*} param0 
- */
-export const HighBudgetPage = ({ navigation }) => {
-  return (
-      <SafeAreaView style={styles.container}>
-          <Text style={styles.firstPage}>
-              Classy, what is your budget mate?
-          </Text>
-
-          <View style={styles.leftBox}>
-              <Button 
-              color='#9957B8'
-              title="Budget high"
-              onPress={() => navigation.push('maxDistancePage')}/>
-          </View>
-
-      </SafeAreaView>
-  );
-}
-
-/**
-* Max Distance Screen
-* @param {*} param0 
-*/
-export const maxDistancePage = ({ navigation }) => {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.firstPage}>
-                Cool, what is your max distance?
-            </Text>
-
-            <View style={styles.buttonResize}>
-                <Button 
-                color='#9957B8'
-                title="1 mile"
-                onPress={() => navigation.push('ratingPage')}/>
-            </View>
-
-        </SafeAreaView>
-    );
-}
-
-/**
-* Rating Screen
-* @param {*} param0 
-*/
-export const ratingPage = ({ navigation }) => {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.firstPage}>
-                Any rating preference?
-            </Text>
-
-            <View style={styles.box1}>
-                <Button 
-                color='#9957B8'
-                title="5 star"
-                onPress={() => navigation.push('resultPage')}/>
-            </View>
-
-        </SafeAreaView>
-    );
-}
-
-/**
-* Result Screen
-* @param {*} param0 
-*/
-export const resultPage = ({ navigation }) => {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.firstPage}>
-                Chick-fil-A
-            </Text>
-        </SafeAreaView>
-    );
-}
-
-
-
-
-  //Dont really need logo for now (cuz we dont have logo in any screen)
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     // logo: {
     //   width: 305,
     //   height: 159,
@@ -250,18 +140,18 @@ export const resultPage = ({ navigation }) => {
     leftBox: {
       marginTop: 40,  
       backgroundColor: 'white', 
-      marginLeft: 20, 
+      marginLeft: 8, 
       borderRadius: 10,
-      width: 153,
+      width: 145,
       height: 143,
     },
   
     rightBox: {
       marginTop: 40,  
       backgroundColor: 'white', 
-      marginRight: 20, 
+      marginRight: 8, 
       borderRadius: 10,
-      width: 153,
+      width: 145,
       height: 143,
     },
   
@@ -269,9 +159,9 @@ export const resultPage = ({ navigation }) => {
       backgroundColor: 'white', 
       width: 153, 
       height: 143, 
-      borderRadius: 10, 
-      alignItems: 'center', 
-      justifyContent: 'center'
+      borderRadius: 10,
+      alignItems: 'center',
+      justifyContent: 'flex-end',
     },
   
     topBox: {
