@@ -25,7 +25,6 @@ function Separate() {
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
 
-
 /**
  * Recent Screen
  */
