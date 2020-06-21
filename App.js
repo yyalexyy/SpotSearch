@@ -98,7 +98,6 @@ function MyDrawer() {
 
 export default function App() {
   return (
-    //To ensure content isn't hidden behind hardware elements (Need to code Landscape Mode if the app supports in teh future)
     <SafeAreaProvider>
       <NavigationContainer>
         <MyDrawer />
