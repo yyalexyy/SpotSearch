@@ -16,181 +16,13 @@ import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();       //diplaying the splash screen
 setTimeout(SplashScreen.hide, 3000);
 
-/**
- * Home Screen
- * @param {*} param0 
- */
-/*Decide how to get the drawable sidebar.
-Ex. Display a button, and then: 
-    onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
-    to open the sidebar when button pressed.
-*/
+import { HomePage, BudgetPage, maxDistancePage, ratingPage, resultPage } from './Screens';
+
 
 function Separate() {
   return <View style = {{marginVertical: 30,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
-}
-
-function HomePage({ navigation }){
-  return (
-    <SafeAreaView backgroundColor = '#9957B8'>
-
-      <View style = {styles.topBox}>
-        <Text style={styles.textColor1}>What are you looking for today?</Text>
-      </View>
-    
-      <ScrollView style = {{marginBottom: 30}}>
-        
-        <View style = {styles.scViewFormat}>
-
-          <Text style = {{position: "absolute"}}>
-            Dinner Date
-          </Text>
-          
-          <View style = {styles.leftBox} backgroundColor = 'white'>
-            <View style = {styles.buttonResize}>
-              <Button 
-              title = 'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS'
-              color = 'white'
-              onPress={() => navigation.push('BudgetPage')}/>
-            </View>
-          </View>
-
-          <View style = {styles.rightBox} backgroundColor = 'white'>
-            <Button title = "Dinner Dates"
-            color = '#9957B8'/>
-          </View>
-
-        </View>
-
-        <View style = {styles.scViewFormat}>
-
-          <View style = {styles.leftBox} backgroundColor = 'white'>
-            <Button title = "Vacation Spot"
-            color = '#9957B8'/>
-          </View>
-          
-          <View style = {styles.rightBox} backgroundColor = 'white'>
-            <Button title = "Rest Areas"
-            color = '#9957B8'/>
-          </View>
-
-        </View>
-          
-        <View style = {styles.scViewFormat}>
-
-          <View style = {styles.leftBox}>
-            <Button title = "Recreational Locations"
-            color = '#9957B8'/>
-          </View>
-          
-          <View style = {styles.rightBox}>
-            <Button title = ""
-            color = '#9957B8'/>
-          </View>
-
-        </View>
-          
-        <View style = {styles.scViewFormatFinal}>
-
-          <View style = {styles.leftBox}>
-            <Button title = ""
-            color = '#9957B8'/>
-          </View>
-          
-          <View style = {styles.rightBox}>
-            <Button title = ""
-            color = '#9957B8'/>
-          </View>
-        
-        </View>
-
-      </ScrollView>
-    
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Budget Screen
- * @param {*} param0 
- */
-function BudgetPage({ navigation }){      //We can make param as {route} to grab different info thats passed to screen 
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Great, what is your budget mate?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="Budget $$"
-            onPress={() => navigation.push('maxDistancePage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Max Distance Screen
- * @param {*} param0 
- */
-function maxDistancePage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Cool, what is your max distance?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="1 mile"
-            onPress={() => navigation.push('ratingPage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Rating Screen
- * @param {*} param0 
- */
-function ratingPage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Any rating preference?
-        </Text>
-
-        <View style={styles.box1}>
-          <Button 
-            color='white'
-            title="5 star"
-            onPress={() => navigation.push('resultPage')}/>
-        </View>
-
-    </SafeAreaView>
-  );
-}
-
-/**
- * Result Screen
- * @param {*} param0 
- */
-function resultPage({ navigation }){
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.firstPage}>
-          Chick-fil-A
-        </Text>
-    </SafeAreaView>
-  );
 }
 
 /**
@@ -238,7 +70,9 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
-    <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ title:"Budget" }} />
+    <HomeStack.Screen name="BudgetPage" component={BudgetPage}
+      options={({ route }) => ({ title: route.params.name })}
+    />
     <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }} />
     <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
     <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
@@ -271,74 +105,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-
-//Dont really need logo for now (cuz we dont have logo in any screen)
-const styles = StyleSheet.create({
-  // logo: {
-  //   width: 305,
-  //   height: 159,
-  //   marginBottom: 10,
-  // },
-
-  textColor1: {
-    marginLeft: 30,
-    marginRight: 30,
-    color: '#9957B8',
-    fontSize: 25,
-    alignItems: "center",
-    textAlign: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-    marginTop: 20,
-  },
-
-  scViewFormat: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
-  scViewFormatFinal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 175,
-  },
-
-  leftBox: {
-    marginTop: 40,  
-    backgroundColor: 'white', 
-    marginLeft: 20, 
-    borderRadius: 10,
-    width: 153,
-    height: 143,
-  },
-
-  rightBox: {
-    marginTop: 40,  
-    backgroundColor: 'white', 
-    marginRight: 20, 
-    borderRadius: 10,
-    width: 153,
-    height: 143,
-  },
-
-  buttonResize: {
-    backgroundColor: 'white', 
-    width: 153, 
-    height: 143, 
-    borderRadius: 10, 
-    alignItems: 'center', 
-    justifyContent: 'center'
-  },
-
-  topBox: {
-    marginTop: 10,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    height: 154,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
