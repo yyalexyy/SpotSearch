@@ -16,7 +16,7 @@ import { SplashScreen } from 'expo'
 SplashScreen.preventAutoHide();       //diplaying the splash screen
 setTimeout(SplashScreen.hide, 3000);
 
-import { HomePage, BudgetPage, maxDistancePage, ratingPage, resultPage } from './Screens';
+import { HomePage, LowBudgetPage, HighBudgetPage, maxDistancePage, ratingPage, resultPage } from './Screens';
 
 
 function Separate() {
@@ -24,6 +24,7 @@ function Separate() {
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
+
 
 /**
  * Recent Screen
@@ -47,6 +48,22 @@ function Favorites(){
   );
 }
 
+const Drawer = createDrawerNavigator();     //creating drawer navigator
+const HomeStack = createStackNavigator();   
+
+//Component to render HomeStack navigator
+const HomeStackScreen = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
+    <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ title:"Budget" }} />
+    <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
+    <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }}  />
+    <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
+    <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
+  </HomeStack.Navigator>
+)
+
+
 /**
  * Drawer Navigator Custom Content 
  * @param {*} props 
@@ -55,31 +72,13 @@ function CustomDrawerContent(props){
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      {/* <DrawerItem
+       <DrawerItem
         label="Close drawer"
         onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-      /> */}
+      /> 
     </DrawerContentScrollView>
   );
 }
-
-const Drawer = createDrawerNavigator();     //creating drawer navigator
-const HomeStack = createStackNavigator();   
-
-//Component to render HomeStack navigator
-const HomeStackScreen = () => (
-  <HomeStack.Navigator>
-    <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
-    <HomeStack.Screen name="BudgetPage" component={BudgetPage}
-      options={({ route }) => ({ title: route.params.name })}
-    />
-    <HomeStack.Screen name="maxDistancePage" component={maxDistancePage} options={{ title:"Distance" }} />
-    <HomeStack.Screen name="ratingPage" component={ratingPage} options={{ title:"Rating" }} />
-    <HomeStack.Screen name="resultPage" component={resultPage} options={{ title:"Spot" }} />
-  </HomeStack.Navigator>
-)
-
-
 /**
  * Drawer Navigator Base
  */

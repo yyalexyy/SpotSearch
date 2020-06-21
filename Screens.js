@@ -47,9 +47,9 @@ export const HomePage = ({ navigation }) => {
               <View style = {styles.leftBox} backgroundColor = 'white'>
                 <View style = {styles.buttonResize}>
                   <Button 
-                  title = 'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS'
-                  color = 'white'
-                  onPress={() => navigation.push('BudgetPage', { name: "Budget" })}/>
+                  title = 'Food Areas'
+                  color = '#9957B8'
+                  onPress={() => navigation.push('LowBudgetPage')}/>
                 </View>
               </View>
     
@@ -57,7 +57,7 @@ export const HomePage = ({ navigation }) => {
               <View style = {styles.rightBox} backgroundColor = 'white'>
                 <Button title = "Dinner Dates"
                 color = '#9957B8'
-                onPress={() => navigation.push('BudgetPage', { name: "$Budget$" })}/>
+                onPress={() => navigation.push('HighBudgetPage')}/>
                 </View>
     
             </View>
@@ -112,28 +112,47 @@ export const HomePage = ({ navigation }) => {
 }
 
   /**
- * Budget Screen
+ * Low Budget Screen
  * @param {route} param0 to grab different info thats passed to screen 
  */
-export const BudgetPage = ({ route }) => {
+export const LowBudgetPage = ({ navigation }) => {
     return (
-    <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.firstPage}>
                 Great, what is your budget mate?
             </Text>
 
-            {route.params.name && <Text>{route.params.name}</Text>}
-
-
-            <View style={styles.box1}>
+            <View style={styles.leftBox}>
                 <Button 
-                color='white'
+                color='#9957B8'
                 title="Budget $$"
                 onPress={() => navigation.push('maxDistancePage')}/>
             </View>
 
         </SafeAreaView>
     );
+}
+
+/**
+ * High Budget Page
+ * @param {*} param0 
+ */
+export const HighBudgetPage = ({ navigation }) => {
+  return (
+      <SafeAreaView style={styles.container}>
+          <Text style={styles.firstPage}>
+              Classy, what is your budget mate?
+          </Text>
+
+          <View style={styles.leftBox}>
+              <Button 
+              color='#9957B8'
+              title="Budget high"
+              onPress={() => navigation.push('maxDistancePage')}/>
+          </View>
+
+      </SafeAreaView>
+  );
 }
 
 /**
@@ -147,9 +166,9 @@ export const maxDistancePage = ({ navigation }) => {
                 Cool, what is your max distance?
             </Text>
 
-            <View style={styles.box1}>
+            <View style={styles.buttonResize}>
                 <Button 
-                color='white'
+                color='#9957B8'
                 title="1 mile"
                 onPress={() => navigation.push('ratingPage')}/>
             </View>
@@ -171,7 +190,7 @@ export const ratingPage = ({ navigation }) => {
 
             <View style={styles.box1}>
                 <Button 
-                color='white'
+                color='#9957B8'
                 title="5 star"
                 onPress={() => navigation.push('resultPage')}/>
             </View>
