@@ -34,45 +34,78 @@ function Separate() {
 
 function HomePage({ navigation }){
   return (
-    <SafeAreaView backgroundColor = '#ffffff'>
-      <Text style={styles.textColor1}>What are you looking for today?</Text>
+    <SafeAreaView backgroundColor = '#9957B8'>
+
+      <View style = {styles.topBox}>
+        <Text style={styles.textColor1}>What are you looking for today?</Text>
+      </View>
     
       <ScrollView style = {{marginBottom: 30}}>
-        <View style = {{marginBottom: 100}}>
-          <View style = {styles.boxes} backgroundColor = '#50cc92'>
-          <Button title = "Food Areas"
-            color = 'white'
-            fontWeight = 'bold'
-            onPress={() => navigation.push('BudgetPage')}/>
+        
+        <View style = {styles.scViewFormat}>
+
+          <Text style = {{position: "absolute"}}>
+            Dinner Date
+          </Text>
+          
+          <View style = {styles.leftBox} backgroundColor = 'white'>
+            <View style = {styles.buttonResize}>
+              <Button 
+              title = 'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS'
+              color = 'white'
+              onPress={() => navigation.push('BudgetPage')}/>
+            </View>
           </View>
-          <View style = {styles.boxes} backgroundColor = '#cbe35f'>
+
+          <View style = {styles.rightBox} backgroundColor = 'white'>
             <Button title = "Dinner Dates"
-            color = 'white'/>
-          </View>
-          <View style = {styles.boxes} backgroundColor = '#7ca7eb'>
-            <Button title = "Vacation Spot"
-            color = 'white'/>
-          </View><View style = {styles.boxes} backgroundColor = '#3e4037'>
-            <Button title = "Rest Areas"
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = "Recreational Locations"
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
-          </View><View style = {styles.boxes}>
-            <Button title = ""
-            color = 'white'/>
+            color = '#9957B8'/>
           </View>
 
         </View>
+
+        <View style = {styles.scViewFormat}>
+
+          <View style = {styles.leftBox} backgroundColor = 'white'>
+            <Button title = "Vacation Spot"
+            color = '#9957B8'/>
+          </View>
+          
+          <View style = {styles.rightBox} backgroundColor = 'white'>
+            <Button title = "Rest Areas"
+            color = '#9957B8'/>
+          </View>
+
+        </View>
+          
+        <View style = {styles.scViewFormat}>
+
+          <View style = {styles.leftBox}>
+            <Button title = "Recreational Locations"
+            color = '#9957B8'/>
+          </View>
+          
+          <View style = {styles.rightBox}>
+            <Button title = ""
+            color = '#9957B8'/>
+          </View>
+
+        </View>
+          
+        <View style = {styles.scViewFormatFinal}>
+
+          <View style = {styles.leftBox}>
+            <Button title = ""
+            color = '#9957B8'/>
+          </View>
+          
+          <View style = {styles.rightBox}>
+            <Button title = ""
+            color = '#9957B8'/>
+          </View>
+        
+        </View>
+
       </ScrollView>
     
 
@@ -242,15 +275,6 @@ export default function App() {
 
 //Dont really need logo for now (cuz we dont have logo in any screen)
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 50,
-    left: 20, 
-    flex: 1,
-    flexDirection: 'column', 
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   // logo: {
   //   width: 305,
   //   height: 159,
@@ -260,20 +284,61 @@ const styles = StyleSheet.create({
   textColor1: {
     marginLeft: 30,
     marginRight: 30,
-    color: '#9F9F9F',
-    fontSize: 30,
-    alignContent: 'center',
+    color: '#9957B8',
+    fontSize: 25,
+    alignItems: "center",
+    textAlign: 'center',
+    justifyContent: 'center',
     marginBottom: 20,
-    marginTop: 0,
-    fontWeight: 'bold'
+    marginTop: 20,
   },
 
-  boxes: {
-    marginTop: 30, 
-    padding: 30, 
-    backgroundColor: '#9F9F9F', 
-    marginLeft: 50, 
-    marginRight: 50, 
-    borderRadius: 45,
+  scViewFormat: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  scViewFormatFinal: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 175,
+  },
+
+  leftBox: {
+    marginTop: 40,  
+    backgroundColor: 'white', 
+    marginLeft: 20, 
+    borderRadius: 10,
+    width: 153,
+    height: 143,
+  },
+
+  rightBox: {
+    marginTop: 40,  
+    backgroundColor: 'white', 
+    marginRight: 20, 
+    borderRadius: 10,
+    width: 153,
+    height: 143,
+  },
+
+  buttonResize: {
+    backgroundColor: 'white', 
+    width: 153, 
+    height: 143, 
+    borderRadius: 10, 
+    alignItems: 'center', 
+    justifyContent: 'center'
+  },
+
+  topBox: {
+    marginTop: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    height: 154,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
