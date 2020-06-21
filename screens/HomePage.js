@@ -31,7 +31,7 @@ export const HomePage = ({ navigation }) => {
           </View>
         
         {/* oriented by column */}
-          <ScrollView style = {{marginBottom: 30}}>
+          <ScrollView style = {{ marginTop: 10, marginBottom: 30}}>
             
             <View style = {styles.scViewFormat}>
     
