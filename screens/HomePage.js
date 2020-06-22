@@ -11,6 +11,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import { render } from 'react-dom';
 
 function Separate() {
   return <View style = {{
@@ -53,8 +54,9 @@ export const HomePage = ({ navigation }) => {
                   onPress={() => navigation.push('HighBudgetPage')} >
 
                       <Image 
-                      source = {require('C:/Users/Ravi/SpotSearch/assets/DinnerDateTwo.png')}
-                      style = {{height: 90, width: 90, marginTop: 12}}/>
+                      style = {{height: 90, width: 90, marginTop: 12}}
+                      source={require('./assets/DinnerDate.png')}
+                      />
                     
                     <View style = {{marginTop: 8}}>
                       <Text style = {styles.boxText}>Dinner Dates</Text>
