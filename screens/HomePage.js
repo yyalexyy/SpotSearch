@@ -4,7 +4,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, Assets } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -12,7 +12,17 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-
+function Separate() {
+  return <View style = {{
+    marginTop: 12,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    borderRadius: 30,
+    shadowOffset: { width: 0, height: 5},
+    shadowOpacity: .8,
+    shadowRadius: 3,
+    }} />;
+}
 /**
  * Home Screen
  * @param {*} param0 
@@ -29,44 +39,62 @@ export const HomePage = ({ navigation }) => {
           <View style = {styles.topBox}>
             <Text style={styles.textColor1}>What are you looking for today?</Text>
           </View>
+
+          <Separate/>
         
         {/* oriented by column */}
-          <ScrollView style = {{ marginTop: 10, marginBottom: 30}}>
-            
+          <ScrollView style = {{ marginBottom: 30}}>
+
             <View style = {styles.scViewFormat}>
-    
-              <Text style = {{position: "absolute"}}>
-                Dinner Date
-              </Text>
               
               <View style = {styles.leftBox} backgroundColor = 'white'>
-                <View style = {styles.buttonResize}>
-                  <Button 
-                  title = 'Food Areas'
-                  color = '#9957B8'
-                  onPress={() => navigation.push('LowBudgetPage')}/>
-                </View>
+                <TouchableOpacity
+                  style = {styles.buttons} 
+                  onPress={() => navigation.push('HighBudgetPage')} >
+
+                      <Image 
+                      source = {require('C:/Users/Ravi/SpotSearch/assets/DinnerDateTwo.png')}
+                      style = {{height: 90, width: 90, marginTop: 12}}/>
+                    
+                    <View style = {{marginTop: 8}}>
+                      <Text style = {styles.boxText}>Dinner Dates</Text>
+                    </View> 
+                </TouchableOpacity>
               </View>
     
 
               <View style = {styles.rightBox} backgroundColor = 'white'>
-                <Button title = "Dinner Dates"
-                color = '#9957B8'
-                onPress={() => navigation.push('HighBudgetPage')}/>
-                </View>
+                <TouchableOpacity
+                  style = {styles.buttons} 
+                  onPress={() => navigation.push('HighBudgetPage')} >
+                    <View style = {styles.boxTextLocation}>
+                      <Text style = {styles.boxText}>Food Areas</Text>
+                    </View> 
+                </TouchableOpacity>
+              </View>
     
             </View>
     
             <View style = {styles.scViewFormat}>
     
               <View style = {styles.leftBox} backgroundColor = 'white'>
-                <Button title = "Vacation Spot"
-                color = '#9957B8'/>
+                <TouchableOpacity
+                  style = {styles.buttons} 
+                  onPress={() => navigation.push('HighBudgetPage')} >
+                    <View style = {styles.boxTextLocation}>
+                      <Text style = {styles.boxText}>Vacation Spot</Text>
+                    </View> 
+                </TouchableOpacity>
               </View>
               
               <View style = {styles.rightBox} backgroundColor = 'white'>
-                <Button title = "Rest Areas"
-                color = '#9957B8'/>
+                <TouchableOpacity
+                  style = {styles.buttons} 
+                  onPress={() => navigation.push('HighBudgetPage')} >
+                    <View style = {styles.boxTextLocation}>
+                      <Text style = {styles.boxText}>Rest Areas</Text>
+                    </View> 
+                </TouchableOpacity>
               </View>
     
             </View>
@@ -74,8 +102,13 @@ export const HomePage = ({ navigation }) => {
             <View style = {styles.scViewFormat}>
     
               <View style = {styles.leftBox}>
-                <Button title = "Recreational Locations"
-                color = '#9957B8'/>
+                <TouchableOpacity
+                  style = {styles.buttons} 
+                  onPress={() => navigation.push('HighBudgetPage')} >
+                    <View style = {styles.boxTextLocation}>
+                      <Text style = {styles.boxText}>Rec Activities</Text>
+                    </View> 
+                </TouchableOpacity>
               </View>
               
               <View style = {styles.rightBox}>
@@ -118,7 +151,7 @@ const styles = StyleSheet.create({
       marginLeft: 30,
       marginRight: 30,
       color: '#9957B8',
-      fontSize: 25,
+      fontSize: 30,
       alignItems: "center",
       textAlign: 'center',
       justifyContent: 'center',
@@ -138,21 +171,21 @@ const styles = StyleSheet.create({
     },
   
     leftBox: {
-      marginTop: 40,  
+      marginTop: 25,  
       backgroundColor: 'white', 
-      marginLeft: 8, 
+      marginLeft: 20, 
       borderRadius: 10,
-      width: 145,
-      height: 143,
+      width: 158,
+      height: 148,
     },
   
     rightBox: {
-      marginTop: 40,  
+      marginTop: 25,  
       backgroundColor: 'white', 
-      marginRight: 8, 
+      marginRight: 20, 
       borderRadius: 10,
-      width: 145,
-      height: 143,
+      width: 158,
+      height: 148,
     },
   
     buttonResize: {
@@ -161,11 +194,17 @@ const styles = StyleSheet.create({
       height: 143, 
       borderRadius: 10,
       alignItems: 'center',
-      justifyContent: 'flex-end',
+      justifyContent: 'center',
+    },
+
+    buttons: {
+      alignItems: 'center',
+      
+      borderRadius: 10,
     },
   
     topBox: {
-      marginTop: 10,
+      marginBottom: 8,
       backgroundColor: 'white',
       borderRadius: 20,
       marginLeft: 20,
@@ -173,5 +212,17 @@ const styles = StyleSheet.create({
       height: 154,
       justifyContent: 'center',
       alignItems: 'center',
-    }
+      shadowColor: '#000',
+      shadowOffset: { width: 2, height: 3 },
+      shadowOpacity: 0.8,
+      shadowRadius: 5,
+    },
+
+    boxText: {
+      justifyContent: 'flex-end',
+      textAlign: 'center',
+      color: '#9957B8',
+      fontSize: 22,
+    },
+
   });
