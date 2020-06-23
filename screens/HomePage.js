@@ -15,13 +15,15 @@ import { render } from 'react-dom';
 
 function Separate() {
   return <View style = {{
-    marginTop: 12,
+    marginTop: 10,
     borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    borderRadius: 30,
-    shadowOffset: { width: 0, height: 5},
+    borderBottomWidth: 1,
+    marginLeft: 12,
+    marginRight: 12,
+    shadowOffset: { width: 0, height: 4},
     shadowOpacity: .8,
     shadowRadius: 3,
+    zIndex: 999
     }} />;
 }
 /**
@@ -40,9 +42,9 @@ export const HomePage = ({ navigation }) => {
           <View style = {styles.topBox}>
             <Text style={styles.textColor1}>What are you looking for today?</Text>
           </View>
-
-          <Separate/>
         
+          <Separate/>
+
         {/* oriented by column */}
           <ScrollView style = {{ marginBottom: 30}}>
 
@@ -54,11 +56,11 @@ export const HomePage = ({ navigation }) => {
                   onPress={() => navigation.push('HighBudgetPage')} >
 
                       <Image 
-                      style = {{height: 90, width: 90, marginTop: 12}}
+                      style = {{height: 90, width: 90, marginTop: 14}}
                       source={require('./assets/DinnerDate.png')}
                       />
                     
-                    <View style = {{marginTop: 8}}>
+                    <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Dinner Dates</Text>
                     </View> 
                 </TouchableOpacity>
@@ -69,7 +71,12 @@ export const HomePage = ({ navigation }) => {
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
-                    <View style = {styles.boxTextLocation}>
+
+                    <Image
+                    style = {{height: 90, width: 90, marginTop: 14}} 
+                    source={require('./assets/FoodAreas.png')}/>
+
+                    <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Food Areas</Text>
                     </View> 
                 </TouchableOpacity>
@@ -83,7 +90,12 @@ export const HomePage = ({ navigation }) => {
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
-                    <View style = {styles.boxTextLocation}>
+
+                    <Image
+                    style = {{height: 90, width: 90, marginTop: 14}} 
+                    source={require('./assets/Vacation.png')}/>
+
+                    <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Vacation Spot</Text>
                     </View> 
                 </TouchableOpacity>
@@ -93,7 +105,12 @@ export const HomePage = ({ navigation }) => {
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
-                    <View style = {styles.boxTextLocation}>
+
+                    <Image
+                    style = {{height: 90, width: 90, marginTop: 14}} 
+                    source={require('./assets/RestArea.png')}/>
+
+                    <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rest Areas</Text>
                     </View> 
                 </TouchableOpacity>
@@ -107,7 +124,12 @@ export const HomePage = ({ navigation }) => {
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
-                    <View style = {styles.boxTextLocation}>
+
+                    <Image
+                    style = {{height: 90, width: 90, marginTop: 14}} 
+                    source={require('./assets/RecActivities.png')}/> 
+
+                    <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rec Activities</Text>
                     </View> 
                 </TouchableOpacity>
@@ -135,7 +157,6 @@ export const HomePage = ({ navigation }) => {
             </View>
     
           </ScrollView>
-        
     
         </SafeAreaView>
     );
@@ -201,7 +222,6 @@ const styles = StyleSheet.create({
 
     buttons: {
       alignItems: 'center',
-      
       borderRadius: 10,
     },
   
