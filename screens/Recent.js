@@ -16,7 +16,7 @@ import {
 /**
  * Recent Screen
  */
-export const Recent = () => {
+export const Recent = ({ navigation }) => {
     return(
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Recent Screen</Text>

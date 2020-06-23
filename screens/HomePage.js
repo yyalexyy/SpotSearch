@@ -70,7 +70,7 @@ export const HomePage = ({ navigation }) => {
               <View style = {styles.rightBox} backgroundColor = 'white'>
                 <TouchableOpacity
                   style = {styles.buttons} 
-                  onPress={() => navigation.push('HighBudgetPage')} >
+                  onPress={() => navigation.push('LowBudgetPage')} >
 
                     <Image
                     style = {{height: 90, width: 90, marginTop: 14}} 

@@ -52,7 +52,9 @@ function Separate() {
 
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
 const HomeStack = createStackNavigator();
-const BudgetStack = createStackNavigator();
+const RecentStack = createStackNavigator();
+const FavoritesStack = createStackNavigator();
+
 
 //Component to render HomeStack navigator
 const HomeStackScreen = ({ navigation }) => (
@@ -60,13 +62,43 @@ const HomeStackScreen = ({ navigation }) => (
       headerStyle:{
         backgroundColor: '#9400D3',
       },
-      //headerTintColor: '#000000',
-      headerTitleStyle: {
-        fontWeight: 'bold'
+      headerTintColor: '#ffffff',     //back button color
+      headerTitleStyle: {             //header title
+        fontWeight: 'bold',
+        color: 'white'
       },
     }}>
       <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
         title:"Home",
+        headerLeft: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+        }} />
+      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ title:"Budget" }} />
+      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
+      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
+      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
+      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
+  </HomeStack.Navigator>
+)
+
+const RecentStackScreen = ({ navigation }) => (
+  <RecentStack.Navigator screenOptions={{
+      headerStyle:{
+        backgroundColor: '#9400D3',
+      },
+      //headerTintColor: '#000000',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'white'
+      },
+    }}>
+      <RecentStack.Screen name="Recent" component={Recent} options={{ 
         headerLeft: () => (
           <Icon.Button 
             name= "menu"
@@ -76,14 +108,32 @@ const HomeStackScreen = ({ navigation }) => (
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
-      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{  
-        title:"Budget"
+  </RecentStack.Navigator>
+)
+
+
+const FavoritesStackScreen = ({ navigation }) => (
+  <FavoritesStack.Navigator screenOptions={{
+      headerStyle:{
+        backgroundColor: '#9400D3',
+      },
+      //headerTintColor: '#000000',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'white'
+      },
+    }}>
+      <FavoritesStack.Screen name="Favorites" component={Favorites} options={{ 
+        headerLeft: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
         }} />
-      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
-      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
-      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
-      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
-  </HomeStack.Navigator>
+  </FavoritesStack.Navigator>
 )
 
 
@@ -152,8 +202,8 @@ function MyDrawer() {
     <SideBarDrawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
       <SideBarDrawer.Screen 
       name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
-      <SideBarDrawer.Screen name="Recent" component={Recent} />
-      <SideBarDrawer.Screen name="Favorites" component={Favorites} />
+      <SideBarDrawer.Screen name="Recent" component={RecentStackScreen} />
+      <SideBarDrawer.Screen name="Favorites" component={FavoritesStackScreen} />
     </SideBarDrawer.Navigator>
   );
 }
