@@ -8,10 +8,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemList,
+  DrawerItemList,       //Currently not needed
   DrawerItem,
 } from '@react-navigation/drawer';
-
 
 import {
   useTheme,
@@ -23,7 +22,8 @@ import {
   TouchableRipple,
   Switch
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // importing screen pages from screens folder
 import { Recent } from './screens/Recent';
@@ -36,6 +36,7 @@ import { ResultPage } from './screens/ResultPage';
 
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
+import { Header } from 'react-native/Libraries/NewAppScreen';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
@@ -50,17 +51,38 @@ function Separate() {
 
 
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
-const HomeStack = createStackNavigator();   
+const HomeStack = createStackNavigator();
+const BudgetStack = createStackNavigator();
 
 //Component to render HomeStack navigator
-const HomeStackScreen = () => (
-  <HomeStack.Navigator>
-    <HomeStack.Screen name="HomePage" component={HomePage} options={{ title:"Home" }} />
-    <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ title:"Budget" }} />
-    <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
-    <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
-    <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
-    <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
+const HomeStackScreen = ({ navigation }) => (
+  <HomeStack.Navigator screenOptions={{
+      headerStyle:{
+        backgroundColor: '#9400D3',
+      },
+      //headerTintColor: '#000000',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      },
+    }}>
+      <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
+        title:"Home",
+        headerLeft: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+        }} />
+      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{  
+        title:"Budget"
+        }} />
+      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
+      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
+      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
+      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
   </HomeStack.Navigator>
 )
 
