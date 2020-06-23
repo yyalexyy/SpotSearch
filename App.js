@@ -199,7 +199,13 @@ function CustomDrawerContent(props){
  */
 function MyDrawer() {
     return (
-    <SideBarDrawer.Navigator drawerContent = {props => <CustomDrawerContent {...props} />}>
+    <SideBarDrawer.Navigator
+      drawerContent = {props => <CustomDrawerContent {...props} />}
+      drawerStyle={{
+        width: 200,
+      }}
+      edgeWidth={0}           //disable swipe to open (doesn't respond to gesture)
+    >
       <SideBarDrawer.Screen 
       name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
       <SideBarDrawer.Screen name="Recent" component={RecentStackScreen} />
