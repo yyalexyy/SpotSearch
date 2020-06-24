@@ -37,6 +37,7 @@ import { ResultPage } from './screens/ResultPage';
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { color } from 'react-native-reanimated';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
