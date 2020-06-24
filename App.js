@@ -37,6 +37,7 @@ import { ResultPage } from './screens/ResultPage';
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { color } from 'react-native-reanimated';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
@@ -62,7 +63,8 @@ const HomeStackScreen = ({ navigation }) => (
       },
       //headerTintColor: '#000000',
       headerTitleStyle: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
       },
     }}>
       <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
@@ -77,7 +79,8 @@ const HomeStackScreen = ({ navigation }) => (
         )
         }} />
       <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{  
-        title:"Budget"
+        title:"Budget",
+        
         }} />
       <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
       <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />

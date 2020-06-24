@@ -50,7 +50,7 @@ export const HomePage = ({ navigation }) => {
 
             <View style = {styles.scViewFormat}>
               
-              <View style = {styles.leftBox} backgroundColor = 'white'>
+              <View style = {styles.leftBox} backgroundColor = '#f22929'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -65,9 +65,8 @@ export const HomePage = ({ navigation }) => {
                     </View> 
                 </TouchableOpacity>
               </View>
-    
 
-              <View style = {styles.rightBox} backgroundColor = 'white'>
+              <View style = {styles.rightBox} backgroundColor = '#f2a829'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -86,7 +85,7 @@ export const HomePage = ({ navigation }) => {
     
             <View style = {styles.scViewFormat}>
     
-              <View style = {styles.leftBox} backgroundColor = 'white'>
+              <View style = {styles.leftBox} backgroundColor = '#f2de29'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -98,6 +97,7 @@ export const HomePage = ({ navigation }) => {
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Vacation Spot</Text>
                     </View> 
+
                 </TouchableOpacity>
               </View>
               
@@ -113,6 +113,7 @@ export const HomePage = ({ navigation }) => {
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rest Areas</Text>
                     </View> 
+
                 </TouchableOpacity>
               </View>
     
@@ -132,6 +133,7 @@ export const HomePage = ({ navigation }) => {
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rec Activities</Text>
                     </View> 
+                    
                 </TouchableOpacity>
               </View>
               
@@ -243,7 +245,8 @@ const styles = StyleSheet.create({
     boxText: {
       justifyContent: 'flex-end',
       textAlign: 'center',
-      color: '#9957B8',
+      //color: '#9957B8',
+      color: 'black',
       fontSize: 22,
     },
 
