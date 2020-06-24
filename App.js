@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, useWindowDimensions } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -70,7 +70,7 @@ const HomeStackScreen = ({ navigation }) => (
     }}>
       <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
         title:"Home",
-        headerLeft: () => (
+        headerRight: () => (
           <Icon.Button 
             name= "menu"
             size={25}
@@ -79,11 +79,60 @@ const HomeStackScreen = ({ navigation }) => (
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
-      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ title:"Budget" }} />
-      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ title:"Budget Classy" }} />
-      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance" }}  />
-      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{ title:"Rating" }} />
-      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ title:"Spot" }} />
+      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ 
+        title:"Budget",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }} />
+      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ 
+        title:"Budget Classy",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }} />
+      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }}  />
+      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{   
+        title:"Rating",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }} />
+      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
+        title:"Spot",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#ffffff"           //menu tab color
+            backgroundColor= "#9400D3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }} />
   </HomeStack.Navigator>
 )
 
@@ -99,7 +148,7 @@ const RecentStackScreen = ({ navigation }) => (
       },
     }}>
       <RecentStack.Screen name="Recent" component={Recent} options={{ 
-        headerLeft: () => (
+        headerRight: () => (
           <Icon.Button 
             name= "menu"
             size={25}
@@ -124,7 +173,7 @@ const FavoritesStackScreen = ({ navigation }) => (
       },
     }}>
       <FavoritesStack.Screen name="Favorites" component={Favorites} options={{ 
-        headerLeft: () => (
+        headerRight: () => (
           <Icon.Button 
             name= "menu"
             size={25}
@@ -142,54 +191,135 @@ const FavoritesStackScreen = ({ navigation }) => (
  * @param {*} props 
  */
 function CustomDrawerContent(props){
+  
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  }
+
+
   return (
-    <DrawerContentScrollView {...props}>
-      <View>
-          <DrawerItem
-            icon={({ color, size }) => (
-              <Icon
-                name="home-outline"
-                color={color}
-                size={size}
+    <View style={{flex:1}}>
+      <DrawerContentScrollView {...props}>
+        <View style={styles.drawerContent}>
+          
+          <Drawer.Section>
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon
+                    name="home-outline"
+                    color={color}
+                    size={size}
+                  />
+                )}
+                label="Home"
+                onPress={() => props.navigation.navigate('HomePage')}
               />
-            )}
-            label="Home"
-            onPress={() => props.navigation.navigate('HomePage')}
-          />
 
-          <DrawerItem
-              icon={({ color, size }) => (
-                <Icon
-                  name="clock-outline"
-                  color={color}
-                  size={size}
-                />
-              )}
-              label="Recent"
-              onPress={() => props.navigation.navigate('Recent')}
-          />
+              <DrawerItem
+                  icon={({ color, size }) => (
+                    <Icon
+                      name="clock-outline"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Recent"
+                  onPress={() => props.navigation.navigate('Recent')}
+              />
 
-          <DrawerItem
-              icon={({ color, size }) => (
-                <Icon
-                  name="heart-outline"
-                  color={color}
-                  size={size}
-                />
-              )}
-              label="Favorites"
-              onPress={() => props.navigation.navigate('Favorites')}
-          />
+              <DrawerItem
+                  icon={({ color, size }) => (
+                    <Icon
+                      name="heart-outline"
+                      color={color}
+                      size={size}
+                    />
+                  )}
+                  label="Favorites"
+                  onPress={() => props.navigation.navigate('Favorites')}
+              />
+          </Drawer.Section>
 
-          {/*<DrawerItemList {...props} />     <- only list them*/}     
+          <Drawer.Section title="Preferences">
+              <TouchableRipple onPress={() => {toggleTheme()}}>
+                    <View style={styles.preference}>
+                        <Text>Dark Theme</Text>
+                        <View pointerEvents = "none">
+                          <Switch value={isDarkTheme}/>
+                        </View>
+                    </View>
+              </TouchableRipple>
+          </Drawer.Section>
 
-          <DrawerItem
-            label="Close drawer"
-            onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-          />
-      </View>
+        </View>
+      </DrawerContentScrollView>
       
-    </DrawerContentScrollView>
+      <Drawer.Section style={styles.bottomDrawerSection}>
+        <DrawerItem
+          icon={({ color, size }) => (
+            <Icon
+              name="exit-to-app"
+              color={color}
+              size={size}
+            />
+          )}
+          label="Exit"
+          onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}        
+        />
+      </Drawer.Section>
+      
+    </View>
+
+
+    // <DrawerContentScrollView {...props}>
+    //   <View>
+    //       <DrawerItem
+    //         icon={({ color, size }) => (
+    //           <Icon
+    //             name="home-outline"
+    //             color={color}
+    //             size={size}
+    //           />
+    //         )}
+    //         label="Home"
+    //         onPress={() => props.navigation.navigate('HomePage')}
+    //       />
+
+    //       <DrawerItem
+    //           icon={({ color, size }) => (
+    //             <Icon
+    //               name="clock-outline"
+    //               color={color}
+    //               size={size}
+    //             />
+    //           )}
+    //           label="Recent"
+    //           onPress={() => props.navigation.navigate('Recent')}
+    //       />
+
+    //       <DrawerItem
+    //           icon={({ color, size }) => (
+    //             <Icon
+    //               name="heart-outline"
+    //               color={color}
+    //               size={size}
+    //             />
+    //           )}
+    //           label="Favorites"
+    //           onPress={() => props.navigation.navigate('Favorites')}
+    //       />
+
+    //       {/*<DrawerItemList {...props} />     <- only list them*/}     
+
+    //       <DrawerItem
+    //         label="Close drawer"
+    //         onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
+    //       />
+    //   </View>
+      
+    // </DrawerContentScrollView>
 
 
   );
@@ -198,9 +328,13 @@ function CustomDrawerContent(props){
  * Drawer Navigator Base
  */
 function MyDrawer() {
+    const dimensions = useWindowDimensions();
+
     return (
     <SideBarDrawer.Navigator
       drawerContent = {props => <CustomDrawerContent {...props} />}
+      drawerPosition= 'right'
+      drawerType={dimensions.width >= 768 ? 'permanent' : 'back'}     //permanent drawer is shown as a sidebar when large screens, else drawer is revealed behind the screen on swipe
       drawerStyle={{
         width: 200,
       }}
@@ -228,32 +362,6 @@ export default function App() {
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
-  },
-  userInfoSection: {
-    paddingLeft: 20,
-  },
-  title: {
-    fontSize: 16,
-    marginTop: 3,
-    fontWeight: 'bold',
-  },
-  caption: {
-    fontSize: 14,
-    lineHeight: 14,
-  },
-  row: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  section: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  paragraph: {
-    fontWeight: 'bold',
-    marginRight: 3,
   },
   drawerSection: {
     marginTop: 15,
