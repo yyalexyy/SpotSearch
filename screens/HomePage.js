@@ -40,7 +40,14 @@ export const HomePage = ({ navigation }) => {
         <SafeAreaView backgroundColor = '#116466'>
     
           <View style = {styles.topBox}>
-            <Text style={styles.textColor1}>What are you looking for today?</Text>
+
+            <View style = {{flexDirection: 'row'}}>
+              <Image 
+              style = {{height: 120, width: 120, position: 'absolute', marginLeft: -5, marginTop: 15}}
+              source={require('./assets/owl.png')}/>
+              <Text style={styles.textColor1}>What are you looking for today?</Text>
+            </View>
+
           </View>
         
           <Separate/>
@@ -56,28 +63,34 @@ export const HomePage = ({ navigation }) => {
                   onPress={() => navigation.push('HighBudgetPage')} >
 
                       <Image 
-                      style = {{height: 90, width: 90, marginTop: 14}}
+                      style = {{height: 90, width: 90, marginTop: 10}}
                       source={require('./assets/DinnerDate.png')}
                       />
+                      
+                      <View style = {styles.bottomTextBorder}> 
+                      </View>
                     
-                    <View style = {{marginTop: 9}}>
+                    <View style = {{marginTop: 13}}>
                       <Text style = {styles.boxText}>Dinner Dates</Text>
                     </View>
+
                 </TouchableOpacity>
+
               </View>
 
-              <View style = {styles.bottomTextBorder}> 
-                
-              </View>
+              
 
               <View style = {styles.rightBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
-                  onPress={() => navigation.push('LowBudgetPage')} >
+                  onPress={() => navigation.push('HighBudgetPage')} >
 
                     <Image
                     style = {{height: 90, width: 90, marginTop: 14}} 
                     source={require('./assets/FoodAreas.png')}/>
+
+                    <View style = {styles.bottomTextBorder}> 
+                    </View>
 
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Food Areas</Text>
@@ -98,6 +111,9 @@ export const HomePage = ({ navigation }) => {
                     style = {{height: 90, width: 90, marginTop: 14}} 
                     source={require('./assets/Vacation.png')}/>
 
+                    <View style = {styles.bottomTextBorder}> 
+                    </View>
+
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Vacation Spot</Text>
                     </View> 
@@ -113,6 +129,9 @@ export const HomePage = ({ navigation }) => {
                     <Image
                     style = {{height: 90, width: 90, marginTop: 14}} 
                     source={require('./assets/RestArea.png')}/>
+
+                    <View style = {styles.bottomTextBorder}> 
+                    </View>
 
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rest Areas</Text>
@@ -133,6 +152,9 @@ export const HomePage = ({ navigation }) => {
                     <Image
                     style = {{height: 90, width: 90, marginTop: 14}} 
                     source={require('./assets/RecActivities.png')}/> 
+
+                    <View style = {styles.bottomTextBorder}> 
+                    </View>
 
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Rec Activities</Text>
@@ -177,8 +199,8 @@ const styles = StyleSheet.create({
     // },
   
     textColor1: {
-      marginLeft: 30,
-      marginRight: 30,
+      marginLeft: 100,
+      marginRight: 0,
       color: 'black',
       fontSize: 30,
       alignItems: "center",
@@ -186,6 +208,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginBottom: 20,
       marginTop: 20,
+      width: 200,
     },
   
     scViewFormat: {
@@ -229,6 +252,8 @@ const styles = StyleSheet.create({
     buttons: {
       alignItems: 'center',
       borderRadius: 10,
+      borderColor: 'black',
+      borderWidth: 2
     },
   
     topBox: {
@@ -244,6 +269,8 @@ const styles = StyleSheet.create({
       shadowOffset: { width: 2, height: 3 },
       shadowOpacity: 0.8,
       shadowRadius: 5,
+      borderColor: 'black',
+      borderWidth: 2
     },
 
     boxText: {
@@ -252,17 +279,20 @@ const styles = StyleSheet.create({
       //color: '#9957B8',
       color: 'black',
       fontSize: 22,
+      marginTop: 2,
     },
 
     bottomTextBorder: {
       position: 'absolute' ,
-      top: 138,
-      left: 20,
-      height: 35, 
+      top: 108,
+      left: -2,
+      height: 40, 
       width: 158, 
       backgroundColor: 'white', 
       borderBottomLeftRadius: 10, 
-      borderBottomRightRadius: 10
+      borderBottomRightRadius: 10,
+      borderColor: 'black',
+      borderWidth: 2
     }
 
   });
