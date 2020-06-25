@@ -37,9 +37,10 @@ import { ResultPage } from './screens/ResultPage';
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
 import { Header } from 'react-native/Libraries/NewAppScreen';
-import { color } from 'react-native-reanimated';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
+
+
 
 function Separate() {
   return <View style = {{marginVertical: 30,
@@ -47,10 +48,13 @@ function Separate() {
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
 
+
+
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
 const HomeStack = createStackNavigator();
 const RecentStack = createStackNavigator();
 const FavoritesStack = createStackNavigator();
+
 
 //Component to render HomeStack navigator
 const HomeStackScreen = ({ navigation }) => (
@@ -70,7 +74,7 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="black"           //menu tab color
+            color="#000000"           //menu tab color
             backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
@@ -81,8 +85,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -92,8 +96,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -102,8 +106,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }}  />
@@ -113,8 +117,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -124,8 +128,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -135,7 +139,7 @@ const HomeStackScreen = ({ navigation }) => (
 const RecentStackScreen = ({ navigation }) => (
   <RecentStack.Navigator screenOptions={{
       headerStyle:{
-        backgroundColor: '#9400D3',
+        backgroundColor: '#C5CBE3',
       },
       //headerTintColor: '#000000',
       headerTitleStyle: {
@@ -149,7 +153,7 @@ const RecentStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#ffffff"
-            backgroundColor= "#9400D3"
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
@@ -160,7 +164,7 @@ const RecentStackScreen = ({ navigation }) => (
 const FavoritesStackScreen = ({ navigation }) => (
   <FavoritesStack.Navigator screenOptions={{
       headerStyle:{
-        backgroundColor: '#9400D3',
+        backgroundColor: '#C5CBE3',
       },
       //headerTintColor: '#000000',
       headerTitleStyle: {
@@ -174,7 +178,7 @@ const FavoritesStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#ffffff"
-            backgroundColor= "#9400D3"
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />

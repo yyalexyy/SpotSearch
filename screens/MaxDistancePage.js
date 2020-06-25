@@ -19,7 +19,7 @@ import {
 */
 export const MaxDistancePage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#9957B8'>
+        <SafeAreaView backgroundColor = '#116466'>
             <View style = {styles.topBox}>
                 <Text style={styles.textColor1}>Cool, what is your max distance?</Text>
             </View>

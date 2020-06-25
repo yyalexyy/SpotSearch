@@ -62,7 +62,7 @@ export const HomePage = ({ navigation }) => {
                     
                     <View style = {{marginTop: 9}}>
                       <Text style = {styles.boxText}>Dinner Dates</Text>
-                    </View> 
+                    </View>
                 </TouchableOpacity>
               </View>
 
@@ -73,7 +73,7 @@ export const HomePage = ({ navigation }) => {
               <View style = {styles.rightBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
-                  onPress={() => navigation.push('HighBudgetPage')} >
+                  onPress={() => navigation.push('LowBudgetPage')} >
 
                     <Image
                     style = {{height: 90, width: 90, marginTop: 14}} 

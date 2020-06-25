@@ -19,7 +19,7 @@ import {
  */
 export const LowBudgetPage = ({ navigation }) => {
     return (
-      <SafeAreaView backgroundColor = '#9957B8'>
+      <SafeAreaView backgroundColor = '#116466'>
         <View style = {styles.topBox}>
             <Text style={styles.textColor1}>Great, what is your budget mate?</Text>
         </View>
@@ -42,7 +42,7 @@ export const LowBudgetPage = ({ navigation }) => {
  */
 export const HighBudgetPage = ({ navigation }) => {
   return (
-    <SafeAreaView backgroundColor = '#9957B8'>
+    <SafeAreaView backgroundColor = '#116466'>
       <View style = {styles.topBox}>
         <Text style={styles.textColor1}>Classy, what is your budget mate?</Text>
       </View>

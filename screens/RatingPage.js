@@ -19,7 +19,7 @@ import {
 */
 export const RatingPage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#9957B8'>
+        <SafeAreaView backgroundColor = '#116466'>
             <View style = {styles.topBox}>
                 <Text style={styles.textColor1}>Any rating preference?</Text>
             </View>

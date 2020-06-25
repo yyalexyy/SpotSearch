@@ -19,7 +19,7 @@ import {
 */
 export const ResultPage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#9957B8'>
+        <SafeAreaView backgroundColor = '#116466'>
             <Text style={{textAlign: 'center'}}>
                 Chick-fil-A
             </Text>
