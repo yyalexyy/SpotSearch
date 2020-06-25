@@ -37,7 +37,7 @@ Ex. Display a button, and then:
 */
 export const HomePage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#9957B8'>
+        <SafeAreaView backgroundColor = '#116466'>
     
           <View style = {styles.topBox}>
             <Text style={styles.textColor1}>What are you looking for today?</Text>
@@ -50,7 +50,7 @@ export const HomePage = ({ navigation }) => {
 
             <View style = {styles.scViewFormat}>
               
-              <View style = {styles.leftBox} backgroundColor = '#f22929'>
+              <View style = {styles.leftBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -66,7 +66,11 @@ export const HomePage = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
 
-              <View style = {styles.rightBox} backgroundColor = '#f2a829'>
+              <View style = {styles.bottomTextBorder}> 
+                
+              </View>
+
+              <View style = {styles.rightBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -85,7 +89,7 @@ export const HomePage = ({ navigation }) => {
     
             <View style = {styles.scViewFormat}>
     
-              <View style = {styles.leftBox} backgroundColor = '#f2de29'>
+              <View style = {styles.leftBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -101,7 +105,7 @@ export const HomePage = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
               
-              <View style = {styles.rightBox} backgroundColor = 'white'>
+              <View style = {styles.rightBox} backgroundColor = '#D9B08C'>
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('HighBudgetPage')} >
@@ -175,7 +179,7 @@ const styles = StyleSheet.create({
     textColor1: {
       marginLeft: 30,
       marginRight: 30,
-      color: '#9957B8',
+      color: 'black',
       fontSize: 30,
       alignItems: "center",
       textAlign: 'center',
@@ -197,7 +201,7 @@ const styles = StyleSheet.create({
   
     leftBox: {
       marginTop: 25,  
-      backgroundColor: 'white', 
+      backgroundColor: '#D9B08C', 
       marginLeft: 20, 
       borderRadius: 10,
       width: 158,
@@ -206,7 +210,7 @@ const styles = StyleSheet.create({
   
     rightBox: {
       marginTop: 25,  
-      backgroundColor: 'white', 
+      backgroundColor: '#D9B08C', 
       marginRight: 20, 
       borderRadius: 10,
       width: 158,
@@ -249,5 +253,16 @@ const styles = StyleSheet.create({
       color: 'black',
       fontSize: 22,
     },
+
+    bottomTextBorder: {
+      position: 'absolute' ,
+      top: 138,
+      left: 20,
+      height: 35, 
+      width: 158, 
+      backgroundColor: 'white', 
+      borderBottomLeftRadius: 10, 
+      borderBottomRightRadius: 10
+    }
 
   });

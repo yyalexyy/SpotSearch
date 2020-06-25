@@ -41,32 +41,27 @@ import { color } from 'react-native-reanimated';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
-
-
 function Separate() {
   return <View style = {{marginVertical: 30,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,}} />
 }
 
-
-
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
 const HomeStack = createStackNavigator();
 const RecentStack = createStackNavigator();
 const FavoritesStack = createStackNavigator();
 
-
 //Component to render HomeStack navigator
 const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator screenOptions={{
       headerStyle:{
-        backgroundColor: '#9400D3',
+        backgroundColor: '#C5CBE3',
       },
       headerTintColor: '#ffffff',     //back button color
       headerTitleStyle: {             //header title
         fontWeight: 'bold',
-        color: 'white'
+        color: 'black'
       },
     }}>
       <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
@@ -75,8 +70,8 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button 
             name= "menu"
             size={25}
-            color="#ffffff"           //menu tab color
-            backgroundColor= "#9400D3"
+            color="black"           //menu tab color
+            backgroundColor= "#C5CBE3"
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
