@@ -13,11 +13,6 @@ import {
 } from '@react-navigation/drawer';
 
 import {
-  useTheme,
-  Avatar,
-  Title,
-  Caption,
-  Paragraph,
   Drawer,
   TouchableRipple,
   Switch

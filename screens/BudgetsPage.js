@@ -19,16 +19,41 @@ import {
  */
 export const BudgetPage = ({ navigation }) => {
     return (
-      <SafeAreaView backgroundColor = '#116466'>
-        <View style = {styles.topBox}>
-            <Text style={styles.textColor1}>Great, what is your budget mate?</Text>
+      <SafeAreaView backgroundColor = '#3AA4E0'>
+        <View>
+          <Text style = {styles.mainQuestion}>What is your budget?</Text>
+
         </View>
 
-        <View style={styles.leftBox}>
-          <Button 
-            color='#9957B8'
-            title="Budget"
-            onPress={() => navigation.push('MaxDistancePage')}/>
+        <View style = {styles.topBox}>
+            <Text style={styles.textColor1}>
+
+            </Text>
+        </View>
+
+        <View style = {{backgroundColor: '#0E2163', marginTop: 190, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25, width: '100%', position: 'absolute'}}>
+
+          <ScrollView style = {{marginBottom: 30}}>
+              <View>
+                <View style={styles.incrementBox}>
+
+                </View>
+              </View>
+
+
+
+
+
+
+              <View>
+                <Button
+                  color='#9957B8'
+                  title="Continue"
+                  onPress={() => navigation.push('MaxDistancePage')}/>
+              </View>
+          </ScrollView>
+
+          
         </View>
 
       </SafeAreaView>
@@ -37,6 +62,15 @@ export const BudgetPage = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({  
+    mainQuestion: {
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 20,
+      color: '#ffffffff',
+      fontSize: 30,
+
+
+    },
     textColor1: {
       marginLeft: 30,
       marginRight: 30,
@@ -49,13 +83,13 @@ const styles = StyleSheet.create({
       marginTop: 20,
     },
   
-    leftBox: {
+    incrementBox: {
       marginTop: 40,  
       backgroundColor: 'white', 
       marginLeft: 8, 
+      marginRight: 8,
       borderRadius: 10,
-      width: 145,
-      height: 143,
+      height: 80,
     },
   
     rightBox: {
@@ -68,12 +102,12 @@ const styles = StyleSheet.create({
     },
   
     topBox: {
-      marginTop: 10,
+      marginTop: 20,
       backgroundColor: 'white',
       borderRadius: 20,
-      marginLeft: 20,
-      marginRight: 20,
-      height: 154,
+      marginLeft: 30,
+      marginRight: 30,
+      height: 144,
       justifyContent: 'center',
       alignItems: 'center',
     }

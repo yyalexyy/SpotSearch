@@ -38,13 +38,13 @@ Ex. Display a button, and then:
 */
 export const HomePage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#3AA4E0'>
+      <SafeAreaView backgroundColor = '#3AA4E0'>
 
           <View style = {styles.topBox}>
 
             <View style = {{flexDirection: 'row'}}>
               <Image 
-              style = {{height: 120, width: 120, position: 'absolute', marginLeft: -5, marginTop: 15}}
+              style = {{height: 120, width: 120, position: 'absolute', marginLeft: -5, marginTop: 20, transform: [{ rotate: '340deg'}] }}
               source={require('./assets/dolphin.png')}/>
               <Text style={styles.textColor1}>What are you looking for today?</Text>
             </View>
@@ -52,143 +52,145 @@ export const HomePage = ({ navigation }) => {
           </View>
        
 
-        <View style = {{backgroundColor: '#0E2163',  marginBottom: 170, marginTop: 10, borderTopLeftRadius: 25, borderTopRightRadius: 25}}> 
-        {/* oriented by column */}
-        <Separate/>
-          <ScrollView style = {{ marginBottom: 30}}>
+          <View style = {{backgroundColor: '#0E2163', marginTop: 10, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
-            <View style = {styles.scViewFormat}>
-              
-              <View style = {styles.leftBox} backgroundColor = '#9DF5F5'>
+            <Separate/>
+
+            {/* oriented by column */}
+            <ScrollView style = {{ marginBottom: 30}}>
+
+              <View style = {styles.scViewFormat}>
                 
-                <TouchableOpacity
-                  style = {styles.buttons} 
-                  onPress={() => navigation.push('BudgetPage')} >
+                <View style = {styles.leftBox} backgroundColor = '#9DF5F5'>
+                  
+                  <TouchableOpacity
+                    style = {styles.buttons} 
+                    onPress={() => navigation.push('BudgetPage')} >
 
-                      <Image 
-                      style = {{height: 90, width: 90, marginTop: 10}}
-                      source={require('./assets/DinnerDate.png')}
-                      />
+                        <Image 
+                        style = {{height: 90, width: 90, marginTop: 10}}
+                        source={require('./assets/DinnerDate.png')}
+                        />
+                        
+                        <View style = {styles.bottomTextBorder}> 
+                        </View>
                       
+                      <View style = {{marginTop: 13}}>
+                        <Text style = {styles.boxText}>Dinner Dates</Text>
+                      </View>
+
+                  </TouchableOpacity>
+
+                </View>
+
+                
+
+                <View style = {styles.rightBox} backgroundColor = '#87A4EF'>
+                  <TouchableOpacity
+                    style = {styles.buttons} 
+                    onPress={() => navigation.push('BudgetPage')} >
+
+                      <Image
+                      style = {{height: 90, width: 90, marginTop: 14}} 
+                      source={require('./assets/FoodAreas.png')}/>
+
                       <View style = {styles.bottomTextBorder}> 
                       </View>
-                    
-                    <View style = {{marginTop: 13}}>
-                      <Text style = {styles.boxText}>Dinner Dates</Text>
-                    </View>
 
-                </TouchableOpacity>
-
+                      <View style = {{marginTop: 9}}>
+                        <Text style = {styles.boxText}>Food Areas</Text>
+                      </View> 
+                  </TouchableOpacity>
+                </View>
+      
               </View>
+      
+              <View style = {styles.scViewFormat}>
+      
+                <View style = {styles.leftBox} backgroundColor = '#EAED71'>
+                  <TouchableOpacity
+                    style = {styles.buttons} 
+                    onPress={() => navigation.push('BudgetPage')} >
 
+                      <Image
+                      style = {{height: 90, width: 90, marginTop: 14}} 
+                      source={require('./assets/Vacation.png')}/>
+
+                      <View style = {styles.bottomTextBorder}> 
+                      </View>
+
+                      <View style = {{marginTop: 9}}>
+                        <Text style = {styles.boxText}>Vacation Spot</Text>
+                      </View> 
+
+                  </TouchableOpacity>
+                </View>
+                
+                <View style = {styles.rightBox} backgroundColor = '#74E17F'>
+                  <TouchableOpacity
+                    style = {styles.buttons} 
+                    onPress={() => navigation.push('BudgetPage')} >
+
+                      <Image
+                      style = {{height: 90, width: 90, marginTop: 14}} 
+                      source={require('./assets/HangoutSite.png')}/>
+
+                      <View style = {styles.bottomTextBorder}> 
+                      </View>
+
+                      <View style = {{marginTop: 9}}>
+                        <Text style = {styles.boxText}>Hangout Site</Text>
+                      </View> 
+
+                  </TouchableOpacity>
+                </View>
+      
+              </View>
+                
+              <View style = {styles.scViewFormat}>
+      
+                <View style = {styles.leftBox} backgroundColor = '#A994E4'>
+                  <TouchableOpacity
+                    style = {styles.buttons} 
+                    onPress={() => navigation.push('BudgetPage')} >
+
+                      <Image
+                      style = {{height: 90, width: 90, marginTop: 14}} 
+                      source={require('./assets/RecActivities.png')}/> 
+
+                      <View style = {styles.bottomTextBorder}> 
+                      </View>
+
+                      <View style = {{marginTop: 9}}>
+                        <Text style = {styles.boxText}>Rec Activities</Text>
+                      </View> 
+                      
+                  </TouchableOpacity>
+                </View>
+                
+                <View style = {styles.rightBox} backgroundColor = '#DAB8EA'>
+                  <Button title = ""
+                  color = '#9957B8'/>
+                </View>
+      
+              </View>
+                
+              <View style = {styles.scViewFormatFinal}>
+      
+                <View style = {styles.leftBox}>
+                  <Button title = ""
+                  color = '#9957B8'/>
+                </View>
+                
+                <View style = {styles.rightBox}>
+                  <Button title = ""
+                  color = '#9957B8'/>
+                </View>
               
-
-              <View style = {styles.rightBox} backgroundColor = '#87A4EF'>
-                <TouchableOpacity
-                  style = {styles.buttons} 
-                  onPress={() => navigation.push('BudgetPage')} >
-
-                    <Image
-                    style = {{height: 90, width: 90, marginTop: 14}} 
-                    source={require('./assets/FoodAreas.png')}/>
-
-                    <View style = {styles.bottomTextBorder}> 
-                    </View>
-
-                    <View style = {{marginTop: 9}}>
-                      <Text style = {styles.boxText}>Food Areas</Text>
-                    </View> 
-                </TouchableOpacity>
               </View>
-    
-            </View>
-    
-            <View style = {styles.scViewFormat}>
-    
-              <View style = {styles.leftBox} backgroundColor = '#EAED71'>
-                <TouchableOpacity
-                  style = {styles.buttons} 
-                  onPress={() => navigation.push('BudgetPage')} >
-
-                    <Image
-                    style = {{height: 90, width: 90, marginTop: 14}} 
-                    source={require('./assets/Vacation.png')}/>
-
-                    <View style = {styles.bottomTextBorder}> 
-                    </View>
-
-                    <View style = {{marginTop: 9}}>
-                      <Text style = {styles.boxText}>Vacation Spot</Text>
-                    </View> 
-
-                </TouchableOpacity>
-              </View>
-              
-              <View style = {styles.rightBox} backgroundColor = '#74E17F'>
-                <TouchableOpacity
-                  style = {styles.buttons} 
-                  onPress={() => navigation.push('BudgetPage')} >
-
-                    <Image
-                    style = {{height: 90, width: 90, marginTop: 14}} 
-                    source={require('./assets/HangoutSite.png')}/>
-
-                    <View style = {styles.bottomTextBorder}> 
-                    </View>
-
-                    <View style = {{marginTop: 9}}>
-                      <Text style = {styles.boxText}>Rest Areas</Text>
-                    </View> 
-
-                </TouchableOpacity>
-              </View>
-    
-            </View>
-              
-            <View style = {styles.scViewFormat}>
-    
-              <View style = {styles.leftBox} backgroundColor = '#A994E4'>
-                <TouchableOpacity
-                  style = {styles.buttons} 
-                  onPress={() => navigation.push('BudgetPage')} >
-
-                    <Image
-                    style = {{height: 90, width: 90, marginTop: 14}} 
-                    source={require('./assets/RecActivities.png')}/> 
-
-                    <View style = {styles.bottomTextBorder}> 
-                    </View>
-
-                    <View style = {{marginTop: 9}}>
-                      <Text style = {styles.boxText}>Rec Activities</Text>
-                    </View> 
-                    
-                </TouchableOpacity>
-              </View>
-              
-              <View style = {styles.rightBox} backgroundColor = '#DAB8EA'>
-                <Button title = ""
-                color = '#9957B8'/>
-              </View>
-    
-            </View>
-              
-            <View style = {styles.scViewFormatFinal}>
-    
-              <View style = {styles.leftBox}>
-                <Button title = ""
-                color = '#9957B8'/>
-              </View>
-              
-              <View style = {styles.rightBox}>
-                <Button title = ""
-                color = '#9957B8'/>
-              </View>
-            
-            </View>
-    
-          </ScrollView>
-        </View>
+      
+            </ScrollView>
+          </View>
 
         </SafeAreaView>
     );
