@@ -14,10 +14,10 @@ import {
 
 
 /**
- * Low Budget Screen
+ * Budgets Screen
  * @param {route} param0 to grab different info thats passed to screen 
  */
-export const LowBudgetPage = ({ navigation }) => {
+export const BudgetPage = ({ navigation }) => {
     return (
       <SafeAreaView backgroundColor = '#116466'>
         <View style = {styles.topBox}>
@@ -27,36 +27,13 @@ export const LowBudgetPage = ({ navigation }) => {
         <View style={styles.leftBox}>
           <Button 
             color='#9957B8'
-            title="Budget $$"
+            title="Budget"
             onPress={() => navigation.push('MaxDistancePage')}/>
         </View>
 
       </SafeAreaView>
     );
 }
-
-
-/**
- * High Budget Page
- * @param {*} param0 
- */
-export const HighBudgetPage = ({ navigation }) => {
-  return (
-    <SafeAreaView backgroundColor = '#116466'>
-      <View style = {styles.topBox}>
-        <Text style={styles.textColor1}>Classy, what is your budget mate?</Text>
-      </View>
-
-      <View style={styles.leftBox}>
-        <Button 
-          color='#9957B8'
-          title="Budget high"
-          onPress={() => navigation.push('MaxDistancePage')}/>
-      </View>
-
-    </SafeAreaView>
-  );
-  }
 
 
 const styles = StyleSheet.create({  

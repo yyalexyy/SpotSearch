@@ -29,7 +29,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Recent } from './screens/Recent';
 import { Favorites } from './screens/Favorites';
 import { HomePage } from './screens/HomePage';
-import { LowBudgetPage, HighBudgetPage } from './screens/BudgetsPage';
+import { BudgetPage } from './screens/BudgetsPage';
 import { MaxDistancePage } from './screens/MaxDistancePage';
 import { RatingPage } from './screens/RatingPage';
 import { ResultPage } from './screens/ResultPage';
@@ -79,19 +79,8 @@ const HomeStackScreen = ({ navigation }) => (
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
-      <HomeStack.Screen name="LowBudgetPage" component={LowBudgetPage} options={{ 
+      <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
         title:"Budget",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }} />
-      <HomeStack.Screen name="HighBudgetPage" component={HighBudgetPage} options={{ 
-        title:"Budget Classy",
         headerRight: () => (
           <Icon.Button 
             name= "menu"
