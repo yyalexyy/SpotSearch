@@ -15,11 +15,12 @@ import { render } from 'react-dom';
 
 function Separate() {
   return <View style = {{
-    marginTop: 10,
+    position: 'relative',
+    marginTop: 20,
     borderBottomColor: 'white',
-    borderBottomWidth: 1,
-    marginLeft: 12,
-    marginRight: 12,
+    borderBottomWidth: 2,
+    marginLeft: 15,
+    marginRight: 15,
     shadowOffset: { width: 0, height: 4},
     shadowOpacity: .8,
     shadowRadius: 3,
@@ -38,7 +39,7 @@ Ex. Display a button, and then:
 export const HomePage = ({ navigation }) => {
     return (
         <SafeAreaView backgroundColor = '#3AA4E0'>
-    
+
           <View style = {styles.topBox}>
 
             <View style = {{flexDirection: 'row'}}>
@@ -49,15 +50,17 @@ export const HomePage = ({ navigation }) => {
             </View>
 
           </View>
-        
-          <Separate/>
+       
 
+        <View style = {{backgroundColor: '#0E2163',  marginBottom: 170, marginTop: 10, borderTopLeftRadius: 25, borderTopRightRadius: 25}}> 
         {/* oriented by column */}
-          <ScrollView style = {{ marginBottom: 30}} backgroundColor = '#0E2163'>
+        <Separate/>
+          <ScrollView style = {{ marginBottom: 30}}>
 
             <View style = {styles.scViewFormat}>
               
               <View style = {styles.leftBox} backgroundColor = '#9DF5F5'>
+                
                 <TouchableOpacity
                   style = {styles.buttons} 
                   onPress={() => navigation.push('BudgetPage')} >
@@ -134,7 +137,7 @@ export const HomePage = ({ navigation }) => {
                     </View>
 
                     <View style = {{marginTop: 9}}>
-                      <Text style = {styles.boxText}>Hangout Site</Text>
+                      <Text style = {styles.boxText}>Rest Areas</Text>
                     </View> 
 
                 </TouchableOpacity>
@@ -185,7 +188,8 @@ export const HomePage = ({ navigation }) => {
             </View>
     
           </ScrollView>
-    
+        </View>
+
         </SafeAreaView>
     );
 }
