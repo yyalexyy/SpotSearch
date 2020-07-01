@@ -95,11 +95,10 @@ export const HomePage = ({ navigation }) => {
                       source={require('./assets/FoodAreas.png')}/>
 
                       <View style = {styles.bottomTextBorder}> 
+                        <Text style = {styles.boxText}>Food Areas</Text>
                       </View>
 
-                      <View style = {{marginTop: 9}}>
-                        <Text style = {styles.boxText}>Food Areas</Text>
-                      </View> 
+                      
                   </TouchableOpacity>
                 </View>
       
@@ -117,11 +116,8 @@ export const HomePage = ({ navigation }) => {
                       source={require('./assets/Vacation.png')}/>
 
                       <View style = {styles.bottomTextBorder}> 
-                      </View>
-
-                      <View style = {{marginTop: 9}}>
                         <Text style = {styles.boxText}>Vacation Spot</Text>
-                      </View> 
+                      </View>
 
                   </TouchableOpacity>
                 </View>
@@ -136,11 +132,8 @@ export const HomePage = ({ navigation }) => {
                       source={require('./assets/HangoutSite.png')}/>
 
                       <View style = {styles.bottomTextBorder}> 
+                       <Text style = {styles.boxText}>Hangout Site</Text>
                       </View>
-
-                      <View style = {{marginTop: 9}}>
-                        <Text style = {styles.boxText}>Hangout Site</Text>
-                      </View> 
 
                   </TouchableOpacity>
                 </View>
@@ -159,11 +152,8 @@ export const HomePage = ({ navigation }) => {
                       source={require('./assets/RecActivities.png')}/> 
 
                       <View style = {styles.bottomTextBorder}> 
+                       <Text style = {styles.boxText}>Rec Activities</Text>
                       </View>
-
-                      <View style = {{marginTop: 9}}>
-                        <Text style = {styles.boxText}>Rec Activities</Text>
-                      </View> 
                       
                   </TouchableOpacity>
                 </View>
