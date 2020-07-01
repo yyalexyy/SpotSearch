@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
 import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator, Assets } from '@react-navigation/stack';
@@ -44,7 +45,7 @@ export const HomePage = ({ navigation }) => {
 
             <View style = {{flexDirection: 'row'}}>
               <Image 
-              style = {{height: 120, width: 120, position: 'absolute', marginLeft: -5, marginTop: 20, transform: [{ rotate: '340deg'}] }}
+              style = {{height: hp('17%'), width: wp('32%'), position: 'absolute', marginLeft: -5, marginTop: 20, transform: [{ rotate: '340deg'}] }}
               source={require('./assets/dolphin.png')}/>
               <Text style={styles.textColor1}>What are you looking for today?</Text>
             </View>
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginBottom: 20,
       marginTop: 20,
-      width: 200,
+      width: wp('53.5%'),
     },
   
     scViewFormat: {
@@ -233,8 +234,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#D9B08C', 
       marginLeft: 20, 
       borderRadius: 10,
-      width: 158,
-      height: 148,
+      width: wp('42.1%'),     //158
+      height: hp('22.4%'),    //148
     },
   
     rightBox: {
@@ -242,8 +243,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#D9B08C', 
       marginRight: 20, 
       borderRadius: 10,
-      width: 158,
-      height: 148,
+      width: wp('42.1%'),
+      height: hp('22.4%'),
     },
   
     buttonResize: {
@@ -292,8 +293,8 @@ const styles = StyleSheet.create({
       position: 'absolute' ,
       top: 108,
       left: -2,
-      height: 40, 
-      width: 158, 
+      height: hp('6%'),       //40
+      width: wp('42.1%'),     //158
       backgroundColor: 'white', 
       borderBottomLeftRadius: 10, 
       borderBottomRightRadius: 10,
