@@ -74,11 +74,10 @@ export const HomePage = ({ navigation }) => {
                         />
                         
                         <View style = {styles.bottomTextBorder}> 
+                          <Text style = {styles.boxText}>Dinner Dates</Text>
                         </View>
                       
-                      <View style = {{marginTop: 13}}>
-                        <Text style = {styles.boxText}>Dinner Dates</Text>
-                      </View>
+                      
 
                   </TouchableOpacity>
 
@@ -260,7 +259,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 10,
       borderColor: 'black',
-      borderWidth: 2
+      borderWidth: 2,
+      height: 154,
     },
   
     topBox: {
@@ -286,12 +286,12 @@ const styles = StyleSheet.create({
       //color: '#9957B8',
       color: 'black',
       fontSize: 22,
-      marginTop: 2,
+      marginTop: wp('1%') //4,
     },
 
     bottomTextBorder: {
       position: 'absolute' ,
-      top: hp('16.5%'),  //108
+      top: hp('16.8%'),  //108
       left: -2,
       height: hp('6%'),       //40
       width: wp('42.1%'),     //158
