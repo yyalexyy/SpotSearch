@@ -36,10 +36,11 @@ export const BudgetPage = ({ navigation }) => {
           </View>
         </View>
 
-        <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
+        <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170}}>
 
           <ScrollView contentContainerStyle={{paddingBottom: 100}}
-          style = {{marginTop: 70, marginBottom: 30}}>
+          style = {{marginTop: 100, marginBottom: 30}}>
+              
               <View style={styles.scrollBoxes}>
                 
                 <View style={styles.addBox}>
@@ -51,8 +52,6 @@ export const BudgetPage = ({ navigation }) => {
                   <TouchableOpacity
                     onPress = {() => {}}
                   >
-
-
 
                   </TouchableOpacity>
                 </View>

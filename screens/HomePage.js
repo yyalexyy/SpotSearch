@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
 
     bottomTextBorder: {
       position: 'absolute' ,
-      top: 108,
+      top: hp('16.5%'),  //108
       left: -2,
       height: hp('6%'),       //40
       width: wp('42.1%'),     //158
