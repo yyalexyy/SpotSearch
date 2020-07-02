@@ -238,8 +238,8 @@ const styles = StyleSheet.create({
   
     buttonResize: {
       backgroundColor: 'white', 
-      width: 153, 
-      height: 143, 
+      width: wp('42%'), //153
+      height: hp('22.4%'), //143
       borderRadius: 10,
       alignItems: 'center',
       justifyContent: 'center',
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       borderColor: 'black',
       borderWidth: 2,
-      height: 154,
+      height: wp('42%'), //154
     },
   
     topBox: {
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       marginLeft: 20,
       marginRight: 20,
-      height: hp('26%'),    //154
+      height: wp('42%'), //154
       justifyContent: 'center',
       alignItems: 'center',
       shadowColor: '#000',
