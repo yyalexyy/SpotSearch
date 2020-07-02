@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       marginLeft: 20,
       marginRight: 20,
-      height: 154,
+      height: hp('26%'),    //154
       justifyContent: 'center',
       alignItems: 'center',
       shadowColor: '#000',

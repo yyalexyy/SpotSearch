@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';      //Dont add any other import above th
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
 import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, useWindowDimensions } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -35,13 +36,6 @@ import { Header } from 'react-native/Libraries/NewAppScreen';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
-
-
-function Separate() {
-  return <View style = {{marginVertical: 30,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,}} />
-}
 
 
 
