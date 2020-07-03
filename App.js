@@ -26,6 +26,7 @@ import { Recent } from './screens/Recent';
 import { Favorites } from './screens/Favorites';
 import { HomePage } from './screens/HomePage';
 import { BudgetPage } from './screens/BudgetsPage';
+import { MaxTimePage } from './screens/MaxTimePage';
 import { MaxDistancePage } from './screens/MaxDistancePage';
 import { RatingPage } from './screens/RatingPage';
 import { ResultPage } from './screens/ResultPage';
@@ -79,6 +80,16 @@ const HomeStackScreen = ({ navigation }) => (
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
+      <HomeStack.Screen name="MaxTimePage" component={MaxTimePage} options={{ title:"Time",
+        headerRight: () => (
+          <Icon.Button 
+            name= "menu"
+            size={25}
+            color="#000000"           //menu tab color
+            backgroundColor= "#C5CBE3"
+            onPress={() => navigation.toggleDrawer()}/>
+        )
+      }}  />
       <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance",
         headerRight: () => (
           <Icon.Button 

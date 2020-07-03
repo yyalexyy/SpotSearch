@@ -182,7 +182,7 @@ export const BudgetPage = ({ navigation }) => {
 
                   <TouchableOpacity
                     style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
-                    onPress={() => navigation.push('MaxDistancePage')} >
+                    onPress={() => navigation.push('MaxTimePage')} >
 
                       <View >
                         <Text style = {{fontSize: 25, color: '#ffffff'}}>Continue</Text>
