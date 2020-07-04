@@ -14,6 +14,14 @@ import {
 } from '@react-navigation/drawer';
 
 
+function incrementCount(){
+  this.setState((state) => {
+    return {count: state.count + 1}
+  });
+}
+
+
+
 function Separate() {
   return <View style = {{
     marginTop: 90,
@@ -65,30 +73,29 @@ export const BudgetPage = ({ navigation }) => {
                 </View>
 
                 {/*Left decrement*/}
-                <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
-                    <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
-                    </TouchableOpacity>
-                    
-                </View>
-                
+                <TouchableOpacity>
+                  <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
+
+                          <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+                  </View>
+                </TouchableOpacity>
+
 
                 {/*Right decrement*/}
-                <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
-                    <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-
-                        {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                        {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
-
-                        {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
+                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
                         
-                    </TouchableOpacity>
-                </View>
+                            {/*Vertical line*/}
+                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
+                            {/*Left horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                            {/*Right horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                            
+                    </View>
+                </TouchableOpacity>
 
               </View>
 
@@ -99,32 +106,33 @@ export const BudgetPage = ({ navigation }) => {
                 </View>
 
                 {/*Left decrement*/}
-                <View style={styles.decrementBox} backgroundColor = '#4062BA'>
-                    <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
-                    </TouchableOpacity>
-                    
-                </View>
+                <TouchableOpacity>
+                    <View style={styles.decrementBox} backgroundColor = '#4062BA'>
+                      
+                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+                    </View>
+                </TouchableOpacity>
+                
                 
 
                 {/*Right decrement*/}
-                <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
-                    <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
+                        
+                            {/*Vertical line*/}
+                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                        {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                            {/*Left horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                        {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
+                            {/*Right horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
 
-                        {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
-
-                    </TouchableOpacity>
-                </View>
-
+                    </View>
+                </TouchableOpacity>
 
               </View>
+
 
               <View style={styles.scrollBoxes}>
 
@@ -133,30 +141,30 @@ export const BudgetPage = ({ navigation }) => {
                 </View>
 
                 {/*Left decrement*/}
-                <View style={styles.decrementBox} backgroundColor = '#DBE011'>
-                    <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
-                    </TouchableOpacity>
-                    
-                </View>
+                <TouchableOpacity>
+                    <View style={styles.decrementBox} backgroundColor = '#DBE011'>
+
+                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
+                    </View>
+                </TouchableOpacity>
+
                 
 
                 {/*Right decrement*/}
-                <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
-                    <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-
-                       {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                        {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
-
-                        {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
+                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
                         
-                    </TouchableOpacity>
-                </View>
+                          {/*Vertical line*/}
+                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
+                            {/*Left horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                            {/*Right horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                            
+                    </View>
+                </TouchableOpacity>
 
               </View>
 
@@ -167,30 +175,29 @@ export const BudgetPage = ({ navigation }) => {
                 </View>
 
                 {/*Left decrement*/}
-                <View style={styles.decrementBox} backgroundColor = '#2AB938'>
-                    <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
-                    </TouchableOpacity>
-                    
-                </View>
-                
+                <TouchableOpacity>
+                    <View style={styles.decrementBox} backgroundColor = '#2AB938'>
+                            
+                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
+                    </View>
+                </TouchableOpacity>
+
 
                 {/*Right decrement*/}
-                <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
-                    <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
+                      
+                            {/*Vertical line*/}
+                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                        {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                            {/*Left horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                        {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
-
-                        {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
-                        
-                    </TouchableOpacity>
-                </View>
-
+                            {/*Right horizontal line*/}
+                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                            
+                    </View>
+                </TouchableOpacity>
 
               </View>
 
