@@ -14,6 +14,21 @@ import {
 } from '@react-navigation/drawer';
 
 
+function Separate() {
+  return <View style = {{
+    marginTop: 90,
+    marginBottom: -100,
+    borderBottomColor: 'white',
+    borderBottomWidth: 4,
+    borderRadius: 10,
+    marginLeft: 15,
+    marginRight: 15,
+    shadowOffset: { width: 0, height: 4},
+    shadowOpacity: .8,
+    shadowRadius: 3,
+    zIndex: 999
+    }} />;
+}
 
 /**
  * Budgets Screen
@@ -39,6 +54,8 @@ export const BudgetPage = ({ navigation }) => {
 
         <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
+          <Separate/>
+
           <ScrollView contentContainerStyle={{paddingBottom: 100}}
           style = {{marginTop: 100, marginBottom: 30}}>
               <View style={styles.scrollBoxes}>
@@ -50,7 +67,7 @@ export const BudgetPage = ({ navigation }) => {
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -84,7 +101,7 @@ export const BudgetPage = ({ navigation }) => {
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#4062BA'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -118,7 +135,7 @@ export const BudgetPage = ({ navigation }) => {
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#DBE011'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -152,7 +169,7 @@ export const BudgetPage = ({ navigation }) => {
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#2AB938'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
