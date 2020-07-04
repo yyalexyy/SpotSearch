@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
       marginLeft: 20, 
       borderRadius: 10,
       width: wp('42.1%'),     //158
-      height: hp('22.4%'),    //148
+      height: hp('23.7%'),    //148
     },
   
     rightBox: {
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
       marginRight: 20, 
       borderRadius: 10,
       width: wp('42.1%'),
-      height: hp('22.4%'),
+      height: hp('23.7%'),
     },
   
     buttonResize: {
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
 
     bottomTextBorder: {
       position: 'absolute' ,
-      top: hp('16.8%'),  //108
+      top: hp('17.4%'),  //108
       left: -2,
       height: hp('6%'),       //40
       width: wp('42.1%'),     //158

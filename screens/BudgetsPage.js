@@ -28,7 +28,7 @@ export const BudgetPage = ({ navigation }) => {
 
         <View style = {styles.topBox}>
           <View style = {{flexDirection: 'column'}}>
-              <Text style = {{paddingTop: 10, fontSize: hp('4.5%'), color: '#3AA4E0'}}>Max</Text>
+              <Text style = {{paddingTop: 15, fontSize: hp('4.5%'), color: '#3AA4E0', marginLeft: -15}}>Max</Text>
 
               <Text style={styles.amountTextColor}>
                 $20.00
@@ -40,17 +40,17 @@ export const BudgetPage = ({ navigation }) => {
         <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
           <ScrollView contentContainerStyle={{paddingBottom: 100}}
-          style = {{marginTop: 70, marginBottom: 30}}>
+          style = {{marginTop: 100, marginBottom: 30}}>
               <View style={styles.scrollBoxes}>
 
-                <View style ={{paddingLeft: 45, paddingRight: 35}}>
+                <View style ={{paddingLeft: 50, paddingRight: 50}}>
                   <Text style = {styles.addDollarText}>$1.00</Text>
                 </View>
 
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.3%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -61,13 +61,13 @@ export const BudgetPage = ({ navigation }) => {
                     <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
 
                         {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('2%'), height: hp('6%'), backgroundColor: '#ffffff',}}/>
+                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
                         {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', right: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
 
                         {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', left: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
                         
                     </TouchableOpacity>
                 </View>
@@ -77,14 +77,14 @@ export const BudgetPage = ({ navigation }) => {
 
               <View style={styles.scrollBoxes}>
 
-                <View style ={{paddingLeft: 39, paddingRight: 35}}>
+                <View style ={{paddingLeft: 48, paddingRight: 48}}>
                   <Text style = {styles.addDollarText}>$5.00</Text>
                 </View>
 
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#4062BA'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.5%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -95,13 +95,13 @@ export const BudgetPage = ({ navigation }) => {
                     <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
 
                         {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('2%'), height: hp('6%'), backgroundColor: '#ffffff',}}/>
+                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
                         {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', right: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
 
                         {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', left: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
 
                     </TouchableOpacity>
                 </View>
@@ -111,14 +111,14 @@ export const BudgetPage = ({ navigation }) => {
 
               <View style={styles.scrollBoxes}>
 
-                <View style ={{paddingLeft: 23, paddingRight: 35}}>
+                <View style ={{paddingLeft: 41, paddingRight: 41}}>
                   <Text style = {styles.addDollarText}>$10.00</Text>
                 </View>
 
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#DBE011'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.5%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -129,13 +129,13 @@ export const BudgetPage = ({ navigation }) => {
                     <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
 
                        {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('2%'), height: hp('6%'), backgroundColor: '#ffffff',}}/>
+                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
                         {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', right: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
 
                         {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', left: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
                         
                     </TouchableOpacity>
                 </View>
@@ -145,14 +145,14 @@ export const BudgetPage = ({ navigation }) => {
 
               <View style={styles.scrollBoxes}>
 
-                <View style ={{paddingLeft: 18, paddingRight: 35}}>
+                <View style ={{paddingLeft: 39, paddingRight: 39}}>
                   <Text style = {styles.addDollarText}>$20.00</Text>
                 </View>
 
                 {/*Left decrement*/}
                 <View style={styles.decrementBox} backgroundColor = '#2AB938'>
                     <TouchableOpacity>
-                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.5%'), backgroundColor: '#ffffff' }}/>
+                        <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.6%'), backgroundColor: '#ffffff' }}/>
                     </TouchableOpacity>
                     
                 </View>
@@ -163,13 +163,13 @@ export const BudgetPage = ({ navigation }) => {
                     <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
 
                         {/*Vertical line*/}
-                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('2%'), height: hp('6%'), backgroundColor: '#ffffff',}}/>
+                        <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
                         {/*Left horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', right: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 9}}/>
 
                         {/*Right horizontal line*/}
-                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('2%'), position: 'absolute', backgroundColor: '#ffffff', left: 5.5}}/>
+                        <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 9}}/>
                         
                     </TouchableOpacity>
                 </View>
@@ -203,7 +203,6 @@ export const BudgetPage = ({ navigation }) => {
 
 const styles = StyleSheet.create({  
     mainQuestion: {
-      marginTop: 10,
       marginBottom: 10,
       marginLeft: 20,
       color: '#ffffffff',
@@ -211,7 +210,7 @@ const styles = StyleSheet.create({
 
     },
     topBox: {
-      marginTop: 20,
+      marginTop: 15,
       backgroundColor: '#ffffffff',
       borderRadius: 20,
       marginLeft: 20,
@@ -220,6 +219,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',       // Set content's vertical alignment.
       alignItems: 'center',           // Set content's horizontal alignment.
       zIndex: 5,
+      borderColor: 'black',
+      borderWidth: 2,
     },
     amountTextColor: {
       marginLeft: 30,
@@ -230,6 +231,8 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       justifyContent: 'center',
       marginBottom: 20,
+      marginTop: 5,
+      fontWeight: '300'
     },
   
     scrollBoxes: {
@@ -267,9 +270,10 @@ const styles = StyleSheet.create({
     },
 
     addDollarText:{
-      fontSize: hp('5.5%'),     //35
+      fontSize: hp('4.4%'),     //35
       color: '#000000',
       alignSelf: 'center',
+      fontWeight: '300'
     }
 
     
