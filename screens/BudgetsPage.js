@@ -12,13 +12,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
-
-function incrementCount(){
-  this.setState((state) => {
-    return {count: state.count + 1}
-  });
-}
+import { render } from 'react-dom';
 
 
 
@@ -38,190 +32,238 @@ function Separate() {
     }} />;
 }
 
+
 /**
  * Budgets Screen
- * @param {route} param0 to grab different info thats passed to screen 
  */
-export const BudgetPage = ({ navigation }) => {
-    return (
-      <SafeAreaView backgroundColor = '#3AA4E0'>
-        <View>
-          <Text style = {styles.mainQuestion}>What is your budget?</Text>
-        </View>
+ export class BudgetPage extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = { count: 0 }
 
-        <View style = {styles.topBox}>
-          <View style = {{flexDirection: 'column'}}>
-              <Text style = {{paddingTop: 15, fontSize: hp('4.5%'), color: '#3AA4E0', marginLeft: -15}}>Max</Text>
+    }
 
-              <Text style={styles.amountTextColor}>
-                $20.00
-              </Text>
+    // Increment count
+    incrementCount() {        // incrementCount = () => { 
+      this.setState((state) => {
+        return {count: state.count + 1}
+      });
+    }
 
+    // Decrement count
+    decrementCount() {
+      this.setState((state) => {
+        return {count: state.count - 1}
+      });
+    }
+
+    /* The number of times to either increment or decrement count.
+        isIncr: if value is 1, we increment count. If value is 0, we decrement count.
+        num: the number of times to increment of decrement count
+    */
+    numOfCount(isIncr, num){
+      for(let i = 0; i < num; i++){
+        if(isIncr == 1)       //1 means to increment count
+          this.incrementCount();
+        else
+          this.decrementCount();
+      }
+    };
+
+
+    render(){
+      return (
+        <SafeAreaView backgroundColor = '#3AA4E0'>
+          <View>
+            <Text style = {styles.mainQuestion}>What is your budget?</Text>
           </View>
-        </View>
 
-        <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
+          <View style = {styles.topBox}>
+            <View style = {{flexDirection: 'column'}}>
+                <Text style = {{paddingTop: 15, fontSize: hp('4.5%'), color: '#3AA4E0', marginLeft: -15}}>Max</Text>
 
-          <Separate/>
+                <Text style={styles.amountTextColor}>
+                  ${this.state.count}.00
+                </Text>
 
-          <ScrollView contentContainerStyle={{paddingBottom: 100}}
-          style = {{marginTop: 100, marginBottom: 30}}>
-              <View style={styles.scrollBoxes}>
+            </View>
+          </View>
 
-                <View style ={{paddingLeft: 50, paddingRight: 50}}>
-                  <Text style = {styles.addDollarText}>$1.00</Text>
-                </View>
+          <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
-                {/*Left decrement*/}
-                <TouchableOpacity>
-                  <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
+            <Separate/>
 
-                          <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+            <ScrollView contentContainerStyle={{paddingBottom: 100}}
+            style = {{marginTop: 100, marginBottom: 30}}>
+                <View style={styles.scrollBoxes}>
+
+                  <View style ={{paddingLeft: 50, paddingRight: 50}}>
+                    <Text style = {styles.addDollarText}>$1.00</Text>
                   </View>
-                </TouchableOpacity>
 
+                  {/*Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(0,1) }>
+                    <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
 
-                {/*Right decrement*/}
-                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-                    <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
-                        
-                            {/*Vertical line*/}
-                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                            {/*Left horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
-
-                            {/*Right horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
-                            
-                    </View>
-                </TouchableOpacity>
-
-              </View>
-
-              <View style={styles.scrollBoxes}>
-
-                <View style ={{paddingLeft: 48, paddingRight: 48}}>
-                  <Text style = {styles.addDollarText}>$5.00</Text>
-                </View>
-
-                {/*Left decrement*/}
-                <TouchableOpacity>
-                    <View style={styles.decrementBox} backgroundColor = '#4062BA'>
-                      
                             <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
                     </View>
-                </TouchableOpacity>
-                
-                
-
-                {/*Right decrement*/}
-                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-                    <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
-                        
-                            {/*Vertical line*/}
-                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                            {/*Left horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
-
-                            {/*Right horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
-
-                    </View>
-                </TouchableOpacity>
-
-              </View>
-
-
-              <View style={styles.scrollBoxes}>
-
-                <View style ={{paddingLeft: 41, paddingRight: 41}}>
-                  <Text style = {styles.addDollarText}>$10.00</Text>
-                </View>
-
-                {/*Left decrement*/}
-                <TouchableOpacity>
-                    <View style={styles.decrementBox} backgroundColor = '#DBE011'>
-
-                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
-                    </View>
-                </TouchableOpacity>
-
-                
-
-                {/*Right decrement*/}
-                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-                    <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
-                        
-                          {/*Vertical line*/}
-                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                            {/*Left horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
-
-                            {/*Right horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
-                            
-                    </View>
-                </TouchableOpacity>
-
-              </View>
-
-              <View style={styles.scrollBoxes}>
-
-                <View style ={{paddingLeft: 39, paddingRight: 39}}>
-                  <Text style = {styles.addDollarText}>$20.00</Text>
-                </View>
-
-                {/*Left decrement*/}
-                <TouchableOpacity>
-                    <View style={styles.decrementBox} backgroundColor = '#2AB938'>
-                            
-                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
-                    </View>
-                </TouchableOpacity>
-
-
-                {/*Right decrement*/}
-                <TouchableOpacity style = {{justifyContent: 'center', alignItems: 'center'}}>
-                    <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
-                      
-                            {/*Vertical line*/}
-                            <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
-
-                            {/*Left horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
-
-                            {/*Right horizontal line*/}
-                            <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
-                            
-                    </View>
-                </TouchableOpacity>
-
-              </View>
-
-              {/*Continue to next page button*/}
-              <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', borderColor: 'black', borderWidth: '2'}}>
-
-                  <TouchableOpacity
-                    style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
-                    onPress={() => navigation.push('MaxTimePage')} >
-
-                      <View >
-                        <Text style = {{fontSize: 25, color: 'black'}}>Continue</Text>
-                      </View>
-
                   </TouchableOpacity>
 
-              </View>
-          </ScrollView>
 
-          
-        </View>
+                  {/*Right decrement*/}
+                  <TouchableOpacity 
+                    style = {{justifyContent: 'center', alignItems: 'center'}}
+                    onPress = { () => this.numOfCount(1,1) }
+                  >
+                      <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
+                          
+                              {/*Vertical line*/}
+                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-      </SafeAreaView>
-    );
+                              {/*Left horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                              {/*Right horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              
+                      </View>
+                  </TouchableOpacity>
+
+                </View>
+
+                <View style={styles.scrollBoxes}>
+
+                  <View style ={{paddingLeft: 48, paddingRight: 48}}>
+                    <Text style = {styles.addDollarText}>$5.00</Text>
+                  </View>
+
+                  {/*Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(0,5) }>
+                      <View style={styles.decrementBox} backgroundColor = '#4062BA'>
+                        
+                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+                      </View>
+                  </TouchableOpacity>
+                  
+                  
+
+                  {/*Right decrement*/}
+                  <TouchableOpacity 
+                    style = {{justifyContent: 'center', alignItems: 'center'}}
+                    onPress = { () => this.numOfCount(1,5) }
+                  >
+                      <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
+                          
+                              {/*Vertical line*/}
+                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+
+                              {/*Left horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                              {/*Right horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+
+                      </View>
+                  </TouchableOpacity>
+
+                </View>
+
+
+                <View style={styles.scrollBoxes}>
+
+                  <View style ={{paddingLeft: 41, paddingRight: 41}}>
+                    <Text style = {styles.addDollarText}>$10.00</Text>
+                  </View>
+
+                  {/*Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(0,10) }>
+                      <View style={styles.decrementBox} backgroundColor = '#DBE011'>
+
+                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
+                      </View>
+                  </TouchableOpacity>
+
+                  
+
+                  {/*Right decrement*/}
+                  <TouchableOpacity 
+                    style = {{justifyContent: 'center', alignItems: 'center'}}
+                    onPress = { () => this.numOfCount(1,10) }
+                  >
+                      <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
+                          
+                            {/*Vertical line*/}
+                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+
+                              {/*Left horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                              {/*Right horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              
+                      </View>
+                  </TouchableOpacity>
+
+                </View>
+
+                <View style={styles.scrollBoxes}>
+
+                  <View style ={{paddingLeft: 39, paddingRight: 39}}>
+                    <Text style = {styles.addDollarText}>$20.00</Text>
+                  </View>
+
+                  {/*Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(0,20) }>
+                      <View style={styles.decrementBox} backgroundColor = '#2AB938'>
+                              
+                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
+                      </View>
+                  </TouchableOpacity>
+
+
+                  {/*Right decrement*/}
+                  <TouchableOpacity 
+                    style = {{justifyContent: 'center', alignItems: 'center'}}
+                    onPress = { () => this.numOfCount(1,20) }
+                  >
+                      <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
+                        
+                              {/*Vertical line*/}
+                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+
+                              {/*Left horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+
+                              {/*Right horizontal line*/}
+                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              
+                      </View>
+                  </TouchableOpacity>
+
+                </View>
+
+                {/*Continue to next page button*/}
+                <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', borderColor: 'black', borderWidth: '2'}}>
+
+                    <TouchableOpacity
+                      style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
+                      onPress={() => this.props.navigation.push('MaxTimePage')} >
+
+                        <View >
+                          <Text style = {{fontSize: 25, color: 'black'}}>Continue</Text>
+                        </View>
+
+                    </TouchableOpacity>
+
+                </View>
+            </ScrollView>
+
+            
+          </View>
+
+        </SafeAreaView>
+      );
+    }
 }
 
 
