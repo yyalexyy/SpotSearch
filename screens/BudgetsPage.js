@@ -195,14 +195,14 @@ export const BudgetPage = ({ navigation }) => {
               </View>
 
               {/*Continue to next page button*/}
-              <View style = {{marginTop: 40,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: '#3AA4E0',}}>
+              <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', borderColor: 'black', borderWidth: '2'}}>
 
                   <TouchableOpacity
                     style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
                     onPress={() => navigation.push('MaxTimePage')} >
 
                       <View >
-                        <Text style = {{fontSize: 25, color: '#ffffff'}}>Continue</Text>
+                        <Text style = {{fontSize: 25, color: 'black'}}>Continue</Text>
                       </View>
 
                   </TouchableOpacity>
