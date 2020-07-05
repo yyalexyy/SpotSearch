@@ -31,7 +31,7 @@ function Separate() {
 }
 /**
  * Home Screen
- * @param {*} param0 
+ * @param {navigation} param0 
  */
 /*Decide how to get the drawable sidebar.
 Ex. Display a button, and then: 

@@ -12,25 +12,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import { render } from 'react-dom';
 
-
-
-function Separate() {
-  return <View style = {{
-    marginTop: 90,
-    marginBottom: -100,
-    borderBottomColor: 'white',
-    borderBottomWidth: 4,
-    borderRadius: 10,
-    marginLeft: 15,
-    marginRight: 15,
-    shadowOffset: { width: 0, height: 4},
-    shadowOpacity: .8,
-    shadowRadius: 3,
-    zIndex: 999
-    }} />;
-}
 
 
 /**
@@ -41,6 +23,20 @@ function Separate() {
       super(props);
       this.state = { count: 0 }
 
+    }
+
+    // Alert budget message
+    budgetAlert() {
+      Alert.alert(
+        'Alert Message',
+        'Negative amount does not exist!',
+        [
+          {text: 'OK', onPress: () => console.log('OK button clicked')},
+        ],
+        {
+          cancelable: false     //dismissing behavior altogether with cancelable property set to false
+        }        
+      );
     }
 
     // Increment count
@@ -58,16 +54,17 @@ function Separate() {
     }
 
     /* The number of times to either increment or decrement count.
-        isIncr: if value is 1, we increment count. If value is 0, we decrement count.
+        isIncr: if value is true, we increment count. If value is false, we decrement count.
         num: the number of times to increment of decrement count
     */
     numOfCount(isIncr, num){
       for(let i = 0; i < num; i++){
-        if(isIncr == 1)       //1 means to increment count
+        if(isIncr == true)       //true means to increment count
           this.incrementCount();
         else
           this.decrementCount();
       }
+      
     };
 
 
@@ -79,7 +76,7 @@ function Separate() {
           </View>
 
           <View style = {styles.topBox}>
-            <View style = {{flexDirection: 'column'}}>
+            <View style = {{position: 'absolute', flexDirection: 'column'}}>
                 <Text style = {{paddingTop: 15, fontSize: hp('4.5%'), color: '#3AA4E0', marginLeft: -15}}>Max</Text>
 
                 <Text style={styles.amountTextColor}>
@@ -91,18 +88,20 @@ function Separate() {
 
           <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
-            <Separate/>
+          {/** Line Seperator between the top and the scrolling view */}
+          <View style = {styles.seperate}/>
 
             <ScrollView contentContainerStyle={{paddingBottom: 100}}
             style = {{marginTop: 100, marginBottom: 30}}>
+                {/** $1.00 view box*/}
                 <View style={styles.scrollBoxes}>
 
                   <View style ={{paddingLeft: 50, paddingRight: 50}}>
                     <Text style = {styles.addDollarText}>$1.00</Text>
                   </View>
 
-                  {/*Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(0,1) }>
+                  {/** Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(false,1) }>
                     <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
 
                             <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
@@ -110,20 +109,20 @@ function Separate() {
                   </TouchableOpacity>
 
 
-                  {/*Right decrement*/}
+                  {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(1,1) }
+                    onPress = { () => this.numOfCount(true,1) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
                           
-                              {/*Vertical line*/}
+                              {/** Vertical line*/}
                               <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                              {/*Left horizontal line*/}
+                              {/** Left horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                              {/*Right horizontal line*/}
+                              {/** Right horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
                               
                       </View>
@@ -131,14 +130,15 @@ function Separate() {
 
                 </View>
 
+                {/** $5.00 view box*/}
                 <View style={styles.scrollBoxes}>
 
                   <View style ={{paddingLeft: 48, paddingRight: 48}}>
                     <Text style = {styles.addDollarText}>$5.00</Text>
                   </View>
 
-                  {/*Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(0,5) }>
+                  {/** Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(false,5) }>
                       <View style={styles.decrementBox} backgroundColor = '#4062BA'>
                         
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
@@ -147,20 +147,20 @@ function Separate() {
                   
                   
 
-                  {/*Right decrement*/}
+                  {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(1,5) }
+                    onPress = { () => this.numOfCount(true,5) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
                           
-                              {/*Vertical line*/}
+                              {/** Vertical line*/}
                               <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                              {/*Left horizontal line*/}
+                              {/** Left horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                              {/*Right horizontal line*/}
+                              {/** Right horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
 
                       </View>
@@ -168,15 +168,15 @@ function Separate() {
 
                 </View>
 
-
+                {/** $10.00 view box*/}
                 <View style={styles.scrollBoxes}>
 
                   <View style ={{paddingLeft: 41, paddingRight: 41}}>
                     <Text style = {styles.addDollarText}>$10.00</Text>
                   </View>
 
-                  {/*Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(0,10) }>
+                  {/** Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(false,10) }>
                       <View style={styles.decrementBox} backgroundColor = '#DBE011'>
 
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
@@ -185,20 +185,20 @@ function Separate() {
 
                   
 
-                  {/*Right decrement*/}
+                  {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(1,10) }
+                    onPress = { () => this.numOfCount(true,10) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
                           
-                            {/*Vertical line*/}
+                            {/** Vertical line*/}
                               <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                              {/*Left horizontal line*/}
+                              {/** Left horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                              {/*Right horizontal line*/}
+                              {/** Right horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
                               
                       </View>
@@ -206,14 +206,15 @@ function Separate() {
 
                 </View>
 
+                {/** $20.00 view box*/}
                 <View style={styles.scrollBoxes}>
 
                   <View style ={{paddingLeft: 39, paddingRight: 39}}>
                     <Text style = {styles.addDollarText}>$20.00</Text>
                   </View>
 
-                  {/*Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(0,20) }>
+                  {/** Left decrement*/}
+                  <TouchableOpacity onPress = { () => this.numOfCount(false,20) }>
                       <View style={styles.decrementBox} backgroundColor = '#2AB938'>
                               
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
@@ -221,20 +222,20 @@ function Separate() {
                   </TouchableOpacity>
 
 
-                  {/*Right decrement*/}
+                  {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(1,20) }
+                    onPress = { () => this.numOfCount(true,20) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
                         
-                              {/*Vertical line*/}
+                              {/** Vertical line*/}
                               <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
 
-                              {/*Left horizontal line*/}
+                              {/** Left horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
 
-                              {/*Right horizontal line*/}
+                              {/** Right horizontal line*/}
                               <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
                               
                       </View>
@@ -242,7 +243,7 @@ function Separate() {
 
                 </View>
 
-                {/*Continue to next page button*/}
+                {/** Continue to next page button*/}
                 <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', borderColor: 'black', borderWidth: '2'}}>
 
                     <TouchableOpacity
@@ -299,6 +300,20 @@ const styles = StyleSheet.create({
       marginBottom: 20,
       marginTop: 5,
       fontWeight: '300'
+    },
+
+    seperate:{
+      marginTop: 90,
+      marginBottom: -100,
+      borderBottomColor: 'white',
+      borderBottomWidth: 4,
+      borderRadius: 10,
+      marginLeft: 15,
+      marginRight: 15,
+      shadowOffset: { width: 0, height: 4},
+      shadowOpacity: .8,
+      shadowRadius: 3,
+      zIndex: 999
     },
   
     scrollBoxes: {
