@@ -12,6 +12,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import { render } from 'react-dom';
 
 
 
@@ -67,6 +68,27 @@ import {
       
     };
 
+    /* Validate whether budget is negative. If yes, display alert message;
+      otherwise, call numOfCount method.
+        isIncr: If value is false, we validate whether count is negative.
+        num: the number of times to increment of decrement count
+    */
+    isNegativeBudget(isIncr, num){
+      let isNegative = false;   // initializing to false as count is positive
+    
+      if(isIncr == false){    // validate if count is negative
+        if((this.state.count - num) < 0){
+          isNegative = true;    // set true since count would be negative
+          this.budgetAlert();
+        }
+      }
+      
+      if(isNegative == false){
+        this.numOfCount(isIncr, num);
+      }
+
+    };
+
 
     render(){
       return (
@@ -101,7 +123,7 @@ import {
                   </View>
 
                   {/** Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(false,1) }>
+                  <TouchableOpacity onPress = { () => this.isNegativeBudget(false,1) }>
                     <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
 
                             <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
@@ -112,7 +134,7 @@ import {
                   {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(true,1) }
+                    onPress = { () => this.isNegativeBudget(true,1) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
                           
@@ -138,7 +160,7 @@ import {
                   </View>
 
                   {/** Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(false,5) }>
+                  <TouchableOpacity onPress = { () => this.isNegativeBudget(false,5) }>
                       <View style={styles.decrementBox} backgroundColor = '#4062BA'>
                         
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
@@ -150,7 +172,7 @@ import {
                   {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(true,5) }
+                    onPress = { () => this.isNegativeBudget(true,5) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
                           
@@ -176,7 +198,7 @@ import {
                   </View>
 
                   {/** Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(false,10) }>
+                  <TouchableOpacity onPress = { () => this.isNegativeBudget(false,10) }>
                       <View style={styles.decrementBox} backgroundColor = '#DBE011'>
 
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
@@ -188,7 +210,7 @@ import {
                   {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(true,10) }
+                    onPress = { () => this.isNegativeBudget(true,10) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
                           
@@ -214,7 +236,7 @@ import {
                   </View>
 
                   {/** Left decrement*/}
-                  <TouchableOpacity onPress = { () => this.numOfCount(false,20) }>
+                  <TouchableOpacity onPress = { () => this.isNegativeBudget(false,20) }>
                       <View style={styles.decrementBox} backgroundColor = '#2AB938'>
                               
                               <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
@@ -225,7 +247,7 @@ import {
                   {/** Right decrement*/}
                   <TouchableOpacity 
                     style = {{justifyContent: 'center', alignItems: 'center'}}
-                    onPress = { () => this.numOfCount(true,20) }
+                    onPress = { () => this.isNegativeBudget(true,20) }
                   >
                       <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
                         
