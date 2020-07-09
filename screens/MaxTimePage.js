@@ -19,10 +19,28 @@ import {
 */
 export const MaxTimePage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#116466'>
-            <View>
-                <Text>What is your maximum drive time?</Text>
+        <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 3}}>
+          {/** Base View */}
+          <View>
+
+            {/** Questions Area */}
+            <View style = {{ flex: 2, backgroundColor : '#3AA4E0'}}>
+                <View>
+                  <Text>What is your maximum drive time?</Text>
+
+                </View>
+
+
+
             </View>
+            
+            {/** Time Area */}
+            <View style = {{ flex: 2, backgroundColor : '#2A7FAE'}}>
+
+
+
+            </View>
+
 
             <View style = {{marginTop: 40,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: '#3AA4E0',}}>
 
@@ -36,7 +54,12 @@ export const MaxTimePage = ({ navigation }) => {
 
                   </TouchableOpacity>
 
-              </View>
+            </View>
+
+
+
+          </View>
+
 
         </SafeAreaView>
     );

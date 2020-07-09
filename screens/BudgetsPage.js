@@ -126,7 +126,7 @@ import { render } from 'react-dom';
                   <TouchableOpacity onPress = { () => this.isNegativeBudget(false,1) }>
                     <View style={styles.decrementBox} backgroundColor = '#32D4D4'>
 
-                            <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+                            <View style={styles.decrementLine}/>
                     </View>
                   </TouchableOpacity>
 
@@ -139,13 +139,13 @@ import { render } from 'react-dom';
                       <View style = {styles.incrementBox} backgroundColor = '#9DF5F5'>
                           
                               {/** Vertical line*/}
-                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                              <View style = {styles.plusVerticalLine}/>
 
                               {/** Left horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+                              <View style = {styles.plusLeftHoriLine}/>
 
-                              {/** Right horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              {/** Right horizontal line*/} 
+                              <View style = {styles.plusRightHoriLine}/>
                               
                       </View>
                   </TouchableOpacity>
@@ -163,7 +163,7 @@ import { render } from 'react-dom';
                   <TouchableOpacity onPress = { () => this.isNegativeBudget(false,5) }>
                       <View style={styles.decrementBox} backgroundColor = '#4062BA'>
                         
-                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>
+                              <View style={styles.decrementLine}/>
                       </View>
                   </TouchableOpacity>
                   
@@ -177,13 +177,13 @@ import { render } from 'react-dom';
                       <View style = {styles.incrementBox} backgroundColor = '#87A4EF'>
                           
                               {/** Vertical line*/}
-                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                              <View style = {styles.plusVerticalLine}/>
 
                               {/** Left horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+                              <View style = {styles.plusLeftHoriLine}/>
 
                               {/** Right horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              <View style = {styles.plusRightHoriLine}/>
 
                       </View>
                   </TouchableOpacity>
@@ -201,7 +201,7 @@ import { render } from 'react-dom';
                   <TouchableOpacity onPress = { () => this.isNegativeBudget(false,10) }>
                       <View style={styles.decrementBox} backgroundColor = '#DBE011'>
 
-                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                  
+                              <View style={styles.decrementLine}/>                  
                       </View>
                   </TouchableOpacity>
 
@@ -215,13 +215,13 @@ import { render } from 'react-dom';
                       <View style = {styles.incrementBox} backgroundColor = '#EAED71'>
                           
                             {/** Vertical line*/}
-                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                              <View style = {styles.plusVerticalLine}/>
 
                               {/** Left horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+                              <View style = {styles.plusLeftHoriLine}/>
 
                               {/** Right horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              <View style = {styles.plusRightHoriLine}/>
                               
                       </View>
                   </TouchableOpacity>
@@ -239,7 +239,7 @@ import { render } from 'react-dom';
                   <TouchableOpacity onPress = { () => this.isNegativeBudget(false,20) }>
                       <View style={styles.decrementBox} backgroundColor = '#2AB938'>
                               
-                              <View style={{borderColor: '#000000', borderWidth: 2, width: wp('8.5%'), height: hp('1.7%'), backgroundColor: '#ffffff' }}/>                    
+                              <View style={styles.decrementLine}/>                    
                       </View>
                   </TouchableOpacity>
 
@@ -252,13 +252,13 @@ import { render } from 'react-dom';
                       <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
                         
                               {/** Vertical line*/}
-                              <View style = {{borderColor: '#000000', borderWidth: 2, width: wp('3%'), height: hp('6.5%'), backgroundColor: '#ffffff',}}/>
+                              <View style = {styles.plusVerticalLine}/>
 
                               {/** Left horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#000000', borderBottomColor: '#000000', borderRightColor: '#ffffff', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', right: 43}}/>
+                              <View style = {styles.plusLeftHoriLine}/>
 
                               {/** Right horizontal line*/}
-                              <View style = {{borderTopColor: '#000000', borderLeftColor: '#ffffff', borderBottomColor: '#000000', borderRightColor: '#000000', borderWidth: 2, width: hp('3%'), height: wp('3%'), position: 'absolute', backgroundColor: '#ffffff', left: 43}}/>
+                              <View style = {styles.plusRightHoriLine}/>
                               
                       </View>
                   </TouchableOpacity>
@@ -377,7 +377,44 @@ const styles = StyleSheet.create({
       color: '#000000',
       alignSelf: 'center',
       fontWeight: '300'
-    }
+    },
 
-    
+    decrementLine: {
+      borderColor: '#000000', 
+      borderWidth: 2, 
+      width: wp('8.5%'), 
+      height: hp('1.7%'), 
+      backgroundColor: '#ffffff' 
+    },
+    plusVerticalLine: {
+      borderColor: '#000000', 
+      borderWidth: 2, 
+      width: wp('3%'), 
+      height: hp('6.5%'), 
+      backgroundColor: '#ffffff',
+    },
+    plusLeftHoriLine: {
+      borderTopColor: '#000000',
+      borderLeftColor: '#000000',
+      borderBottomColor: '#000000',
+      borderRightColor: '#ffffff',
+      borderWidth: 2,
+      width: hp('3%'),
+      height: wp('3%'),
+      position: 'absolute', 
+      backgroundColor: '#ffffff', 
+      right: 43
+    },
+    plusRightHoriLine:{
+      borderTopColor: '#000000', 
+      borderLeftColor: '#ffffff', 
+      borderBottomColor: '#000000', 
+      borderRightColor: '#000000', 
+      borderWidth: 2, width: hp('3%'), 
+      height: wp('3%'), 
+      position: 'absolute', 
+      backgroundColor: '#ffffff', 
+      left: 43
+    },
+
   });
