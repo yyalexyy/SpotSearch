@@ -19,6 +19,7 @@ import {
 */
 export const MaxTimePage = ({ navigation }) => {
     return (
+<<<<<<< HEAD
         <SafeAreaView>
           {/*Top Section*/}
             <View>
@@ -27,6 +28,30 @@ export const MaxTimePage = ({ navigation }) => {
             
           {/*Middle Section*/}
             <View>
+=======
+        <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 3}}>
+          {/** Base View */}
+          <View>
+
+            {/** Questions Area */}
+            <View style = {{ flex: 2, backgroundColor : '#3AA4E0'}}>
+                <View>
+                  <Text>What is your maximum drive time?</Text>
+
+                </View>
+
+
+
+            </View>
+            
+            {/** Time Area */}
+            <View style = {{ flex: 2, backgroundColor : '#2A7FAE'}}>
+
+
+
+            </View>
+
+>>>>>>> cc69bdbf6ef93d3b453d85f65be14d380e40540f
 
             </View>
 
@@ -34,6 +59,14 @@ export const MaxTimePage = ({ navigation }) => {
             <View>
 
             </View>
+<<<<<<< HEAD
+=======
+
+
+
+          </View>
+
+>>>>>>> cc69bdbf6ef93d3b453d85f65be14d380e40540f
 
         </SafeAreaView>
     );
