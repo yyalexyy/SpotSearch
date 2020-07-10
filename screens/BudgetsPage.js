@@ -92,7 +92,7 @@ import { render } from 'react-dom';
 
     render(){
       return (
-        <SafeAreaView backgroundColor = '#3AA4E0'>
+        <SafeAreaView backgroundColor = '#B8E5FF'>
           <View>
             <Text style = {styles.mainQuestion}>What is your budget?</Text>
           </View>
@@ -109,7 +109,7 @@ import { render } from 'react-dom';
             </View>
           </View>
 
-          <View style = {{backgroundColor: '#0E2163', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
+          <View style = {{backgroundColor: 'white', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
           {/** Line Seperator between the top and the scrolling view */}
           <View style = {styles.seperate}/>
@@ -267,7 +267,7 @@ import { render } from 'react-dom';
                 </View>
 
                 {/** Continue to next page button*/}
-                <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', borderColor: 'black', borderWidth: '2'}}>
+                <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', shadowColor: 'black', shadowOffset: {width: 1, height: 3}, shadowRadius: 4, shadowOpacity: .6}}>
 
                     <TouchableOpacity
                       style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     mainQuestion: {
       marginBottom: 10,
       marginLeft: 20,
-      color: '#ffffffff',
+      color: 'black',
       fontSize: 30,
 
     },
@@ -305,12 +305,14 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       marginLeft: 20,
       marginRight: 20,
-      height: 144,
+      height: hp('22%'),                    //144
       justifyContent: 'center',       // Set content's vertical alignment.
-      alignItems: 'center',           // Set content's horizontal alignment.
+      alignItems: 'center',           // Set con]tent's horizontal alignment.
       zIndex: 5,
-      borderColor: 'black',
-      borderWidth: 2,
+      shadowColor: '#000',
+      shadowOffset: { width: 1, height: 4},
+      shadowOpacity: .6,
+      shadowRadius: 3,
     },
     amountTextColor: {
       marginTop: 35,
@@ -322,21 +324,22 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       justifyContent: 'center',
       marginBottom: 0,
-      fontWeight: '300'
+      fontWeight: '400'
     },
 
     seperate:{
       marginTop: 90,
       marginBottom: -100,
-      borderBottomColor: 'white',
-      borderBottomWidth: 4,
+      height: 3,
+      backgroundColor: '#B8E5FF',
       borderRadius: 10,
-      marginLeft: 15,
-      marginRight: 15,
-      shadowOffset: { width: 0, height: 4},
-      shadowOpacity: .8,
-      shadowRadius: 3,
-      zIndex: 999
+      marginLeft: 10,
+      marginRight: 10,
+      shadowColor: '#000',
+      shadowOffset: { width: 1, height: 2},
+      shadowOpacity: .6,
+      shadowRadius: 2,
+      zIndex: 999,
     },
   
     scrollBoxes: {
@@ -347,16 +350,18 @@ const styles = StyleSheet.create({
       marginRight: 20,
       borderRadius: 15,
       height: hp('11%'),       //80
-      overflow: 'hidden',
       alignItems: "center",
-      borderWidth: 2,       // Set border width
+      //overflow: "hidden",
+      shadowColor: 'black',
+      shadowOffset: { width: 1, height: 3},
+      shadowOpacity: .6,
+      shadowRadius: 4,
     },
 
     decrementBox: {
+      marginLeft: 5,
       borderTopLeftRadius: 15,
       borderBottomLeftRadius: 15,
-      borderColor: 'black',
-      borderWidth: 2,
       alignItems: "center",
       justifyContent: 'center',
       width: wp('21%'),
@@ -375,9 +380,9 @@ const styles = StyleSheet.create({
 
     addDollarText:{
       fontSize: hp('4.4%'),     //35
+      fontWeight: '500',
       color: '#000000',
       alignSelf: 'center',
-      fontWeight: '300'
     },
 
     decrementLine: {

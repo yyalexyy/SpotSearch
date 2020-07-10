@@ -18,7 +18,7 @@ function Separate() {
   return <View style = {{
     position: 'relative',
     marginTop: 20,
-    height: 5,
+    height: 4,
     backgroundColor: '#B8E5FF',
     borderRadius: 10,
     marginLeft: 15,
