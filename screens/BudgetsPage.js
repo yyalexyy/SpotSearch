@@ -98,12 +98,13 @@ import { render } from 'react-dom';
           </View>
 
           <View style = {styles.topBox}>
+            <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginBottom: 80, marginRight: 235}}>Max</Text>
+            
             <View style = {{position: 'absolute', flexDirection: 'column'}}>
-                <Text style = {{paddingTop: 15, fontSize: hp('4.5%'), color: '#3AA4E0', marginLeft: -15}}>Max</Text>
 
                 <Text style={styles.amountTextColor}>
-                  ${this.state.count}.00
-                </Text>
+                 ${this.state.count}.00
+                </Text> 
 
             </View>
           </View>
@@ -312,6 +313,7 @@ const styles = StyleSheet.create({
       borderWidth: 2,
     },
     amountTextColor: {
+      marginTop: 35,
       marginLeft: 30,
       marginRight: 30,
       color: '#000000',
@@ -319,8 +321,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
       textAlign: 'center',
       justifyContent: 'center',
-      marginBottom: 20,
-      marginTop: 5,
+      marginBottom: 0,
       fontWeight: '300'
     },
 
