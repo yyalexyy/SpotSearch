@@ -79,7 +79,10 @@ import { render } from 'react-dom';
       if(isIncr == false){    // validate if count is negative
         if((this.state.count - num) < 0){
           isNegative = true;    // set true since count would be negative
-          this.budgetAlert();
+          //this.budgetAlert();
+          this.setState((state) => {
+            return {count: 0}
+          });
         }
       }
       
