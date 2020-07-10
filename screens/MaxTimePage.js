@@ -19,16 +19,6 @@ import {
 */
 export const MaxTimePage = ({ navigation }) => {
     return (
-<<<<<<< HEAD
-        <SafeAreaView>
-          {/*Top Section*/}
-            <View>
-                
-            </View>
-            
-          {/*Middle Section*/}
-            <View>
-=======
         <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 3}}>
           {/** Base View */}
           <View>
@@ -51,22 +41,25 @@ export const MaxTimePage = ({ navigation }) => {
 
             </View>
 
->>>>>>> cc69bdbf6ef93d3b453d85f65be14d380e40540f
+
+            <View style = {{marginTop: 40,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: '#3AA4E0',}}>
+
+                  <TouchableOpacity
+                    style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
+                    onPress={() => navigation.push('RatingPage')} >
+
+                      <View >
+                        <Text style = {{fontSize: 25, color: '#ffffff'}}>Continue</Text>
+                      </View>
+
+                  </TouchableOpacity>
 
             </View>
-
-          {/*Bottom Section*/}
-            <View>
-
-            </View>
-<<<<<<< HEAD
-=======
 
 
 
           </View>
 
->>>>>>> cc69bdbf6ef93d3b453d85f65be14d380e40540f
 
         </SafeAreaView>
     );
