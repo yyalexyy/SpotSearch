@@ -93,6 +93,7 @@ import { render } from 'react-dom';
     render(){
       return (
         <SafeAreaView backgroundColor = '#B8E5FF'>
+          <View style = {{position: 'relative', marginTop: -20, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10}}/>
           <View>
             <Text style = {styles.mainQuestion}>What is your budget?</Text>
           </View>
@@ -293,10 +294,11 @@ import { render } from 'react-dom';
 
 const styles = StyleSheet.create({  
     mainQuestion: {
-      marginBottom: 10,
+      marginBottom: 0,
       marginLeft: 20,
       color: 'black',
       fontSize: 30,
+      marginTop: 20,
 
     },
     topBox: {

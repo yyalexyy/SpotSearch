@@ -18,18 +18,19 @@ function Separate() {
   return <View style = {{
     position: 'relative',
     marginTop: 20,
-    height: 4,
+    height: 3,
     backgroundColor: '#B8E5FF',
     borderRadius: 10,
     marginLeft: 15,
     marginRight: 15,
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 3},
+    shadowOffset: { width: 1, height: 2},
     shadowOpacity: .6,
-    shadowRadius: 2,
+    shadowRadius: 1,
     zIndex: 999,
     }} />;
 }
+
 /**
  * Home Screen
  * @param {navigation} param0 
@@ -41,9 +42,11 @@ Ex. Display a button, and then:
 */
 export const HomePage = ({ navigation }) => {
     return (
-      
       <SafeAreaView backgroundColor = '#B8E5FF'> 
           {/**#3AA4E0 */}
+          <View style = {{position: 'relative', marginTop: -20, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10}}/>  
+
+
           <View style = {styles.topBox}>
 
             <View style = {{flexDirection: 'row'}}>
@@ -275,6 +278,7 @@ const styles = StyleSheet.create({
       shadowOffset: { height: 5 },
       shadowOpacity: 0.8,
       shadowRadius: 5,
+      marginTop: 20,
     },
 
     boxText: {

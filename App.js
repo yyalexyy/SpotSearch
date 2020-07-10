@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';      //Dont add any other import above this
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, useWindowDimensions } from 'react-native';
+import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, useWindowDimensions, StatusBar } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
@@ -39,20 +39,20 @@ setTimeout(SplashScreen.hide, 3000);
 
 
 
-
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
 const HomeStack = createStackNavigator();
 const RecentStack = createStackNavigator();
 const FavoritesStack = createStackNavigator();
 
 
+
 //Component to render HomeStack navigator
 const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator screenOptions={{
       headerStyle:{
-        backgroundColor: '#C5CBE3',
+        backgroundColor: '#B8E5FF',
       },
-      headerTintColor: '#ffffff',     //back button color
+      headerTintColor: 'black',     //back button color
       headerTitleStyle: {             //header title
         fontWeight: 'bold',
         color: 'black'
@@ -65,10 +65,11 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
         }} />
+      
       <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
         title:"Budget",
         headerRight: () => (
@@ -76,7 +77,7 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -86,7 +87,7 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }}  />
@@ -96,7 +97,7 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }}  />
@@ -107,7 +108,7 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -118,7 +119,7 @@ const HomeStackScreen = ({ navigation }) => (
             name= "menu"
             size={25}
             color="#000000"           //menu tab color
-            backgroundColor= "#C5CBE3"
+            backgroundColor= "#B8E5FF"
             onPress={() => navigation.toggleDrawer()}/>
         )
       }} />
@@ -341,6 +342,7 @@ function MyDrawer() {
 export default function App() {
   return (
     <SafeAreaProvider>
+      <StatusBar barStyle="dark-content"/>
       <NavigationContainer>
         <MyDrawer />
       </NavigationContainer>
