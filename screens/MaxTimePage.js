@@ -19,24 +19,21 @@ import {
 */
 export const MaxTimePage = ({ navigation }) => {
     return (
-        <SafeAreaView backgroundColor = '#116466'>
+        <SafeAreaView>
+          {/*Top Section*/}
             <View>
-                <Text>What is your maximum drive time?</Text>
+                
+            </View>
+            
+          {/*Middle Section*/}
+            <View>
+
             </View>
 
-            <View style = {{marginTop: 40,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: '#3AA4E0',}}>
+          {/*Bottom Section*/}
+            <View>
 
-                  <TouchableOpacity
-                    style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
-                    onPress={() => navigation.push('RatingPage')} >
-
-                      <View >
-                        <Text style = {{fontSize: 25, color: '#ffffff'}}>Continue</Text>
-                      </View>
-
-                  </TouchableOpacity>
-
-              </View>
+            </View>
 
         </SafeAreaView>
     );
