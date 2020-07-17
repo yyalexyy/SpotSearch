@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, FlatList } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,76 +17,62 @@ import {
 * Result Screen
 * @param {*} param0 
 */
-export const ResultPage = ({ navigation }) => {
-    return (
+export class ResultPage extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      data: []
+    }
+  }
+
+  componentDidMount(){
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    const response = await fetch("https://api.scaleserp.com/search?api_key=9419519988374534B1FE7DFCD3D80C2A&q=Restaurant");
+    const json = await response.json();
+    this.setState( {data: json.organic_results} );
+
+  }
+
+
+  render(){
+      return(
         <SafeAreaView backgroundColor = '#116466'>
-            <Text style={{textAlign: 'center'}}>
+          <FlatList
+            data={this.state.data}
+            keyExtractor={(x,i) => i}
+            renderItem={ ({ item }) =>
+              <Text >{item.title}</Text>}
+          />
+
+          <Text style={{textAlign: 'center'}}>
                 Chick-fil-A
             </Text>
+
         </SafeAreaView>
-    );
+      );
+
+  }
 }
 
 
 const styles = StyleSheet.create({  
-    textColor1: {
-      marginLeft: 30,
-      marginRight: 30,
-      color: '#9957B8',
-      fontSize: 25,
-      alignItems: "center",
-      textAlign: 'center',
-      justifyContent: 'center',
-      marginBottom: 20,
-      marginTop: 20,
-    },
-  
-    scViewFormat: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-  
-    scViewFormatFinal: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginBottom: 175,
-    },
-  
-    leftBox: {
-      marginTop: 40,  
-      backgroundColor: 'white', 
-      marginLeft: 8, 
-      borderRadius: 10,
-      width: 145,
-      height: 143,
-    },
-  
-    rightBox: {
-      marginTop: 40,  
-      backgroundColor: 'white', 
-      marginRight: 8, 
-      borderRadius: 10,
-      width: 145,
-      height: 143,
-    },
-  
-    buttonResize: {
-      backgroundColor: 'white', 
-      width: 153, 
-      height: 143, 
-      borderRadius: 10,
+    container:{
+      flex: 1,
+      backgroundColor: '#F5FCFF',
       alignItems: 'center',
-      justifyContent: 'flex-end',
-    },
-  
-    topBox: {
-      marginTop: 10,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      marginLeft: 20,
-      marginRight: 20,
-      height: 154,
       justifyContent: 'center',
+
+    },
+    item:{
+      flex: 1,
+      alignSelf: 'stretch',
+      margin: 10,
       alignItems: 'center',
+      justifyContent: 'center',
+      borderBottomWidth: 1,
     }
+
   });
