@@ -30,7 +30,7 @@ export class ResultPage extends React.Component{
   }
 
   fetchData = async () => {
-    const response = await fetch("https://api.scaleserp.com/search?api_key=9419519988374534B1FE7DFCD3D80C2A&q=Restaurant");
+    const response = await fetch("https://api.scaleserp.com/search?api_key=9419519988374534B1FE7DFCD3D80C2A&q=Vacation+Spot");
     const json = await response.json();
     this.setState( {data: json.organic_results} );
 

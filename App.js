@@ -34,6 +34,7 @@ import { ResultPage } from './screens/ResultPage';
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { HomePageRedesign } from './screens/HomePageRedesign';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
@@ -58,7 +59,7 @@ const HomeStackScreen = ({ navigation }) => (
         color: 'black'
       },
     }}>
-      <HomeStack.Screen name="HomePage" component={HomePage} options={{ 
+      <HomeStack.Screen name="HomePage" component={HomePageRedesign} options={{ 
         title:"Home",
         headerRight: () => (
           <Icon.Button 
