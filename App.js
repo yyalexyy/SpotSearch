@@ -5,7 +5,8 @@ import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, An
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -34,147 +35,16 @@ import { ResultPage } from './screens/ResultPage';
 //diplaying the splash screen
 import { SplashScreen } from 'expo'
 import { Header } from 'react-native/Libraries/NewAppScreen';
-import { HomePageRedesign } from './screens/HomePageRedesign';
 SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
 
 
+import MainTabScreen from './screens/MainTabScreen'
+
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
-const HomeStack = createStackNavigator();
-const RecentStack = createStackNavigator();
-const FavoritesStack = createStackNavigator();
 
 
-
-//Component to render HomeStack navigator
-const HomeStackScreen = ({ navigation }) => (
-  <HomeStack.Navigator screenOptions={{
-      headerStyle:{
-        backgroundColor: '#B8E5FF',
-      },
-      headerTintColor: 'black',     //back button color
-      headerTitleStyle: {             //header title
-        fontWeight: 'bold',
-        color: 'black'
-      },
-    }}>
-      <HomeStack.Screen name="HomePage" component={HomePageRedesign} options={{ 
-        title:"Home",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-        }} />
-      
-      <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
-        title:"Budget",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }} />
-      <HomeStack.Screen name="MaxTimePage" component={MaxTimePage} options={{ title:"Time",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }}  />
-      <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }}  />
-      <HomeStack.Screen name="RatingPage" component={RatingPage} options={{   
-        title:"Rating",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }} />
-      <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
-        title:"Spot",
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#000000"           //menu tab color
-            backgroundColor= "#B8E5FF"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-      }} />
-  </HomeStack.Navigator>
-)
-
-const RecentStackScreen = ({ navigation }) => (
-  <RecentStack.Navigator screenOptions={{
-      headerStyle:{
-        backgroundColor: '#C5CBE3',
-      },
-      //headerTintColor: '#000000',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'white'
-      },
-    }}>
-      <RecentStack.Screen name="Recent" component={Recent} options={{ 
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#ffffff"
-            backgroundColor= "#C5CBE3"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-        }} />
-  </RecentStack.Navigator>
-)
-
-
-const FavoritesStackScreen = ({ navigation }) => (
-  <FavoritesStack.Navigator screenOptions={{
-      headerStyle:{
-        backgroundColor: '#C5CBE3',
-      },
-      //headerTintColor: '#000000',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'white'
-      },
-    }}>
-      <FavoritesStack.Screen name="Favorites" component={Favorites} options={{ 
-        headerRight: () => (
-          <Icon.Button 
-            name= "menu"
-            size={25}
-            color="#ffffff"
-            backgroundColor= "#C5CBE3"
-            onPress={() => navigation.toggleDrawer()}/>
-        )
-        }} />
-  </FavoritesStack.Navigator>
-)
 
 
 /**
@@ -205,7 +75,7 @@ function CustomDrawerContent(props){
                   />
                 )}
                 label="Home"
-                onPress={() => props.navigation.navigate('HomePage')}
+                onPress={() => props.navigation.navigate('HomePageRedesign')}
               />
 
               <DrawerItem
@@ -332,9 +202,9 @@ function MyDrawer() {
       edgeWidth={0}           //disable swipe to open (doesn't respond to gesture)
     >
       <SideBarDrawer.Screen 
-      name="HomeStackScreen" component={HomeStackScreen} options={{ title: "Home" }} />
-      <SideBarDrawer.Screen name="Recent" component={RecentStackScreen} />
-      <SideBarDrawer.Screen name="Favorites" component={FavoritesStackScreen} />
+      name="HomePage" component={MainTabScreen} options={{ title: "Home" }} />
+      {/* <SideBarDrawer.Screen name="Recent" component={RecentStackScreen} />
+      <SideBarDrawer.Screen name="Favorites" component={FavoritesStackScreen} /> */}
     </SideBarDrawer.Navigator>
   );
 }
