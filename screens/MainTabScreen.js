@@ -1,7 +1,6 @@
 import * as React from 'react';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -18,11 +17,9 @@ import { RatingPage } from './RatingPage';
 import { ResultPage } from './ResultPage';
 
 
-
 const HomeStack = createStackNavigator();
 const RecentStack = createStackNavigator();
 const FavoritesStack = createStackNavigator();
-
 const Tab = createBottomTabNavigator();
 
 
