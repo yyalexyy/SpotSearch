@@ -74,7 +74,7 @@ export default MainTabScreen;
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator screenOptions={{
         headerStyle:{
-          backgroundColor: '#B8E5FF',
+          backgroundColor: '#3AA4E0',
         },
         headerTintColor: 'black',     //back button color
         headerTitleStyle: {             //header title
@@ -89,7 +89,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#000000"           //menu tab color
-              backgroundColor= "#B8E5FF"
+              backgroundColor= "#3AA4E0"
               onPress={() => navigation.toggleDrawer()}/>
           )
           }} />
