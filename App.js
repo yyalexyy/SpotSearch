@@ -5,8 +5,6 @@ import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, An
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -23,6 +21,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // importing screen pages from screens folder
+import MainTabScreen from './screens/MainTabScreen';
 import { Recent } from './screens/Recent';
 import { Favorites } from './screens/Favorites';
 import { HomePage } from './screens/HomePage';
@@ -39,12 +38,7 @@ SplashScreen.preventAutoHide();
 setTimeout(SplashScreen.hide, 3000);
 
 
-
-import MainTabScreen from './screens/MainTabScreen'
-
 const SideBarDrawer = createDrawerNavigator();     //creating drawer navigator
-
-
 
 
 /**
@@ -202,7 +196,7 @@ function MyDrawer() {
       edgeWidth={0}           //disable swipe to open (doesn't respond to gesture)
     >
       <SideBarDrawer.Screen 
-      name="HomePage" component={MainTabScreen} options={{ title: "Home" }} />
+      name="Home" component={MainTabScreen} options={{ title: "Home" }} />
       {/* <SideBarDrawer.Screen name="Recent" component={RecentStackScreen} />
       <SideBarDrawer.Screen name="Favorites" component={FavoritesStackScreen} /> */}
     </SideBarDrawer.Navigator>
