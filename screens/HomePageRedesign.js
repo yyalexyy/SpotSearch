@@ -15,42 +15,140 @@ import {
 import { render } from 'react-dom';
 
 export const HomePageRedesign = ({ navigation }) => {
-  return (
-    
-    <View style = {styles.rightBox} backgroundColor = '#87A4EF'>
-    <TouchableOpacity
-      style = {styles.buttons} 
-      onPress={() => navigation.push('BudgetPage')} >
+    return (
+        <SafeAreaView backgroundColor = '#3AA4E0'>
 
-        <Image
-        style = {{height: 90, width: 90, marginTop: 14}} 
-        source={require('./assets/FoodAreas.png')}/>
+            {/* Light Blue Section that contains the Dolphin and Header */}
+            <View style={{backgroundColor: '#3AA4E0', height: hp('100%'), width: wp ('100%'), marginTop: -20}}>
 
-        <View style = {styles.bottomTextBorder}> 
-          <Text style = {styles.boxText}>Food Areas</Text>
-        </View>
+                {/* The second section of the screen that contains the horizontal scroll bar */}
+                <View style={{flexDirection: "row", backgroundColor: "#2A7FAE", marginTop: hp('47%'), width: wp('100%'), height: hp('45%'), borderTopLeftRadius: 30 }}>
 
-        
-    </TouchableOpacity>
-  </View>
+                    {/* Vertical Line that ends the scrollview */}
+                    <View style = {{position: 'absolute', height: 20, width: 120, backgroundColor: 'white', borderRadius: 20, transform: [{rotate: "90deg"}] }}/>
+                    
+                    <ScrollView style={{ position: 'absolute', marginLeft: 30, marginTop: 30 }} horizontal={true}>
 
-  );
+                        {/* View that contains all the buttons within ScrollView */}
+                        <View style={styles.scroll}>
+
+                            {/* Buttons */}
+                            <TouchableOpacity
+                                style={styles.buttons}
+                                onPress={() => navigation.push('BudgetPage')} >
+
+                                <Image
+                                    style={{ height: 80, width: 80, marginTop: 10 }}
+                                    source={require('./assets/DinnerDate.png')}
+                                />
+
+                                <View style={styles.bottomTextBorder}>
+                                    <Text style={styles.boxText}>Dinner Dates</Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={styles.buttons}
+                                onPress={() => navigation.push('BudgetPage')} >
+
+                                <Image
+                                    style={{ height: 80, width: 80, marginTop: 10 }}
+                                    source={require('./assets/FoodAreas.png')}
+                                />
+
+                                <View style={styles.bottomTextBorder}>
+                                    <Text style={styles.boxText}>Food Areas</Text>
+                                </View>
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={styles.buttons}
+                                onPress={() => navigation.push('BudgetPage')} >
+
+                                <Image
+                                    style={{ height: 80, width: 80, marginTop: 10 }}
+                                    source={require('./assets/DinnerDate.png')}
+                                />
+
+                                <View style={styles.bottomTextBorder}>
+                                    <Text style={styles.boxText}>Dinner Dates</Text>
+                                </View>
+                            </TouchableOpacity>
+                       
+                        </View>
+
+                    </ScrollView>
+
+                    {/* The final section of the screen that contains the continue button */}
+                <View style={{backgroundColor: "#0E2163", marginTop: hp('28%'), width: wp('100%'), height: hp('30%'), borderTopLeftRadius: 30 }}>
+
+                </View>
+                    
+
+                </View>
+
+                {/* The Dolphin */}
+                <Image style = {styles.dolphin}
+                source={require('./assets/dolphin.png')}/> 
+
+                {/* The Header */}
+                <Text style = {styles.header}> 
+                    Categories
+                </Text>
+                
+            </View>
+
+        </SafeAreaView>
+    );
 }
 
 
 const styles = StyleSheet.create({
 
-  rightBox: {
-    marginTop: 25,  
-    backgroundColor: '#D9B08C', 
-    marginRight: 20, 
-    borderRadius: 10,
-    width: wp('42.1%'),
-    height: hp('23.7%'),
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 4 },
-    shadowOpacity: .8,
-    shadowRadius: 3,
+  dolphin: {
+    position: 'absolute',
+    transform: [{translateX: 25}, {translateY: -120}, {rotate: "-30deg"}, {scale: .8}]
   },
 
+  header: {
+    position: 'absolute',
+    color: 'white',
+    marginTop: hp ('38%'),
+    marginLeft: wp ('4%'),
+    fontSize: 40,
+  },
+
+  buttons: {
+    backgroundColor: '#9DF5F5',
+    height: wp ('35%'),
+    width: hp ('20%'),
+    borderRadius: 20,
+    alignItems: 'center',
+    marginLeft: 20,
+    shadowColor: 'white',
+    shadowOffset: {width: 4, height: 4},
+    shadowOpacity: .5,
+    shadowRadius: 1,
+  },
+  
+  bottomTextBorder: {
+      backgroundColor: 'white',
+      marginTop: 10,
+      width: hp ('20%'),
+      height: wp ('8.4%'),
+      alignItems: "center",
+      borderBottomLeftRadius: 20, 
+      borderBottomRightRadius: 20,
+  },
+
+  boxText: {
+      marginTop: 3,
+      fontSize: 18
+  },
+
+  scroll: {
+    flexDirection: 'row',
+    height: 200,
+  }
 });
