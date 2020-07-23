@@ -95,7 +95,7 @@ import { render } from 'react-dom';
 
     render(){
       return (
-        <SafeAreaView backgroundColor = '#B8E5FF'>
+        <SafeAreaView backgroundColor = '#3AA4E0'>
           <View style = {{position: 'relative', marginTop: -20, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10}}/>
           <View>
             <Text style = {styles.mainQuestion}>What is your budget?</Text>
@@ -113,13 +113,13 @@ import { render } from 'react-dom';
             </View>
           </View>
 
-          <View style = {{backgroundColor: 'white', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
+          <View style = {{backgroundColor: '#2A7FAE', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25}}>
 
-          {/** Line Seperator between the top and the scrolling view */}
-          <View style = {styles.seperate}/>
+            {/** Line Seperator between the top and the scrolling view */}
+            <View style = {styles.seperate}/>
 
-            <ScrollView contentContainerStyle={{paddingBottom: 100}}
-            style = {{marginTop: 100, marginBottom: 30}}>
+            <ScrollView contentContainerStyle={{paddingBottom: 225}}
+            style = {{position: 'relative', marginTop: 100, marginBottom: 80}}>
                 {/** $1.00 view box*/}
                 <View style={styles.scrollBoxes}>
 
@@ -270,23 +270,25 @@ import { render } from 'react-dom';
 
                 </View>
 
-                {/** Continue to next page button*/}
-                <View style = {{marginTop: 30,  marginBottom: 175, marginLeft: 30, marginRight: 30, borderRadius:15, textAlign: 'center', backgroundColor: 'white', shadowColor: 'black', shadowOffset: {width: 1, height: 3}, shadowRadius: 4, shadowOpacity: .6}}>
-
-                    <TouchableOpacity
-                      style = {{alignItems: 'center', justifyContent: 'center', height: hp('8%')}}
-                      onPress={() => this.props.navigation.push('MaxTimePage')} >
-
-                        <View >
-                          <Text style = {{fontSize: 25, color: 'black'}}>Continue</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                </View>
+                
             </ScrollView>
 
             
+          </View>
+
+          {/* The final section of the screen that contains the continue button */}
+          <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#0E2163", marginTop: hp('73%'), width: wp('100%'), height: hp('10%'), borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>
+            
+            <TouchableOpacity
+              style = {styles.continue}
+              onPress={() => this.props.navigation.push('MaxTimePage')} >
+
+                <View >
+                  <Text style = {{fontSize: 25, color: '#000000'}}>Continue</Text>
+                </View>
+
+            </TouchableOpacity>
+
           </View>
 
         </SafeAreaView>
@@ -427,5 +429,18 @@ const styles = StyleSheet.create({
       backgroundColor: '#ffffff', 
       left: 43
     },
+
+    continue: {
+      backgroundColor: 'white',
+      marginTop: 17,
+      height: hp('5%'),
+      width: wp('90%'),
+      alignItems: 'center',
+      borderRadius: 40,
+      shadowColor: 'white',
+      shadowOffset: { width: 3, height: 3 },
+      shadowOpacity: .5,
+      shadowRadius: 0,
+  },
 
   });
