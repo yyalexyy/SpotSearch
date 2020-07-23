@@ -26,11 +26,14 @@ export const MaxTimePage = ({ navigation }) => {
             <View style = {styles.questionContainer}>
 
                 <View style = {{flexDirection: 'row'}}>
-                  <Image
-                    style = {{position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 10, marginRight: 10}}
-                    source={require('./assets/hourglass.png')}/>
+                    <Image
+                      style = {{position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10}}
+                      source={require('./assets/hourglass.png')}/>
 
-                  <Text style = {styles.questionText}>What is your maximum drive time?</Text>
+                  <View>
+                    <Text style = {styles.questionText}>What is your maximum drive time?</Text>
+
+                  </View>
 
                 </View>
             </View>
@@ -52,7 +55,7 @@ export const MaxTimePage = ({ navigation }) => {
 
             </View>
 
-            <View style= {{flexDirection: 'row', alignItems: 'center',  }}>
+            <View style= {{position: 'absolute', flexDirection: 'row', alignItems: 'center', marginTop: 410 }}>
 
                 {/**Continue Button */}
                 <View style = {styles.continueButton}>
@@ -74,7 +77,44 @@ export const MaxTimePage = ({ navigation }) => {
 
 
                 {/**Vertical ScrollView */}
+                <ScrollView style={{ position: 'relative' }} horizontal={true}>
+                    <View style={styles.scroll}>
 
+                      <TouchableOpacity
+                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100/2, 
+                        marginLeft: 20,
+                        shadowColor: 'white',
+                        shadowOffset: { width: 4, height: 4 },
+                        shadowOpacity: .5,
+                        shadowRadius: 0,}}
+                      >
+                          <View >
+                            <Text style = {{fontSize: 25, color: 'black', }}>Drive</Text>
+                          </View>
+
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
+                      >
+                          <View >
+                            <Text style = {{fontSize: 25, color: 'black', }}>Bus</Text>
+                          </View>
+
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
+                      >
+                          <View >
+                            <Text style = {{fontSize: 25, color: 'black', }}>Walk</Text>
+                          </View>
+
+                      </TouchableOpacity>
+
+
+                    </View>
+                </ScrollView>
 
 
             </View>
@@ -92,7 +132,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',           // Set content's horizontal alignment.
     marginTop: -20,
     zIndex: 5,
-    height: hp('22%'),
+    height: hp('18%'),
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
@@ -107,7 +147,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor : '#2A7FAE',
     marginTop: -177,
-    height: hp('75%'),
+    height: hp('72%'),
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
@@ -134,15 +174,20 @@ const styles = StyleSheet.create({
 
   },
 
-
   seperate: {
     backgroundColor: '#ffffff',
-    marginRight: 20,
+    marginRight: 10,
     borderWidth: 2,
     borderRadius: 10,
     height: hp('16%'),
     width: wp('2%')
   },
+
+  scroll: {
+    flexDirection: 'row',
+    height: 100,
+    marginRight: 20,
+},
 
 
 });
