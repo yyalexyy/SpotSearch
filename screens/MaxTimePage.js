@@ -12,117 +12,159 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
+import TimePicker from 'react-native-simple-time-picker';
+
 
 /**
 * Max Time Screen
 * @param {*} param0 
 */
-export const MaxTimePage = ({ navigation }) => {
-    return (
-        //Base View
-        <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 1}}>
+ export class MaxTimePage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedHours: 0,
+      selectedMinutes: 0,
+    }
 
-            {/** Questions Area */}
-            <View style = {styles.questionContainer}>
-
-                <View style = {{flexDirection: 'row'}}>
-                    <Image
-                      style = {{position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10}}
-                      source={require('./assets/hourglass.png')}/>
-
-                  <View>
-                    <Text style = {styles.questionText}>What is your maximum drive time?</Text>
-
-                  </View>
-
-                </View>
-            </View>
-            
-            {/** Time Area */}
-            <View style = {styles.timeContainer}>
-                {/**Timer */}
-                <View style = {styles.timeBox}>
-                  <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
-
-                  <View style = {{position: 'absolute', flexDirection: 'column'}}>
-                    <Text style = {{justifyContent: 'center', alignItems: 'center', fontSize: hp('11%'), fontWeight: '200', marginTop: 65, marginLeft: 30, marginRight: 20}}>0 Hr 30 Min</Text>
-                  </View>
-
-                </View>
-
-                {/** Scrolling Wheel */}
-                <View style = {{backgroundColor: '#ffffff', borderRadius: 20, height: hp('40%'), width: wp('5%'),marginTop: 200, marginLeft: 15}}></View>
-
-            </View>
-
-            <View style= {{position: 'absolute', flexDirection: 'row', alignItems: 'center', marginTop: 410 }}>
-
-                {/**Continue Button */}
-                <View style = {styles.continueButton}>
-
-                    <TouchableOpacity
-                      style = {{alignItems: 'center', justifyContent: 'center', height: hp('15%')}}
-                      onPress={() => navigation.push('RatingPage')} >
-
-                        <View >
-                          <Text style = {{fontSize: 25, color: 'black', }}>Continue</Text>
-                        </View>
-
-                    </TouchableOpacity>
-                </View>
+  }
 
 
-                {/**Line Seperator */}
-                <View style = {styles.seperate}/>
 
 
-                {/**Vertical ScrollView */}
-                <ScrollView style={{ position: 'relative' }} horizontal={true}>
-                    <View style={styles.scroll}>
+    render(){
+      const { selectedHours, selectedMinutes } = this.state;
 
-                      <TouchableOpacity
-                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100/2, 
-                        marginLeft: 20,
-                        shadowColor: 'white',
-                        shadowOffset: { width: 4, height: 4 },
-                        shadowOpacity: .5,
-                        shadowRadius: 0,}}
-                      >
-                          <View >
-                            <Text style = {{fontSize: 25, color: 'black', }}>Drive</Text>
-                          </View>
+      return (
+          //Base View
+          <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 1}}>
 
-                      </TouchableOpacity>
+              {/** Questions Area */}
+              <View style = {styles.questionContainer}>
 
-                      <TouchableOpacity
-                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
-                      >
-                          <View >
-                            <Text style = {{fontSize: 25, color: 'black', }}>Bus</Text>
-                          </View>
+                  <View style = {{flexDirection: 'row'}}>
+                      <Image
+                        style = {{position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10}}
+                        source={require('./assets/hourglass.png')}/>
 
-                      </TouchableOpacity>
-
-                      <TouchableOpacity
-                        style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
-                      >
-                          <View >
-                            <Text style = {{fontSize: 25, color: 'black', }}>Walk</Text>
-                          </View>
-
-                      </TouchableOpacity>
-
+                    <View>
+                      <Text style = {styles.questionText}>What is your maximum drive time?</Text>
 
                     </View>
-                </ScrollView>
+
+                  </View>
+              </View>
+              
+              {/** Time Area */}
+              <View style = {styles.timeContainer}>
+                  {/**Timer */}
+                  <View style = {styles.timeBox}>
+                    {/* <Text>{selectedHours}hr:{selectedMinutes}min</Text> */}
+
+                    <TimePicker
+                      selectedHours = {selectedHours} //initial value
+                      selectedMinutes = {selectedMinutes} //initial Minutes value
+                      onChange= {(hours, minutes) => this.setState({
+                        selectedHours: hours, selectedMinutes: minutes
+                      })}
+                    />
 
 
-            </View>
-          
+                    {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
+
+                    <View style = {{position: 'absolute', flexDirection: 'column'}}>
+                      <Text style = {{justifyContent: 'center', alignItems: 'center', fontSize: hp('11%'), fontWeight: '200', marginTop: 65, marginLeft: 30, marginRight: 20}}>0 Hr 30 Min</Text>
+                    </View> */}
+
+                  </View>
+
+                  {/** Scrolling Wheel */}
+                  {/* <View style = {{backgroundColor: '#ffffff', borderRadius: 20, height: hp('40%'), width: wp('5%'),marginTop: 200, marginLeft: 15}}></View> */}
+
+              </View>
+
+              <View style= {{position: 'relative', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
+
+                  {/**Continue Button */}
+                  <View style = {styles.continueButton}>
+
+                      <TouchableOpacity
+                        style = {{alignItems: 'center', justifyContent: 'center', height: hp('15%')}}
+                        onPress={() => this.props.navigation.push('RatingPage')} >
+
+                          <View >
+                            <Text style = {{fontSize: 25, color: 'black', }}>Continue</Text>
+                          </View>
+
+                      </TouchableOpacity>
+                  </View>
 
 
-        </SafeAreaView>
-    );
+                  {/**Line Seperator */}
+                  <View style = {styles.seperate}/>
+
+
+                  {/**Vertical ScrollView */}
+                  <ScrollView style={{ position: 'relative' }} horizontal={true}>
+                      <View style={styles.scroll}>
+
+                        <TouchableOpacity
+                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100/2, 
+                          marginLeft: 20,
+                          shadowColor: 'white',
+                          shadowOffset: { width: 4, height: 4 },
+                          shadowOpacity: .5,
+                          shadowRadius: 0,}}
+                        >
+                            <Image></Image>
+
+                            <View >
+                              <Text style = {{fontSize: 25, color: 'black', }}>Drive</Text>
+                            </View>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
+                        >
+                            <Image></Image>
+
+                            <View >
+                              <Text style = {{fontSize: 25, color: 'black', }}>Bus</Text>
+                            </View>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
+                        >
+                            <Image></Image>
+
+                            <View >
+                              <Text style = {{fontSize: 25, color: 'black', }}>Walk</Text>
+                            </View>
+
+                        </TouchableOpacity>
+
+                      </View>
+
+                  </ScrollView>
+
+
+              </View>
+
+              <View style={{position: "absolute", flexDirection: "row", marginTop: 238, }}>
+                    <View style={{marginLeft: 120, marginRight: 50}}>
+                      <Text style={{fontSize: 20}}>Hr(s)</Text>
+                    </View>
+
+                    <View style={{marginLeft: 80}}>
+                      <Text style={{ fontSize: 20}}>Min(s)</Text>
+                    </View>
+              </View>
+          </SafeAreaView>
+      );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -155,10 +197,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffffff',
     borderRadius: 20,
     marginTop: 200,
-    marginLeft: 20,
-    marginRight: 10,
+    marginHorizontal: 20,
     height: hp('40%'),
-    width: wp('75%'),
+    width: wp('90%'),
   },
 
   continueButton: {
