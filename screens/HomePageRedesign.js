@@ -20,9 +20,9 @@ export class HomePageRedesign extends React.Component {
         this.state = {
             toggle: false,
             dinDateOp: .5,
-            foodAreaOp: .5,
-            vacSpotOp: .5,
-            hangOutOp: .5,
+            foodAreaOp: false,
+            vacSpotOp: false,
+            hangOutOp: false,
             continColor: 'white'
         };
     }
@@ -44,7 +44,19 @@ export class HomePageRedesign extends React.Component {
         if (this.state.continColor !== 'white')
             this.props.navigation.navigate('BudgetPage');
     }
- 
+
+    toggle = () => {
+        if (this.state.dinDateOp === .5)
+            this.setState((state) => {
+                return { dinDateOp: 1 }
+            });
+
+        else
+            this.setState((state) => {
+                return { dinDateOp: .5 }
+            });
+    }
+
     render() {
         return (
             <SafeAreaView backgroundColor='#3AA4E0'>
@@ -65,8 +77,9 @@ export class HomePageRedesign extends React.Component {
  
                                 {/* Buttons */}
                                 <TouchableOpacity
-                                    style={[styles.dinDateButton, {opacity: this.state.dinDateOp}]}
-                                    onPress={() => {this.setColor('#9DF5F5'); this.setState(state => ({dinDateOp: 1}))}} >
+                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle();}} 
+                                    style={[styles.dinDateButton, {opacity: this.state.dinDateOp}]} >
+                                    
  
                                     <Image
                                         style={{ height: 80, width: 80, marginTop: 10 }}
@@ -130,7 +143,7 @@ export class HomePageRedesign extends React.Component {
                         <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#0E2163", marginTop: hp('28%'), width: wp('100%'), height: hp('30%'), borderTopLeftRadius: 30 }}>
                             <TouchableOpacity style={[styles.continue, {backgroundColor: this.state.continColor}]}
                                 onPress={() => this.Continue()}>
-                                <Text style={styles.continueText}>Continue</Text>
+                                <Text style={styles.continueText}>{this.state.dinDateOp}</Text>
                             </TouchableOpacity>
                         </View>
  
@@ -169,19 +182,6 @@ const styles = StyleSheet.create({
         fontSize: 35,
     },
  
-    buttons: {
-        backgroundColor: '#9DF5F5',
-        height: wp('35%'),
-        width: hp('20%'),
-        borderRadius: 20,
-        alignItems: 'center',
-        marginLeft: 20,
-        shadowColor: 'white',
-        shadowOffset: { width: 4, height: 4 },
-        shadowOpacity: .5,
-        shadowRadius: 0,
-    },
- 
     bottomTextBorder: {
         backgroundColor: 'white',
         marginTop: 10,
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     continueText: {
         fontSize: 25,
     },
- 
+
     dinDateButton: {
         backgroundColor: '#9DF5F5',
         height: wp('35%'),
