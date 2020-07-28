@@ -153,6 +153,7 @@ import TimePicker from 'react-native-simple-time-picker';
 
               </View>
 
+              {/**Hrs and Mins Text for the TimePicker */}
               <View style={{position: "absolute", flexDirection: "row", marginTop: 238, }}>
                     <View style={{marginLeft: 120, marginRight: 50}}>
                       <Text style={{fontSize: 20}}>Hr(s)</Text>
