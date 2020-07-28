@@ -71,7 +71,6 @@ import TimePicker from 'react-native-simple-time-picker';
 
 
                     {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
-
                     <View style = {{position: 'absolute', flexDirection: 'column'}}>
                       <Text style = {{justifyContent: 'center', alignItems: 'center', fontSize: hp('11%'), fontWeight: '200', marginTop: 65, marginLeft: 30, marginRight: 20}}>0 Hr 30 Min</Text>
                     </View> */}
@@ -153,6 +152,7 @@ import TimePicker from 'react-native-simple-time-picker';
 
               </View>
 
+              {/**Hrs and Mins Text for the TimePicker */}
               <View style={{position: "absolute", flexDirection: "row", marginTop: 238, }}>
                     <View style={{marginLeft: 120, marginRight: 50}}>
                       <Text style={{fontSize: 20}}>Hr(s)</Text>

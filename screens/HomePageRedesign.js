@@ -23,7 +23,8 @@ export class HomePageRedesign extends React.Component {
             foodAreaOp: false,
             vacSpotOp: false,
             hangOutOp: false,
-            continColor: 'white'
+            continColor: 'white',
+            clicked: 1
         };
     }
 
@@ -48,12 +49,12 @@ export class HomePageRedesign extends React.Component {
     toggle = () => {
         if (this.state.dinDateOp === .5)
             this.setState((state) => {
-                return { dinDateOp: 1 }
+                return { dinDateOp: 1, clicked: 0.5 }
             });
 
         else
             this.setState((state) => {
-                return { dinDateOp: .5 }
+                return { dinDateOp: .5, clicked: 1 }
             });
     }
 
@@ -77,8 +78,8 @@ export class HomePageRedesign extends React.Component {
  
                                 {/* Buttons */}
                                 <TouchableOpacity
-                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle();}} 
-                                    style={[styles.dinDateButton, {opacity: this.state.dinDateOp}]} >
+                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle(); }} 
+                                    style={[styles.dinDateButton, {opacity: this.state.clicked}]} >
                                     
  
                                     <Image
