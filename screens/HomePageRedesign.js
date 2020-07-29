@@ -24,7 +24,8 @@ export class HomePageRedesign extends React.Component {
             vacSpotOp: false,
             hangOutOp: false,
             continColor: 'white',
-            clicked: 1
+            clicked: 1,
+            
         };
     }
 
@@ -80,17 +81,17 @@ export class HomePageRedesign extends React.Component {
                                 <TouchableOpacity
                                     onPress={() => {this.setColor('#9DF5F5'); this.toggle(); }} 
                                     style={[styles.dinDateButton, {opacity: this.state.clicked}]} >
-                                    
+                                    <View style={{opacity: this.state.dinDateOp}}>
  
-                                    <Image
-                                        style={{ height: 80, width: 80, marginTop: 10 }}
-                                        source={require('./assets/DinnerDate.png')}
-                                    />
- 
-                                    <View style={styles.bottomTextBorder}>
-                                        <Text style={styles.boxText}>Dinner Date</Text>
+                                        <Image
+                                            style={{ height: 80, width: 80, marginTop: 10 }}
+                                            source={require('./assets/DinnerDate.png')}
+                                        />
+    
+                                        <View style={styles.bottomTextBorder}>
+                                            <Text style={styles.boxText}>Dinner Date</Text>
+                                        </View>
                                     </View>
-
                                 </TouchableOpacity>
  
                                 <TouchableOpacity
