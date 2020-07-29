@@ -19,8 +19,8 @@ import TimePicker from 'react-native-simple-time-picker';
 * Max Time Screen
 * @param {*} param0 
 */
- export class MaxTimePage extends React.Component {
-  constructor(props){
+export class MaxTimePage extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       selectedHours: 0,
@@ -29,147 +29,168 @@ import TimePicker from 'react-native-simple-time-picker';
 
   }
 
+  render() {
+    const { selectedHours, selectedMinutes } = this.state;
+
+    return (
+      //Base View
+      <SafeAreaView backgroundColor='#0E2163' style={{ flex: 1 }}>
+
+        {/** Questions Area */}
+        <View style={styles.questionContainer}>
+
+          <View style={{ flexDirection: 'row' }}>
+            <Image
+              style={{ position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10 }}
+              source={require('./assets/hourglass.png')} />
+
+            <View>
+              <Text style={styles.questionText}>What is your maximum drive time?</Text>
+
+            </View>
+
+          </View>
+        </View>
+
+        {/** Time Area */}
+        <View style={styles.timeContainer}>
+          {/**Timer */}
+          <View style={styles.timeBox}>
+            {/* <Text>{selectedHours}hr:{selectedMinutes}min</Text> */}
+
+            <TimePicker
+              selectedHours={selectedHours} //initial value
+              selectedMinutes={selectedMinutes} //initial Minutes value
+              onChange={(hours, minutes) => this.setState({
+                selectedHours: hours, selectedMinutes: minutes
+              })}
+            />
 
 
-
-    render(){
-      const { selectedHours, selectedMinutes } = this.state;
-
-      return (
-          //Base View
-          <SafeAreaView backgroundColor = '#0E2163' style ={{flex: 1}}>
-
-              {/** Questions Area */}
-              <View style = {styles.questionContainer}>
-
-                  <View style = {{flexDirection: 'row'}}>
-                      <Image
-                        style = {{position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10}}
-                        source={require('./assets/hourglass.png')}/>
-
-                    <View>
-                      <Text style = {styles.questionText}>What is your maximum drive time?</Text>
-
-                    </View>
-
-                  </View>
-              </View>
-              
-              {/** Time Area */}
-              <View style = {styles.timeContainer}>
-                  {/**Timer */}
-                  <View style = {styles.timeBox}>
-                    {/* <Text>{selectedHours}hr:{selectedMinutes}min</Text> */}
-
-                    <TimePicker
-                      selectedHours = {selectedHours} //initial value
-                      selectedMinutes = {selectedMinutes} //initial Minutes value
-                      onChange= {(hours, minutes) => this.setState({
-                        selectedHours: hours, selectedMinutes: minutes
-                      })}
-                    />
-
-
-                    {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
+            {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
                     <View style = {{position: 'absolute', flexDirection: 'column'}}>
                       <Text style = {{justifyContent: 'center', alignItems: 'center', fontSize: hp('11%'), fontWeight: '200', marginTop: 65, marginLeft: 30, marginRight: 20}}>0 Hr 30 Min</Text>
                     </View> */}
 
-                  </View>
+          </View>
 
-                  {/** Scrolling Wheel */}
-                  {/* <View style = {{backgroundColor: '#ffffff', borderRadius: 20, height: hp('40%'), width: wp('5%'),marginTop: 200, marginLeft: 15}}></View> */}
+          {/** Scrolling Wheel */}
+          {/* <View style = {{backgroundColor: '#ffffff', borderRadius: 20, height: hp('40%'), width: wp('5%'),marginTop: 200, marginLeft: 15}}></View> */}
 
+        </View>
+
+        <View style={{ position: 'relative', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
+
+          {/**Continue Button */}
+          <View style={styles.continueButton}>
+
+            <TouchableOpacity
+              style={{ alignItems: 'center', justifyContent: 'center', height: hp('15%') }}
+              onPress={() => this.props.navigation.push('RatingPage')} >
+
+              <View >
+                <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
               </View>
 
-              <View style= {{position: 'relative', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
-
-                  {/**Continue Button */}
-                  <View style = {styles.continueButton}>
-
-                      <TouchableOpacity
-                        style = {{alignItems: 'center', justifyContent: 'center', height: hp('15%')}}
-                        onPress={() => this.props.navigation.push('RatingPage')} >
-
-                          <View >
-                            <Text style = {{fontSize: 25, color: 'black', }}>Continue</Text>
-                          </View>
-
-                      </TouchableOpacity>
-                  </View>
+            </TouchableOpacity>
+          </View>
 
 
-                  {/**Line Seperator */}
-                  <View style = {styles.seperate}/>
+          {/**Line Seperator */}
+          <View style={styles.seperate} />
 
 
-                  {/**Vertical ScrollView */}
-                  <ScrollView style={{ position: 'relative' }} horizontal={true}>
-                      <View style={styles.scroll}>
+          {/**Vertical ScrollView */}
+          <ScrollView style={{ position: 'relative', marginLeft: -12, height: 110, marginBottom: -10 }} horizontal={true}>
+            <View style={styles.scroll}>
 
-                        <TouchableOpacity
-                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100/2, 
-                          marginLeft: 20,
-                          shadowColor: 'white',
-                          shadowOffset: { width: 4, height: 4 },
-                          shadowOpacity: .5,
-                          shadowRadius: 0,}}
-                        >
-                            <Image></Image>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2,
+                  marginLeft: 20,
+                  shadowColor: 'white',
+                  shadowOffset: { width: 3, height: 3},
+                  shadowOpacity: .5,
+                  shadowRadius: 0,
+                  borderTopColor: '#9DF5F5',
+                  borderTopWidth: 70
+                }}
+              >
+                <Image
+                  style={{ position: 'absolute', height: 70, width: 70, top: -65 }}
+                  source={require('./assets/car.png')}
+                />
 
-                            <View >
-                              <Text style = {{fontSize: 25, color: 'black', }}>Drive</Text>
-                            </View>
+                <View>
+                  <Text style={{ marginTop: -5, fontSize: 20, color: 'black', }}>Drive</Text>
+                </View>
 
-                        </TouchableOpacity>
+              </TouchableOpacity>
 
-                        <TouchableOpacity
-                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
-                        >
-                            <Image></Image>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20, borderTopColor: '#87A4EF', shadowColor: 'white',
+                  shadowOffset: { width: 3, height: 3 },
+                  shadowOpacity: .5,
+                  shadowRadius: 0,
+                  borderTopWidth: 70
+                }}
+              >
+                <Image
+                  style={{ position: 'absolute', height: 70, width: 70, top: -65}}
+                  source={require('./assets/bus.png')}
+                />
 
-                            <View >
-                              <Text style = {{fontSize: 25, color: 'black', }}>Bus</Text>
-                            </View>
+                <View >
+                  <Text style={{marginTop: -5, fontSize: 20, color: 'black', }}>Bus</Text>
+                </View>
 
-                        </TouchableOpacity>
+              </TouchableOpacity>
 
-                        <TouchableOpacity
-                          style = {{backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100,borderRadius: 100/2, marginLeft: 20,}}
-                        >
-                            <Image></Image>
+              <TouchableOpacity
+                style={{ backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20,shadowColor: 'white',
+                shadowOffset: { width: 3, height: 3},
+                shadowOpacity: .5,
+                shadowRadius: 0,
+                borderTopColor: '#EAED71',
+                borderTopWidth: 70 }}
+              >
+                <Image
+                style={{ position: 'absolute', height: 55, width: 55, top: -60}}
+                source={require('./assets/travel.png')}
+                />
 
-                            <View >
-                              <Text style = {{fontSize: 25, color: 'black', }}>Walk</Text>
-                            </View>
+                <View >
+                  <Text style={{marginTop: -5, fontSize: 20, color: 'black', }}>Walk</Text>
+                </View>
 
-                        </TouchableOpacity>
+              </TouchableOpacity>
 
-                      </View>
+            </View>
 
-                  </ScrollView>
+          </ScrollView>
 
 
-              </View>
+        </View>
 
-              {/**Hrs and Mins Text for the TimePicker */}
-              <View style={{position: "absolute", flexDirection: "row", marginTop: 238, }}>
-                    <View style={{marginLeft: 120, marginRight: 50}}>
-                      <Text style={{fontSize: 20}}>Hr(s)</Text>
-                    </View>
+        {/**Hrs and Mins Text for the TimePicker */}
+        <View style={{ position: "absolute", flexDirection: "row", marginTop: 238, }}>
+          <View style={{ marginLeft: 120, marginRight: 50 }}>
+            <Text style={{ fontSize: 20 }}>Hr(s)</Text>
+          </View>
 
-                    <View style={{marginLeft: 80}}>
-                      <Text style={{ fontSize: 20}}>Min(s)</Text>
-                    </View>
-              </View>
-          </SafeAreaView>
-      );
-    }
+          <View style={{ marginLeft: 80 }}>
+            <Text style={{ fontSize: 20 }}>Min(s)</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   questionContainer: {
-    backgroundColor : '#3AA4E0',
+    backgroundColor: '#3AA4E0',
     justifyContent: 'center',       // Set content's vertical alignment.
     alignItems: 'center',           // Set content's horizontal alignment.
     marginTop: -20,
@@ -187,7 +208,7 @@ const styles = StyleSheet.create({
 
   timeContainer: {
     flexDirection: 'row',
-    backgroundColor : '#2A7FAE',
+    backgroundColor: '#2A7FAE',
     marginTop: -177,
     height: hp('72%'),
     borderBottomLeftRadius: 20,
@@ -206,12 +227,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     height: hp('15%'),
     width: 100,
-    borderRadius: 100/2,
+    borderRadius: 100 / 2,
     marginTop: 25,
     marginBottom: 25,
     marginLeft: 10,
     marginRight: 10,
-    
+
 
   },
 
@@ -228,7 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 100,
     marginRight: 20,
-},
+  },
 
 
 });
