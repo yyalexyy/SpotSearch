@@ -22,9 +22,7 @@ export class HomePageRedesign extends React.Component {
             foodAreaOp: .5,
             vacSpotOp: .5,
             hangOutOp: .5,
-            continColor: 'white',
-            clicked: 1,
-            
+            continColor: 'white',            
         };
     }
 
