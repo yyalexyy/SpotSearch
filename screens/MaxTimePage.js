@@ -1,4 +1,3 @@
-
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
@@ -40,9 +39,15 @@ export class MaxTimePage extends React.Component {
         {/** Questions Area */}
         <View style={styles.questionContainer}>
 
-          <View style={{ flexDirection: 'row' }}>
+
+          <View style={{
+            flexDirection: 'row', width: 340, height: 120, backgroundColor: 'white', borderRadius: 20, alignItems: 'center', shadowColor: 'black',
+            shadowOffset: { width: 4, height: 4 },
+            shadowOpacity: .5,
+            shadowRadius: 2,
+          }}>
             <Image
-              style={{ position: 'absolute', height: hp('16%'), width: wp('28%'), marginLeft: 0, marginRight: 10 }}
+              style={{ position: 'absolute', height: hp('14%'), width: wp('24%'), marginLeft: 10, marginRight: 10 }}
               source={require('./assets/hourglass.png')} />
 
             <View>
@@ -51,6 +56,8 @@ export class MaxTimePage extends React.Component {
             </View>
 
           </View>
+
+
         </View>
 
         {/** Time Area */}
@@ -58,14 +65,15 @@ export class MaxTimePage extends React.Component {
           {/**Timer */}
           <View style={styles.timeBox}>
             {/* <Text>{selectedHours}hr:{selectedMinutes}min</Text> */}
-
-            <TimePicker
-              selectedHours={selectedHours} //initial value
-              selectedMinutes={selectedMinutes} //initial Minutes value
-              onChange={(hours, minutes) => this.setState({
-                selectedHours: hours, selectedMinutes: minutes
-              })}
-            />
+            <View style={styles.timePickerFormat}>
+              <TimePicker
+                selectedHours={selectedHours} //initial value
+                selectedMinutes={selectedMinutes} //initial Minutes value
+                onChange={(hours, minutes) => this.setState({
+                  selectedHours: hours, selectedMinutes: minutes
+                })}
+              />
+            </View>
 
 
             {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
@@ -110,7 +118,7 @@ export class MaxTimePage extends React.Component {
                   backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2,
                   marginLeft: 20,
                   shadowColor: 'white',
-                  shadowOffset: { width: 3, height: 3},
+                  shadowOffset: { width: 3, height: 3 },
                   shadowOpacity: .5,
                   shadowRadius: 0,
                   borderTopColor: '#9DF5F5',
@@ -138,31 +146,33 @@ export class MaxTimePage extends React.Component {
                 }}
               >
                 <Image
-                  style={{ position: 'absolute', height: 70, width: 70, top: -65}}
+                  style={{ position: 'absolute', height: 70, width: 70, top: -65 }}
                   source={require('./assets/bus.png')}
                 />
 
                 <View >
-                  <Text style={{marginTop: -5, fontSize: 20, color: 'black', }}>Bus</Text>
+                  <Text style={{ marginTop: -5, fontSize: 20, color: 'black', }}>Bus</Text>
                 </View>
 
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{ backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20,shadowColor: 'white',
-                shadowOffset: { width: 3, height: 3},
-                shadowOpacity: .5,
-                shadowRadius: 0,
-                borderTopColor: '#EAED71',
-                borderTopWidth: 70 }}
+                style={{
+                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20, shadowColor: 'white',
+                  shadowOffset: { width: 3, height: 3 },
+                  shadowOpacity: .5,
+                  shadowRadius: 0,
+                  borderTopColor: '#EAED71',
+                  borderTopWidth: 70
+                }}
               >
                 <Image
-                style={{ position: 'absolute', height: 55, width: 55, top: -60}}
-                source={require('./assets/travel.png')}
+                  style={{ position: 'absolute', height: 55, width: 55, top: -60 }}
+                  source={require('./assets/travel.png')}
                 />
 
                 <View >
-                  <Text style={{marginTop: -5, fontSize: 20, color: 'black', }}>Walk</Text>
+                  <Text style={{ marginTop: -5, fontSize: 20, color: 'black', }}>Walk</Text>
                 </View>
 
               </TouchableOpacity>
@@ -176,11 +186,11 @@ export class MaxTimePage extends React.Component {
 
         {/**Hrs and Mins Text for the TimePicker */}
         <View style={{ position: "absolute", flexDirection: "row", marginTop: 238, }}>
-          <View style={{ marginLeft: 120, marginRight: 50 }}>
+          <View style={{ marginLeft: 120, marginRight: 50 , top: 40}}>
             <Text style={{ fontSize: 20 }}>Hr(s)</Text>
           </View>
 
-          <View style={{ marginLeft: 80 }}>
+          <View style={{ marginLeft: 75, top: 40 }}>
             <Text style={{ fontSize: 20 }}>Min(s)</Text>
           </View>
         </View>
@@ -196,32 +206,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',           // Set content's horizontal alignment.
     marginTop: -20,
     zIndex: 5,
-    height: hp('18%'),
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
+    height: hp('24%'),
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30
+    
   },
+
   questionText: {
     marginLeft: 140,
     marginRight: 0,
-    color: '#ffffff',
-    fontSize: 30,
+    color: 'black',
+    fontSize: 25,
+    textAlign: 'center'
   },
 
   timeContainer: {
     flexDirection: 'row',
     backgroundColor: '#2A7FAE',
     marginTop: -177,
-    height: hp('72%'),
+    height: hp('66%'),
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
   timeBox: {
     backgroundColor: '#ffffffff',
-    borderRadius: 20,
-    marginTop: 200,
+    borderRadius: 40,
+    marginTop: 195,
     marginHorizontal: 20,
-    height: hp('40%'),
+    height: hp('33.5%'),
     width: wp('90%'),
+    shadowColor: 'black',
+    shadowOffset: { width: 6, height: 6},
+    shadowOpacity: .5,
+    shadowRadius: 3,
+  },
+
+  timePickerFormat: {
+    alignItems: 'center',
+    alignContent: 'center',
+    top: 5
   },
 
   continueButton: {
@@ -233,8 +256,6 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     marginLeft: 10,
     marginRight: 10,
-
-
   },
 
   seperate: {

@@ -18,11 +18,10 @@ export class HomePageRedesign extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            toggle: false,
             dinDateOp: .5,
-            foodAreaOp: false,
-            vacSpotOp: false,
-            hangOutOp: false,
+            foodAreaOp: .5,
+            vacSpotOp: .5,
+            hangOutOp: .5,
             continColor: 'white',
             clicked: 1,
             
@@ -41,22 +40,50 @@ export class HomePageRedesign extends React.Component {
         }
 
     }
- 
+
     Continue = () => {
         if (this.state.continColor !== 'white')
             this.props.navigation.navigate('BudgetPage');
     }
 
-    toggle = () => {
-        if (this.state.dinDateOp === .5)
-            this.setState((state) => {
-                return { dinDateOp: 1, clicked: 0.5 }
-            });
-
-        else
-            this.setState((state) => {
-                return { dinDateOp: .5, clicked: 1 }
-            });
+    toggle = (color) => {
+        if (color === 'DD') {
+            if (this.state.dinDateOp === .5)
+                this.setState((state) => {
+                    return {dinDateOp: 1, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: .5 }
+                });
+            else
+                this.setState((state) => {
+                    return { dinDateOp: .5 }
+                });
+        } else if (color === 'FA') {
+            if (this.state.foodAreaOp === .5)
+                this.setState((state) => {
+                    return {dinDateOp: .5, foodAreaOp: 1, vacSpotOp: .5, hangOutOp: .5 }
+                });
+            else
+                this.setState((state) => {
+                    return {foodAreaOp: .5}
+                });
+        } else if (color === 'VS') {
+            if (this.state.vacSpotOp === .5)
+                this.setState((state) => {
+                    return {dinDateOp: .5, foodAreaOp: .5, vacSpotOp: 1, hangOutOp: .5 }
+                });
+            else
+                this.setState((state) => {
+                    return {vacSpotOp: .5}
+                });
+        } else if (color === 'HS') {
+            if (this.state.hangOutOp === .5)
+                this.setState((state) => {
+                    return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: 1 }
+                });
+            else
+                this.setState((state) => {
+                    return { hangOutOp: .5 }
+                });
+        }
     }
 
     render() {
@@ -79,61 +106,63 @@ export class HomePageRedesign extends React.Component {
  
                                 {/* Buttons */}
                                 <TouchableOpacity
-                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle(); }} 
-                                    style={[styles.dinDateButton, {opacity: this.state.clicked}]} >
-                                    <View style={{opacity: this.state.dinDateOp}}>
+                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle('DD'); }} 
+                                    style={styles.dinDateButton} >
+                                    <View style={{opacity: this.state.dinDateOp, alignItems: 'center'}}>
  
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
                                             source={require('./assets/DinnerDate.png')}
                                         />
-    
+
                                         <View style={styles.bottomTextBorder}>
                                             <Text style={styles.boxText}>Dinner Date</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
- 
+
                                 <TouchableOpacity
                                     style={styles.foodAreaButton}
-                                    onPress={() => {this.setColor('#87A4EF');}} >
- 
-                                    <Image
-                                        style={{ height: 80, width: 80, marginTop: 10 }}
-                                        source={require('./assets/FoodAreas.png')}
-                                    />
- 
-                                    <View style={styles.bottomTextBorder}>
-                                        <Text style={styles.boxText}>Food Areas</Text>
+                                    onPress={() => { this.setColor('#87A4EF'); this.toggle('FA');  }} >
+                                    <View style={{ opacity: this.state.foodAreaOp, alignItems: 'center' }}>
+                                        <Image
+                                            style={{ height: 80, width: 80, marginTop: 10 }}
+                                            source={require('./assets/FoodAreas.png')}
+                                        />
+
+                                        <View style={styles.bottomTextBorder}>
+                                            <Text style={styles.boxText}>Food Areas</Text>
+                                        </View>
                                     </View>
- 
                                 </TouchableOpacity>
- 
+
                                 <TouchableOpacity
                                     style={styles.VacSpotButton}
-                                    onPress={() => {this.setColor('#EAED71');}} >
- 
-                                    <Image
-                                        style={{ height: 80, width: 80, marginTop: 10 }}
-                                        source={require('./assets/Vacation.png')}
-                                    />
- 
-                                    <View style={styles.bottomTextBorder}>
-                                        <Text style={styles.boxText}>Vacation Spot</Text>
+                                    onPress={() => { this.setColor('#EAED71'); this.toggle('VS');}} >
+                                    <View style={{ opacity: this.state.vacSpotOp, alignItems: 'center' }}>
+                                        <Image
+                                            style={{ height: 80, width: 80, marginTop: 10 }}
+                                            source={require('./assets/Vacation.png')}
+                                        />
+
+                                        <View style={styles.bottomTextBorder}>
+                                            <Text style={styles.boxText}>Vacation Spot</Text>
+                                        </View>
                                     </View>
                                 </TouchableOpacity>
- 
+
                                 <TouchableOpacity
                                     style={styles.HangSpotButton}
-                                    onPress={() => {this.setColor('#74E17F') }} >
- 
-                                    <Image
-                                        style={{ height: 80, width: 80, marginTop: 10 }}
-                                        source={require('./assets/HangoutSite.png')}
-                                    />
- 
-                                    <View style={styles.bottomTextBorder}>
-                                        <Text style={styles.boxText}>Hangout Spot</Text>
+                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS');}} >
+                                    <View style={{ opacity: this.state.hangOutOp, alignItems: 'center' }}>
+                                        <Image
+                                            style={{ height: 80, width: 80, marginTop: 10 }}
+                                            source={require('./assets/HangoutSite.png')}
+                                        />
+
+                                        <View style={styles.bottomTextBorder}>
+                                            <Text style={styles.boxText}>Hangout Spot</Text>
+                                        </View>
                                     </View>
                                 </TouchableOpacity>
  
@@ -145,7 +174,7 @@ export class HomePageRedesign extends React.Component {
                         <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#0E2163", marginTop: hp('28%'), width: wp('100%'), height: hp('30%'), borderTopLeftRadius: 30 }}>
                             <TouchableOpacity style={[styles.continue, {backgroundColor: this.state.continColor}]}
                                 onPress={() => this.Continue()}>
-                                <Text style={styles.continueText}>{this.state.dinDateOp}</Text>
+                                <Text style={styles.continueText}>Continue</Text>
                             </TouchableOpacity>
                         </View>
  
