@@ -27,44 +27,44 @@ const Tab = createBottomTabNavigator();
 
 
 const MainTabScreen = () => (
-    <Tab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{
-        activeTintColor: '#009fe1',
+  <Tab.Navigator
+    initialRouteName="Home"
+    tabBarOptions={{
+      activeTintColor: '#009fe1',
+      labelStyle: {bottom: 6}
+    }} >
+    <Tab.Screen
+      name="Home"
+      component={HomeStackScreen}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color, size }) => (
+          <Icon name="home" color={color} size={size} />
+        ),
       }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeStackScreen}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Recent"
-        component={RecentStackScreen}
-        options={{
-          tabBarLabel: 'Recent',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="clock-outline" color={color} size={size} />
-          ),
-          tabBarBadge: 3,
-        }}
-      />
-      <Tab.Screen
-        name="Favorites"
-        component={FavoritesStackScreen}
-        options={{
-          tabBarLabel: 'Favorites',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="heart-outline" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    />
+    <Tab.Screen
+      name="Recent"
+      component={RecentStackScreen}
+      options={{
+        tabBarLabel: 'Recent',
+        tabBarIcon: ({ color, size }) => (
+          <Icon name="clock-outline" color={color} size={size} />
+        ),
+        tabBarBadge: 3,
+      }}
+    />
+    <Tab.Screen
+      name="Favorites"
+      component={FavoritesStackScreen}
+      options={{
+        tabBarLabel: 'Favorites',
+        tabBarIcon: ({ color, size }) => (
+          <Icon name="heart-outline" color={color} size={size} />
+        ),
+      }}
+    />
+  </Tab.Navigator>
 )
 
 export default MainTabScreen;

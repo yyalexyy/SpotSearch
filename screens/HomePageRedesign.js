@@ -13,7 +13,7 @@ import {
     DrawerItem,
 } from '@react-navigation/drawer';
 import { render } from 'react-dom';
- 
+
 export class HomePageRedesign extends React.Component {
     constructor(props) {
         super(props);
@@ -23,8 +23,6 @@ export class HomePageRedesign extends React.Component {
             vacSpotOp: .5,
             hangOutOp: .5,
             continColor: 'white',
-            clicked: 1,
-            
         };
     }
 
@@ -48,41 +46,13 @@ export class HomePageRedesign extends React.Component {
 
     toggle = (color) => {
         if (color === 'DD') {
-            if (this.state.dinDateOp === .5)
-                this.setState((state) => {
-                    return {dinDateOp: 1, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: .5 }
-                });
-            else
-                this.setState((state) => {
-                    return { dinDateOp: .5 }
-                });
+            this.state.dinDateOp === .5 ? this.setState((state) => {return { dinDateOp: 1, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: .5 }}) : this.setState((state) => {return { dinDateOp: .5 }});
         } else if (color === 'FA') {
-            if (this.state.foodAreaOp === .5)
-                this.setState((state) => {
-                    return {dinDateOp: .5, foodAreaOp: 1, vacSpotOp: .5, hangOutOp: .5 }
-                });
-            else
-                this.setState((state) => {
-                    return {foodAreaOp: .5}
-                });
+            this.state.foodAreaOp === .5 ? this.setState((state) => {return { dinDateOp: .5, foodAreaOp: 1, vacSpotOp: .5, hangOutOp: .5 }}) : this.setState((state) => {return {foodAreaOp: .5}});
         } else if (color === 'VS') {
-            if (this.state.vacSpotOp === .5)
-                this.setState((state) => {
-                    return {dinDateOp: .5, foodAreaOp: .5, vacSpotOp: 1, hangOutOp: .5 }
-                });
-            else
-                this.setState((state) => {
-                    return {vacSpotOp: .5}
-                });
+            this.state.vacSpotOp === .5 ? this.setState((state) => {return {dinDateOp: .5, foodAreaOp: .5, vacSpotOp: 1, hangOutOp: .5 }}) : this.setState((state) => {return {vacSpotOp: .5}});
         } else if (color === 'HS') {
-            if (this.state.hangOutOp === .5)
-                this.setState((state) => {
-                    return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: 1 }
-                });
-            else
-                this.setState((state) => {
-                    return { hangOutOp: .5 }
-                });
+            this.state.hangOutOp === .5 ? this.setState((state) => {return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: 1 }}) : this.setState((state) => {return { hangOutOp: .5 }});
         }
     }
 
@@ -99,7 +69,7 @@ export class HomePageRedesign extends React.Component {
                         {/* Vertical Line that ends the scrollview */}
                         <View style={{ marginTop: 90, marginLeft: -40, position: 'absolute', height: 8, width: 150, backgroundColor: 'white', borderRadius: 20, transform: [{ rotate: "90deg" }], shadowColor: 'black', shadowRadius: 1, shadowOffset: { height: -2, width: 3 }, shadowOpacity: .5 }} />
  
-                        <ScrollView style={{ position: 'relative', marginLeft: 40, marginTop: 30 }} horizontal={true}>
+                        <ScrollView style={{ position: 'relative', marginLeft: 40, marginTop: 20, height: 400 }} horizontal={true}>
  
                             {/* View that contains all the buttons within ScrollView */}
                             <View style={styles.scroll}>
@@ -107,7 +77,8 @@ export class HomePageRedesign extends React.Component {
                                 {/* Buttons */}
                                 <TouchableOpacity
                                     onPress={() => {this.setColor('#9DF5F5'); this.toggle('DD'); }} 
-                                    style={styles.dinDateButton} >
+                                    style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.dinDateButton} 
+                                    activeOpacity={.5} >
                                     <View style={{opacity: this.state.dinDateOp, alignItems: 'center'}}>
  
                                         <Image
@@ -122,8 +93,9 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={styles.foodAreaButton}
-                                    onPress={() => { this.setColor('#87A4EF'); this.toggle('FA');  }} >
+                                    style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.foodAreaButton}
+                                    onPress={() => { this.setColor('#87A4EF'); this.toggle('FA');  }} 
+                                    activeOpacity={.5} >
                                     <View style={{ opacity: this.state.foodAreaOp, alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
@@ -137,8 +109,9 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={styles.VacSpotButton}
-                                    onPress={() => { this.setColor('#EAED71'); this.toggle('VS');}} >
+                                    style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.VacSpotButton}
+                                    onPress={() => { this.setColor('#EAED71'); this.toggle('VS');}} 
+                                    activeOpacity={.5} >
                                     <View style={{ opacity: this.state.vacSpotOp, alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
@@ -152,8 +125,9 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={styles.HangSpotButton}
-                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS');}} >
+                                    style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.HangSpotButton}
+                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS');}} 
+                                    activeOpacity={.5} >
                                     <View style={{ opacity: this.state.hangOutOp, alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
@@ -257,10 +231,26 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
+        top: 5,
         shadowColor: 'white',
         shadowOffset: { width: 4, height: 4 },
         shadowOpacity: .5,
         shadowRadius: 0,
+    },
+
+    dinDateButtonPressed: {
+        backgroundColor: '#9DF5F5',
+        top: 9,
+        left: 4,
+        height: wp('35%'),
+        width: hp('20%'),
+        borderRadius: 20,
+        alignItems: 'center',
+        marginLeft: 20,
+        shadowColor: 'white',
+        shadowOffset: {height: .5},
+        shadowOpacity: 1,
+        shadowRadius: 4,
     },
  
     foodAreaButton: {
@@ -270,10 +260,26 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
+        top: 5,
         shadowColor: 'white',
         shadowOffset: { width: 4, height: 4 },
         shadowOpacity: .5,
         shadowRadius: 0,
+    },
+
+    foodAreaButtonPressed: {
+        backgroundColor: '#87A4EF',
+        top: 9,
+        left: 4,
+        height: wp('35%'),
+        width: hp('20%'),
+        borderRadius: 20,
+        alignItems: 'center',
+        marginLeft: 20,
+        shadowColor: 'white',
+        shadowOffset: {height: .5},
+        shadowOpacity: 1,
+        shadowRadius: 5,
     },
  
     VacSpotButton: {
@@ -283,10 +289,26 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
+        top: 5,
         shadowColor: 'white',
         shadowOffset: { width: 4, height: 4 },
         shadowOpacity: .5,
         shadowRadius: 0,
+    },
+
+    VacSpotButtonPressed: {
+        backgroundColor: '#EAED71',
+        top: 9,
+        left: 4,
+        height: wp('35%'),
+        width: hp('20%'),
+        borderRadius: 20,
+        alignItems: 'center',
+        marginLeft: 20,
+        shadowColor: 'white',
+        shadowOffset: {height: .5},
+        shadowOpacity: 1,
+        shadowRadius: 5,
     },
  
     HangSpotButton: {
@@ -296,10 +318,26 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
+        top: 5,
         shadowColor: 'white',
         shadowOffset: { width: 4, height: 4 },
         shadowOpacity: .5,
         shadowRadius: 0,
+    },
+
+    HangSpotButtonPressed: {
+        backgroundColor: '#74E17F',
+        top: 9,
+        left: 4,
+        height: wp('35%'),
+        width: hp('20%'),
+        borderRadius: 20,
+        alignItems: 'center',
+        marginLeft: 20,
+        shadowColor: 'white',
+        shadowOffset: {height: .5},
+        shadowOpacity: 1,
+        shadowRadius: 5,
     },
  
 });
