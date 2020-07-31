@@ -74,18 +74,7 @@ export class MaxTimePage extends React.Component {
                 })}
               />
             </View>
-
-
-            {/* <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginTop: 10, marginLeft: 15}}>Max</Text>
-                    <View style = {{position: 'absolute', flexDirection: 'column'}}>
-                      <Text style = {{justifyContent: 'center', alignItems: 'center', fontSize: hp('11%'), fontWeight: '200', marginTop: 65, marginLeft: 30, marginRight: 20}}>0 Hr 30 Min</Text>
-                    </View> */}
-
           </View>
-
-          {/** Scrolling Wheel */}
-          {/* <View style = {{backgroundColor: '#ffffff', borderRadius: 20, height: hp('40%'), width: wp('5%'),marginTop: 200, marginLeft: 15}}></View> */}
-
         </View>
 
         <View style={{ position: 'relative', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
