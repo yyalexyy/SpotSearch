@@ -23,6 +23,7 @@ export class HomePageRedesign extends React.Component {
             vacSpotOp: .5,
             hangOutOp: .5,
             continColor: 'white',
+            option: '...'
         };
     }
 
@@ -41,7 +42,7 @@ export class HomePageRedesign extends React.Component {
 
     Continue = () => {
         if (this.state.continColor !== 'white')
-            this.props.navigation.navigate('BudgetPage');
+                this.props.navigation.navigate('BudgetPage', {option: this.state.option});
     }
 
     toggle = (color) => {
@@ -76,7 +77,7 @@ export class HomePageRedesign extends React.Component {
  
                                 {/* Buttons */}
                                 <TouchableOpacity
-                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle('DD'); }} 
+                                    onPress={() => {this.setColor('#9DF5F5'); this.toggle('DD'); this.setState(state => ({option: 'Dinner Date'})); }} 
                                     style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.dinDateButton} 
                                     activeOpacity={.5} >
                                     <View style={{opacity: this.state.dinDateOp, alignItems: 'center'}}>
@@ -94,7 +95,7 @@ export class HomePageRedesign extends React.Component {
 
                                 <TouchableOpacity
                                     style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.foodAreaButton}
-                                    onPress={() => { this.setColor('#87A4EF'); this.toggle('FA');  }} 
+                                    onPress={() => { this.setColor('#87A4EF'); this.toggle('FA'); this.setState(state => ({option: 'Food Area'})); }} 
                                     activeOpacity={.5} >
                                     <View style={{ opacity: this.state.foodAreaOp, alignItems: 'center' }}>
                                         <Image
@@ -110,7 +111,7 @@ export class HomePageRedesign extends React.Component {
 
                                 <TouchableOpacity
                                     style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.VacSpotButton}
-                                    onPress={() => { this.setColor('#EAED71'); this.toggle('VS');}} 
+                                    onPress={() => { this.setColor('#EAED71'); this.toggle('VS'); this.setState(state => ({option: 'Vacation Spot'})); }} 
                                     activeOpacity={.5} >
                                     <View style={{ opacity: this.state.vacSpotOp, alignItems: 'center' }}>
                                         <Image
@@ -126,7 +127,7 @@ export class HomePageRedesign extends React.Component {
 
                                 <TouchableOpacity
                                     style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.HangSpotButton}
-                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS');}} 
+                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS'); this.setState(state => ({option: 'Hangout Spot'})); }} 
                                     activeOpacity={.5} >
                                     <View style={{ opacity: this.state.hangOutOp, alignItems: 'center' }}>
                                         <Image

@@ -5,6 +5,7 @@ import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, An
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 //import logo from './assets/logo.png';     //import logo
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { createAppContainer, ThemeColors } from 'react-navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
@@ -22,7 +23,10 @@ import { render } from 'react-dom';
  export class BudgetPage extends React.Component{
     constructor(props){
       super(props);
-      this.state = { count: 0 }
+      this.state = { 
+        count: 0, 
+        option: props.route.params.option,
+      }
 
     }
 
@@ -281,10 +285,10 @@ import { render } from 'react-dom';
             
             <TouchableOpacity
               style = {styles.continue}
-              onPress={() => this.props.navigation.push('MaxTimePage')} >
+              onPress={() => this.props.navigation.push('MaxTimePage', {cost: this.state.count, option: this.state.option})} >
 
                 <View >
-                  <Text style = {{fontSize: 25, color: '#000000'}}>Continue</Text>
+      <Text style = {{fontSize: 25, color: '#000000'}}>{this.props.route.params.option}</Text>
                 </View>
 
             </TouchableOpacity>

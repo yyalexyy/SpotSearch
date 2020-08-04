@@ -4,6 +4,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
@@ -25,6 +26,8 @@ export class MaxTimePage extends React.Component {
     this.state = {
       selectedHours: 0,
       selectedMinutes: 0,
+      option: props.route.params.option,
+      cost: props.route.params.cost
     }
 
   }
@@ -87,7 +90,7 @@ export class MaxTimePage extends React.Component {
               onPress={() => this.props.navigation.push('RatingPage')} >
 
               <View >
-                <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
+              <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
               </View>
 
             </TouchableOpacity>
