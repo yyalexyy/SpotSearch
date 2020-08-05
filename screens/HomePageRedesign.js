@@ -68,7 +68,7 @@ export class HomePageRedesign extends React.Component {
                     <View style={{ flexDirection: "row", backgroundColor: "#2A7FAE", marginTop: hp('45%'), width: wp('100%'), height: hp('45%'), borderTopLeftRadius: 30 }}>
  
                         {/* Vertical Line that ends the scrollview */}
-                        <View style={{ marginTop: 90, marginLeft: -40, position: 'absolute', height: 8, width: 150, backgroundColor: 'white', borderRadius: 20, transform: [{ rotate: "90deg" }], shadowColor: 'black', shadowRadius: 1, shadowOffset: { height: -2, width: 3 }, shadowOpacity: .5 }} />
+                        <View style={{ marginTop: 90, marginLeft: -40, position: 'absolute', height: 8, width: 150, backgroundColor: 'white', borderRadius: 20, transform: [{ rotate: "90deg" }], shadowColor: 'black', shadowRadius: 1, shadowOffset: { height: -2, width: 3 }, shadowOpacity: .5, zIndex: 999 }} />
  
                         <ScrollView style={{ position: 'relative', marginLeft: 40, marginTop: 20, height: 400 }} horizontal={true}>
  
@@ -78,9 +78,9 @@ export class HomePageRedesign extends React.Component {
                                 {/* Buttons */}
                                 <TouchableOpacity
                                     onPress={() => {this.setColor('#9DF5F5'); this.toggle('DD'); this.setState(state => ({option: 'Dinner Date'})); }} 
-                                    style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.dinDateButton} 
-                                    activeOpacity={.5} >
-                                    <View style={{opacity: this.state.dinDateOp, alignItems: 'center'}}>
+                                    style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.preButton} 
+                                    activeOpacity={.8} >
+                                    <View style={{alignItems: 'center'}}>
  
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
@@ -94,10 +94,10 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.foodAreaButton}
+                                    style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.preButton}
                                     onPress={() => { this.setColor('#87A4EF'); this.toggle('FA'); this.setState(state => ({option: 'Food Area'})); }} 
-                                    activeOpacity={.5} >
-                                    <View style={{ opacity: this.state.foodAreaOp, alignItems: 'center' }}>
+                                    activeOpacity={.8} >
+                                    <View style={{alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
                                             source={require('./assets/FoodAreas.png')}
@@ -110,10 +110,10 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.VacSpotButton}
+                                    style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.preButton}
                                     onPress={() => { this.setColor('#EAED71'); this.toggle('VS'); this.setState(state => ({option: 'Vacation Spot'})); }} 
-                                    activeOpacity={.5} >
-                                    <View style={{ opacity: this.state.vacSpotOp, alignItems: 'center' }}>
+                                    activeOpacity={.8} >
+                                    <View style={{ alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
                                             source={require('./assets/Vacation.png')}
@@ -126,13 +126,13 @@ export class HomePageRedesign extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.HangSpotButton}
-                                    onPress={() => { this.setColor('#74E17F'); this.toggle('HS'); this.setState(state => ({option: 'Hangout Spot'})); }} 
-                                    activeOpacity={.5} >
-                                    <View style={{ opacity: this.state.hangOutOp, alignItems: 'center' }}>
+                                    style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.preButton}
+                                    onPress={() => { this.setColor('#F08C44'); this.toggle('HS'); this.setState(state => ({option: 'Hangout Spot'})); }} 
+                                    activeOpacity={.8} >
+                                    <View style={{alignItems: 'center' }}>
                                         <Image
                                             style={{ height: 80, width: 80, marginTop: 10 }}
-                                            source={require('./assets/HangoutSite.png')}
+                                            source={require('./assets/fireplace.png')}
                                         />
 
                                         <View style={styles.bottomTextBorder}>
@@ -225,8 +225,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
 
-    dinDateButton: {
-        backgroundColor: '#9DF5F5',
+    preButton: {
+        backgroundColor: '#ffffff',
         height: wp('35%'),
         width: hp('20%'),
         borderRadius: 20,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     },
  
     foodAreaButton: {
-        backgroundColor: '#87A4EF',
+        backgroundColor: '#ffffff',
         height: wp('35%'),
         width: hp('20%'),
         borderRadius: 20,
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     },
  
     VacSpotButton: {
-        backgroundColor: '#EAED71',
+        backgroundColor: '#ffffff',
         height: wp('35%'),
         width: hp('20%'),
         borderRadius: 20,
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     },
  
     HangSpotButton: {
-        backgroundColor: '#74E17F',
+        backgroundColor: '#ffffff',
         height: wp('35%'),
         width: hp('20%'),
         borderRadius: 20,
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     },
 
     HangSpotButtonPressed: {
-        backgroundColor: '#74E17F',
+        backgroundColor: '#F08C44',
         top: 9,
         left: 4,
         height: wp('35%'),

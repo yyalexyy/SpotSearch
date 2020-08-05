@@ -106,7 +106,7 @@ import { render } from 'react-dom';
           </View>
 
           <View style = {styles.topBox}>
-            <Text style = {{fontSize: hp('4.5%'), color: '#3AA4E0', marginBottom: 80, marginRight: 235}}>Max</Text>
+            <Text style = {{fontSize: hp('4%'), color: '#3AA4E0', marginBottom: 80, marginRight: 240}}>Max</Text>
             
             <View style = {{position: 'absolute', flexDirection: 'column'}}>
 
@@ -246,7 +246,7 @@ import { render } from 'react-dom';
 
                   {/** Left decrement*/}
                   <TouchableOpacity onPress = { () => this.isNegativeBudget(false,20) }>
-                      <View style={styles.decrementBox} backgroundColor = '#2AB938'>
+                      <View style={styles.decrementBox} backgroundColor = '#F08C44'>
                               
                               <View style={styles.decrementLine}/>                    
                       </View>
@@ -258,7 +258,7 @@ import { render } from 'react-dom';
                     style = {{justifyContent: 'center', alignItems: 'center'}}
                     onPress = { () => this.isNegativeBudget(true,20) }
                   >
-                      <View style = {styles.incrementBox} backgroundColor = '#74E17F'>
+                      <View style = {styles.incrementBox} backgroundColor = '#F0AB79'>
                         
                               {/** Vertical line*/}
                               <View style = {styles.plusVerticalLine}/>
@@ -288,7 +288,7 @@ import { render } from 'react-dom';
               onPress={() => this.props.navigation.push('MaxTimePage', {cost: this.state.count, option: this.state.option})} >
 
                 <View >
-      <Text style = {{fontSize: 25, color: '#000000'}}>{this.props.route.params.option}</Text>
+      <Text style = {{fontSize: 25, color: '#000000'}}>Continue</Text>
                 </View>
 
             </TouchableOpacity>
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
       marginBottom: 0,
       marginLeft: 20,
       color: 'black',
-      fontSize: 30,
+      fontSize: 25,
       marginTop: 20,
 
     },
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       marginLeft: 20,
       marginRight: 20,
-      height: hp('22%'),                    //144
+      height: hp('20%'),                    //144
       justifyContent: 'center',       // Set content's vertical alignment.
       alignItems: 'center',           // Set con]tent's horizontal alignment.
       zIndex: 5,
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
       marginLeft: 30,
       marginRight: 30,
       color: '#000000',
-      fontSize: hp('10%'),     //60
+      fontSize: hp('8%'),     //60
       alignItems: "center",
       textAlign: 'center',
       justifyContent: 'center',
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#ffffffff', 
       flexDirection: 'row',
       marginLeft: 20, 
-      marginRight: 20,
+      marginRight: 15,
       borderRadius: 15,
       height: hp('11%'),       //80
       alignItems: "center",
