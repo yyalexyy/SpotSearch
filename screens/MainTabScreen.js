@@ -75,6 +75,7 @@ const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator screenOptions={{
         headerStyle:{
           backgroundColor: '#3AA4E0',
+          shadowColor: 'transparent',
         },
         headerTintColor: 'black',     //back button color
         headerTitleStyle: {             //header title

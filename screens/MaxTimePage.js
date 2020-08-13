@@ -16,6 +16,7 @@ import {
 import TimePicker from 'react-native-simple-time-picker';
 
 
+
 /**
 * Max Time Screen
 * @param {*} param0 
@@ -31,6 +32,76 @@ export class MaxTimePage extends React.Component {
     }
 
   }
+
+  // Submitting data to the backend
+  async submitData(){
+    // fetch("http://127.0.0.1:3000/send-data",{
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     option: this.state.option,
+    //     cost: this.state.cost,
+    //     hours: this.state.selectedHours,
+    //     mins: this.state.selectedMinutes
+    //   })
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log(data);
+    // })
+
+    try{
+      await fetch("https://api.scaleserp.com/search?api_key=9419519988374534B1FE7DFCD3D80C2A", {
+        method: "POST",
+        mode: "no-cors",
+        header: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          // option: this.state.option,
+          // cost: this.state.cost,
+          // hours: this.state.selectedHours,
+          // mins: this.state.selectedMinutes
+          q: this.state.option
+        })
+      });
+  
+      const json = await response.json();
+      console.log(json);
+
+    } catch(err){
+      console.log(`Error: ${err}`);
+    }
+    
+
+  }
+
+
+  // async componentDidMount(){
+  //   try{
+  //     await fetch("", {
+  //       method: "POST",
+  //       mode: "no-cors",
+  //       header: {
+  //         "Accept": "application/json",
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         // option: this.state.option,
+  //         // cost: this.state.cost,
+  //         // hours: this.state.selectedHours,
+  //         // mins: this.state.selectedMinutes
+          
+  //       })
+  //     })
+  //   }catch(err){
+  //     console.log(err);
+  //   }
+  // }
+
 
   render() {
     const { selectedHours, selectedMinutes } = this.state;
@@ -87,7 +158,15 @@ export class MaxTimePage extends React.Component {
 
             <TouchableOpacity
               style={{ alignItems: 'center', justifyContent: 'center', height: hp('15%') }}
-              onPress={() => this.props.navigation.push('RatingPage')} >
+              onPress={() => {
+                this.props.navigation.push('ResultPage', {
+                  cost: this.state.cost, 
+                  option: this.state.option, 
+                  selectedHours: this .state.selectedHours, 
+                  selectedMinutes: this.state.selectedMinutes}); 
+                // submitData()
+                }
+              }>
 
               <View >
               <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
