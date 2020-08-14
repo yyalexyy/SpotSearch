@@ -41,6 +41,10 @@ export class HomePageRedesign extends React.Component {
     }
 
     Continue = () => {
+        if(this.state.option === "Dinner Date" || this.state.option === "Food Area"){
+            this.setState((state) => {return { option: restaurant }});
+        }
+
         if (this.state.continColor !== 'white')
                 this.props.navigation.navigate('BudgetPage', {option: this.state.option});
     }

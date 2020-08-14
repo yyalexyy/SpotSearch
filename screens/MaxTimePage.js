@@ -28,80 +28,34 @@ export class MaxTimePage extends React.Component {
       selectedHours: 0,
       selectedMinutes: 0,
       option: props.route.params.option,
-      cost: props.route.params.cost
+      cost: props.route.params.cost,
+      drive: false,
+      bike: false,
+      walk: false,
     }
 
   }
 
-  // Submitting data to the backend
-  async submitData(){
-    // fetch("http://127.0.0.1:3000/send-data",{
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     option: this.state.option,
-    //     cost: this.state.cost,
-    //     hours: this.state.selectedHours,
-    //     mins: this.state.selectedMinutes
-    //   })
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log(data);
-    // })
-
-    try{
-      await fetch("https://api.scaleserp.com/search?api_key=9419519988374534B1FE7DFCD3D80C2A", {
-        method: "POST",
-        mode: "no-cors",
-        header: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          // option: this.state.option,
-          // cost: this.state.cost,
-          // hours: this.state.selectedHours,
-          // mins: this.state.selectedMinutes
-          q: this.state.option
-        })
-      });
-  
-      const json = await response.json();
-      console.log(json);
-
-    } catch(err){
-      console.log(`Error: ${err}`);
-    }
-    
-
+  calculateRadius() {
+    if (this.state.drive) 
+      return this.calculateRadiusDriving();
+    else if (this.state.bike)
+      return this.calculateRadiusBicycle();
+    else 
+      return this.calculateRadiusWalking();
   }
 
+  calculateRadiusWalking() {
+    return (1.34 * 60 * this.state.selectedMinutes + 1.34 * 60 * 60 * this.state.selectedHours);
+  }
 
-  // async componentDidMount(){
-  //   try{
-  //     await fetch("", {
-  //       method: "POST",
-  //       mode: "no-cors",
-  //       header: {
-  //         "Accept": "application/json",
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //         // option: this.state.option,
-  //         // cost: this.state.cost,
-  //         // hours: this.state.selectedHours,
-  //         // mins: this.state.selectedMinutes
-          
-  //       })
-  //     })
-  //   }catch(err){
-  //     console.log(err);
-  //   }
-  // }
+  calculateRadiusDriving() {
+    return (1341.12 * this.state.selectedMinutes + 80467.2 * this.state.selectedHours);
+  }
 
+  calculateRadiusBicycle() {
+    return (416.6 * this.state.selectedMinutes + 25000 * this.state.selectedHours);
+  }
 
   render() {
     const { selectedHours, selectedMinutes } = this.state;
@@ -110,9 +64,10 @@ export class MaxTimePage extends React.Component {
       //Base View
       <SafeAreaView backgroundColor='#0E2163' style={{ flex: 1 }}>
 
+        <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10, zIndex: 999 }} />
+
         {/** Questions Area */}
         <View style={styles.questionContainer}>
-
 
           <View style={{
             flexDirection: 'row', width: 340, height: 120, backgroundColor: 'white', borderRadius: 20, alignItems: 'center', shadowColor: 'black',
@@ -162,14 +117,12 @@ export class MaxTimePage extends React.Component {
                 this.props.navigation.push('ResultPage', {
                   cost: this.state.cost, 
                   option: this.state.option, 
-                  selectedHours: this .state.selectedHours, 
-                  selectedMinutes: this.state.selectedMinutes}); 
-                // submitData()
+                  radius: this.calculateRadius()}); 
                 }
               }>
 
               <View >
-              <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
+                <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
               </View>
 
             </TouchableOpacity>
@@ -185,16 +138,15 @@ export class MaxTimePage extends React.Component {
             <View style={styles.scroll}>
 
               <TouchableOpacity
-                style={{
-                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2,
-                  marginLeft: 20,
-                  shadowColor: 'white',
-                  shadowOffset: { width: 3, height: 3 },
-                  shadowOpacity: .5,
-                  shadowRadius: 0,
-                  borderTopColor: '#9DF5F5',
-                  borderTopWidth: 70
+                style={this.state.drive ? styles.driveOnPress : styles.button}
+                onPress={() => {
+                  this.setState(state => ({
+                    walk: false,
+                    drive: !this.state.drive,
+                    bike: false,
+                  }));
                 }}
+
               >
                 <Image
                   style={{ position: 'absolute', height: 70, width: 70, top: -65 }}
@@ -208,12 +160,13 @@ export class MaxTimePage extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{
-                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20, borderTopColor: '#87A4EF', shadowColor: 'white',
-                  shadowOffset: { width: 3, height: 3 },
-                  shadowOpacity: .5,
-                  shadowRadius: 0,
-                  borderTopWidth: 70
+                style={this.state.bike ? styles.bikeOnPress : styles.button}
+                onPress={() => {
+                  this.setState(state => ({
+                    walk: false,
+                    drive: false,
+                    bike: !this.state.bike,
+                  }));
                 }}
               >
                 <Image
@@ -228,13 +181,13 @@ export class MaxTimePage extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{
-                  backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: hp('15%'), width: 100, borderRadius: 100 / 2, marginLeft: 20, shadowColor: 'white',
-                  shadowOffset: { width: 3, height: 3 },
-                  shadowOpacity: .5,
-                  shadowRadius: 0,
-                  borderTopColor: '#EAED71',
-                  borderTopWidth: 70
+                style={this.state.walk ? styles.walkOnPress : styles.button}
+                onPress={() => {
+                  this.setState(state => ({
+                    walk: !this.state.walk,
+                    drive: false,
+                    bike: false,
+                  }));
                 }}
               >
                 <Image
@@ -252,16 +205,15 @@ export class MaxTimePage extends React.Component {
 
           </ScrollView>
 
-
         </View>
 
         {/**Hrs and Mins Text for the TimePicker */}
         <View style={{ position: "absolute", flexDirection: "row", marginTop: 238, }}>
-          <View style={{ marginLeft: 120, marginRight: 50 , top: 40}}>
+          <View style={{ marginLeft: 121, marginRight: 50, top: 38 }}>
             <Text style={{ fontSize: 20 }}>Hr(s)</Text>
           </View>
 
-          <View style={{ marginLeft: 75, top: 40 }}>
+          <View style={{ marginLeft: 76, top: 38 }}>
             <Text style={{ fontSize: 20 }}>Min(s)</Text>
           </View>
         </View>
@@ -280,7 +232,7 @@ const styles = StyleSheet.create({
     height: hp('24%'),
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30
-    
+
   },
 
   questionText: {
@@ -299,6 +251,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
+
   timeBox: {
     backgroundColor: '#ffffffff',
     borderRadius: 40,
@@ -307,7 +260,7 @@ const styles = StyleSheet.create({
     height: hp('33.5%'),
     width: wp('90%'),
     shadowColor: 'black',
-    shadowOffset: { width: 6, height: 6},
+    shadowOffset: { width: 6, height: 6 },
     shadowOpacity: .5,
     shadowRadius: 3,
   },
@@ -344,5 +297,73 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 
+  button: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: hp('15%'),
+    width: 100,
+    borderRadius: 100 / 2,
+    marginLeft: 20,
+    borderTopColor: 'white',
+    shadowColor: 'white',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: .5,
+    shadowRadius: 0,
+    borderTopWidth: 70
+  },
 
+  driveOnPress: {
+    top: 4,
+    left: 4,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: hp('15%'),
+    width: 100,
+    borderRadius: 100 / 2,
+    marginLeft: 20,
+    shadowColor: 'white',
+    shadowOffset: { height: .5 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    borderTopColor: '#9DF5F5',
+    borderTopWidth: 70
+  },
+
+  bikeOnPress: {
+    top: 4,
+    left: 4,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: hp('15%'),
+    width: 100,
+    borderRadius: 100 / 2,
+    marginLeft: 20,
+    borderTopColor: '#87A4EF',
+    shadowColor: 'white',
+    shadowOffset: { height: .5 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    borderTopWidth: 70
+  },
+
+  walkOnPress: {
+    top: 4,
+    left: 4,
+    borderTopColor: '#EAED70',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: hp('15%'),
+    width: 100,
+    borderRadius: 100 / 2,
+    marginLeft: 20,
+    borderTopWidth: 70,
+    shadowColor: 'white',
+    shadowOffset: { height: .5 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+  },
 });
