@@ -41,6 +41,10 @@ export class HomePageRedesign extends React.Component {
     }
 
     Continue = () => {
+        if(this.state.option === "Dinner Date" || this.state.option === "Food Area"){
+            this.setState((state) => {return { option: "restaurant" }});
+        }
+
         if (this.state.continColor !== 'white')
                 this.props.navigation.navigate('BudgetPage', {option: this.state.option});
     }
@@ -63,9 +67,6 @@ export class HomePageRedesign extends React.Component {
  
                 {/* Light Blue Section that contains the Dolphin and Header */}
                 <View style={{ backgroundColor: '#3AA4E0', height: hp('100%'), width: wp('100%'), marginTop: -20 }}>
-
-                    {/* Horizontal black line shown below "Home" */}
-                    <View style = {{position: 'relative', marginTop: 0, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10, zIndex: 999}}/>
  
                     {/* The second section of the screen that contains the horizontal scroll bar */}
                     <View style={{ flexDirection: "row", backgroundColor: "#2A7FAE", marginTop: hp('45%'), width: wp('100%'), height: hp('45%'), borderTopLeftRadius: 30 }}>
