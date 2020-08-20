@@ -139,6 +139,7 @@ export class MaxTimePage extends React.Component {
 
               <TouchableOpacity
                 style={this.state.drive ? styles.driveOnPress : styles.button}
+                activeOpacity={.8} 
                 onPress={() => {
                   this.setState(state => ({
                     walk: false,
@@ -161,6 +162,7 @@ export class MaxTimePage extends React.Component {
 
               <TouchableOpacity
                 style={this.state.bike ? styles.bikeOnPress : styles.button}
+                activeOpacity={.8} 
                 onPress={() => {
                   this.setState(state => ({
                     walk: false,
@@ -182,6 +184,7 @@ export class MaxTimePage extends React.Component {
 
               <TouchableOpacity
                 style={this.state.walk ? styles.walkOnPress : styles.button}
+                activeOpacity={.8} 
                 onPress={() => {
                   this.setState(state => ({
                     walk: !this.state.walk,
