@@ -57,23 +57,32 @@ export class MaxTimePage extends React.Component {
     return (416.6 * this.state.selectedMinutes + 25000 * this.state.selectedHours);
   }
 
+  continue() {
+    if (this.state.drive === true || this.state.bike === true || this.state.walk === true) {
+      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius()}); 
+      }
+    }
+
   render() {
     const { selectedHours, selectedMinutes } = this.state;
 
     return (
       //Base View
-      <SafeAreaView backgroundColor='#0E2163' style={{ flex: 1 }}>
+      <SafeAreaView backgroundColor='#609FC2' style={{ flex: 1 }}>
 
-        <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'black', marginLeft: 10, marginRight: 10, zIndex: 999 }} />
+        <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'white', marginLeft: 10, marginRight: 10, zIndex: 999, opacity: .7 }} />
 
         {/** Questions Area */}
         <View style={styles.questionContainer}>
 
           <View style={{
-            flexDirection: 'row', width: 340, height: 120, backgroundColor: 'white', borderRadius: 20, alignItems: 'center', shadowColor: 'black',
+            flexDirection: 'row', width: 360, height: 120, backgroundColor: 'white', alignItems: 'center', shadowColor: 'black',
+            borderBottomLeftRadius: 20,
+            borderTopLeftRadius: 20,
             shadowOffset: { width: 4, height: 4 },
             shadowOpacity: .5,
-            shadowRadius: 2,
+            shadowRadius: 0,
+            left: 10,
           }}>
             <Image
               style={{ position: 'absolute', height: hp('14%'), width: wp('24%'), marginLeft: 10, marginRight: 10 }}
@@ -81,13 +90,14 @@ export class MaxTimePage extends React.Component {
 
             <View>
               <Text style={styles.questionText}>What is your maximum drive time?</Text>
-
             </View>
 
           </View>
 
 
         </View>
+
+        <Text style={{position:'absolute', color: 'white', fontSize: 35, top: 155, left: 10, zIndex: 999, fontWeight: '700'}}>Time</Text>
 
         {/** Time Area */}
         <View style={styles.timeContainer}>
@@ -113,15 +123,9 @@ export class MaxTimePage extends React.Component {
 
             <TouchableOpacity
               style={{ alignItems: 'center', justifyContent: 'center', height: hp('15%') }}
-              onPress={() => {
-                this.props.navigation.push('ResultPage', {
-                  cost: this.state.cost, 
-                  option: this.state.option, 
-                  radius: this.calculateRadius()}); 
-                }
-              }>
+              onPress={() => this.continue()}>
 
-              <View >
+              <View>
                 <Text style={{ fontSize: 20, color: 'black', }}>Continue</Text>
               </View>
 
@@ -132,9 +136,8 @@ export class MaxTimePage extends React.Component {
           {/**Line Seperator */}
           <View style={styles.seperate} />
 
-
           {/**Vertical ScrollView */}
-          <ScrollView style={{ position: 'relative', marginLeft: -12, height: 110, marginBottom: -10 }} horizontal={true}>
+          <ScrollView style={{ position: 'relative', marginLeft: -12, height: 110, marginBottom: -10 }} horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.scroll}>
 
               <TouchableOpacity
@@ -212,11 +215,11 @@ export class MaxTimePage extends React.Component {
 
         {/**Hrs and Mins Text for the TimePicker */}
         <View style={{ position: "absolute", flexDirection: "row", marginTop: 238, }}>
-          <View style={{ marginLeft: 121, marginRight: 50, top: 38 }}>
+          <View style={{ marginLeft: 105, marginRight: 50, top: 40 }}>
             <Text style={{ fontSize: 20 }}>Hr(s)</Text>
           </View>
 
-          <View style={{ marginLeft: 76, top: 38 }}>
+          <View style={{ marginLeft: 80, top: 40 }}>
             <Text style={{ fontSize: 20 }}>Min(s)</Text>
           </View>
         </View>
@@ -227,7 +230,7 @@ export class MaxTimePage extends React.Component {
 
 const styles = StyleSheet.create({
   questionContainer: {
-    backgroundColor: '#3AA4E0',
+    backgroundColor: '#91C6E4',
     justifyContent: 'center',       // Set content's vertical alignment.
     alignItems: 'center',           // Set content's horizontal alignment.
     marginTop: -20,
@@ -235,7 +238,6 @@ const styles = StyleSheet.create({
     height: hp('24%'),
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30
-
   },
 
   questionText: {
@@ -248,30 +250,31 @@ const styles = StyleSheet.create({
 
   timeContainer: {
     flexDirection: 'row',
-    backgroundColor: '#2A7FAE',
+    backgroundColor: '#91C6E4',
     marginTop: -177,
-    height: hp('66%'),
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
+    height: hp('64%'),
+    borderBottomRightRadius: 50
   },
 
   timeBox: {
     backgroundColor: '#ffffffff',
-    borderRadius: 40,
-    marginTop: 195,
+    borderTopRightRadius: 25,
+    borderBottomRightRadius: 25,
+    marginTop: 220,
     marginHorizontal: 20,
-    height: hp('33.5%'),
-    width: wp('90%'),
+    height: hp('27%'),
+    width: wp('93%'),
+    right: 20,
     shadowColor: 'black',
-    shadowOffset: { width: 6, height: 6 },
+    shadowOffset: { width: 4, height: 4},
     shadowOpacity: .5,
-    shadowRadius: 3,
+    shadowRadius: 0,
   },
 
   timePickerFormat: {
     alignItems: 'center',
     alignContent: 'center',
-    top: 5
+    top: -17
   },
 
   continueButton: {
@@ -279,19 +282,22 @@ const styles = StyleSheet.create({
     height: hp('15%'),
     width: 100,
     borderRadius: 100 / 2,
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: 30,
+    marginBottom: 30,
     marginLeft: 10,
     marginRight: 10,
+    shadowColor: 'white',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: .5,
+    shadowRadius: 0,
   },
 
   seperate: {
     backgroundColor: '#ffffff',
     marginRight: 10,
-    borderWidth: 2,
     borderRadius: 10,
     height: hp('16%'),
-    width: wp('2%')
+    width: wp('.5%')
   },
 
   scroll: {
