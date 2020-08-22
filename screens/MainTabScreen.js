@@ -74,7 +74,7 @@ export default MainTabScreen;
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator screenOptions={{
         headerStyle:{
-          backgroundColor: '#3AA4E0',
+          backgroundColor: '#91C6E4',
           shadowColor: 'transparent',
         },
         headerTintColor: 'black',     //back button color
@@ -90,7 +90,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
+              backgroundColor= "#91C6E4"
               onPress={() => navigation.toggleDrawer()}/>
           )
           }} />
@@ -102,7 +102,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
+              backgroundColor= "#91C6E4"
               onPress={() => navigation.toggleDrawer()}/>
           )
         }} />
@@ -112,7 +112,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
+              backgroundColor= "#91C6E4"
               onPress={() => navigation.toggleDrawer()}/>
           )
         }}  />
@@ -138,15 +138,16 @@ const HomeStackScreen = ({ navigation }) => (
           )
         }} />
         <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
-          title:"Spot",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
+          // title:"Spot",
+          headerShown: false,
+          // headerRight: () => (
+          //   <Icon.Button 
+          //     name= "menu"
+          //     size={25}
+          //     color="#000000"           //menu tab color
+          //     backgroundColor= "#3AA4E0"
+          //     onPress={() => navigation.toggleDrawer()}/>
+          // )
         }} />
     </HomeStack.Navigator>
   )
@@ -154,7 +155,7 @@ const HomeStackScreen = ({ navigation }) => (
   const RecentStackScreen = ({ navigation }) => (
     <RecentStack.Navigator screenOptions={{
         headerStyle:{
-          backgroundColor: '#C5CBE3',
+          backgroundColor: '#91C6E4',
         },
         //headerTintColor: '#000000',
         headerTitleStyle: {
@@ -168,7 +169,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#ffffff"
-              backgroundColor= "#C5CBE3"
+              backgroundColor= "#91C6E4"
               onPress={() => navigation.toggleDrawer()}/>
           )
           }} />
@@ -179,7 +180,7 @@ const HomeStackScreen = ({ navigation }) => (
   const FavoritesStackScreen = ({ navigation }) => (
     <FavoritesStack.Navigator screenOptions={{
         headerStyle:{
-          backgroundColor: '#C5CBE3',
+          backgroundColor: '#91C6E4',
         },
         //headerTintColor: '#000000',
         headerTitleStyle: {
@@ -193,7 +194,7 @@ const HomeStackScreen = ({ navigation }) => (
               name= "menu"
               size={25}
               color="#ffffff"
-              backgroundColor= "#C5CBE3"
+              backgroundColor= "#91C6E4"
               onPress={() => navigation.toggleDrawer()}/>
           )
           }} />
