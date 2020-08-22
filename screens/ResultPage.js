@@ -24,14 +24,39 @@ export class ResultPage extends React.Component {
         this.state = {
             // data: [],
             option: props.route.params.option,
-            cost: props.route.params.cost,
+            cost: props.route.params.cost,              //users budget
             radius: props.route.params.radius,
             ready: false,
             where: { lat: null, lng: null },
             error: null,
             data: [],
+            priceLvl: 0                                //converted price levels
         }
     }
+
+
+
+    /** Converting users budget to the price levels.
+     *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
+     * */
+    priceLevelConvert() {
+        if(this.state.cost === 0){
+            this.setState({ priceLvl: 0 });
+        }
+        else if(this.state.cost > 0 && this.state.cost <= 10) {
+            this.setState({ priceLvl: 1 });
+        }
+        else if(this.state.cost > 10 && this.state.cost <= 25) {
+            this.setState({ priceLvl: 2 });
+        }
+        else if(this.state.cost > 25 && this.state.cost <= 100) {
+            this.setState({ priceLvl: 3 });
+        }
+        else if(this.state.cost > 100){
+            this.setState({ priceLvl: 4 });
+        }
+    }
+
 
 
     componentDidMount() {
@@ -75,7 +100,9 @@ export class ResultPage extends React.Component {
         const photoRef = item.photos.map(item => item.photo_reference);
         const photoWidth = item.photos.map(item => item.width);
         return (
-            <Swiper>
+            <Swiper loop={false}
+            showPagination={false}
+            index={0}>
                 <View> 
                     <Text>{item.name}</Text>
                     <Image style={{width: 100, height: 100}}
@@ -88,35 +115,36 @@ export class ResultPage extends React.Component {
     render() {
         return (
             <SafeAreaView backgroundColor='#91C6E4' flex="1">
-                {/* <Swiper> */}
+                {/* <Swiper
+                loop={false}
+                showPagination={false}
+                index={1}> */}
                     <View>
                         {/* Displaying fetched blurry image for background */}
+                        <View>
 
 
 
 
+                            {/* Display Result */}
+                            <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
+                                <View style={{}}>
+                                    <TouchableOpacity style={{fontSize:80}}
+                                        onPress={() => this.props.navigation.goBack()}>
+                                        <Image style={styles.backBtn}
+                                            source={require("./assets/goBack.png")}/>
 
-                        {/* Display Result */}
-                        <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
-                            <View style={{}}>
-                                <TouchableOpacity style={{fontSize:80}}
-                                    onPress={() => this.props.navigation.goBack()}>
-                                    <Image style={styles.backBtn}
-                                        source={require("./assets/goBack.png")}/>
+                                    </TouchableOpacity>
+                                </View>
 
-                                </TouchableOpacity>
+                                <View style={{}}>
+                                    <Text style={{color: "white", fontSize:30}}>Results</Text>
+                                </View>
+
                             </View>
 
-                            <View style={{}}>
-                                <Text style={{color: "white", fontSize:30}}>Results</Text>
-                            </View>
 
                         </View>
-
-
-
-
-
                     </View>
 
 
@@ -124,7 +152,7 @@ export class ResultPage extends React.Component {
 
 
 
-                {!this.state.ready && (
+                {/* {!this.state.ready && (
                     <Text style={styles.big}>Using GeoLocation in REACT</Text>
                 )}
 
@@ -138,7 +166,7 @@ export class ResultPage extends React.Component {
                         keyExtractor={(x, i) => i}
                         renderItem={this.renderItem}
                     />
-                )}
+                )} */}
 
             </SafeAreaView>
         );
