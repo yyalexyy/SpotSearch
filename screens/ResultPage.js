@@ -14,6 +14,20 @@ import {
 
 import Swiper from 'react-native-swiper';
 
+const cache = {
+    "0": "zero",
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
+    "6": "six",
+    "7": "seven",
+    "8": "eight",
+    "9": "nine",
+    "10": "ten"
+  }
+
 /**
 * Result Screen
 * @param {*} param0 
@@ -22,7 +36,6 @@ export class ResultPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // data: [],
             option: props.route.params.option,
             cost: props.route.params.cost,              //users budget
             radius: props.route.params.radius,
@@ -30,7 +43,10 @@ export class ResultPage extends React.Component {
             where: { lat: null, lng: null },
             error: null,
             data: [],
-            priceLvl: 0                                //converted price levels
+            pages: ["0", "1", "2"],
+            key: 1,                 //for Swiper
+            priceLvl: 0,                               //converted price levels
+            images: [],
         }
     }
 
@@ -77,7 +93,7 @@ export class ResultPage extends React.Component {
             where: { lat: position.coords.latitude, lng: position.coords.longitude }
         })
 
-        // this.fetchData();
+        this.fetchData();
     }
     geoFailure = (err) => {
         this.setState({ error: err.message })
@@ -94,61 +110,99 @@ export class ResultPage extends React.Component {
         const response = await fetch(url);
         const json = await response.json();
         this.setState({ data: json.results });
+        
+        // Saving images to an array of objects with width, height, and reference
+        for (let i = 0 ; i < 5; i++) {
+                const height = this.state.data[i].photos.map(item => item.height); 
+                const width = this.state.data[i].photos.map(item => item.width); 
+                const reference = this.state.data[i].photos.map(item => item.photo_reference);
+                const obj = {'height': height, 'width': width, 'photo_reference': reference}
+
+                const newArray = this.state.images.slice();     //Create a copy
+                newArray.push(obj); //Push the object
+
+                this.setState({ images: newArray });
+        }
+
+        // for (let i = 0 ; i < 5; i++) { 
+        //     console.log("Displaying item");
+        //     console.log(this.state.images[i])
+        // }
     }
 
-    renderItem = ({item}) => {
-        const photoRef = item.photos.map(item => item.photo_reference);
-        const photoWidth = item.photos.map(item => item.width);
+    renderItem(item, idx) {
+        const itemInt = parseInt(item)
+        const style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
         return (
-            <Swiper loop={false}
-            showPagination={false}
-            index={0}>
-                <View> 
-                    <Text>{item.name}</Text>
-                    <Image style={{width: 100, height: 100}}
-                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
-                </View>
-            </Swiper>
+            <View style={style} key={idx}>
+                <Text style={styles.text}>{cache[item]}</Text>
+            </View>
         )
+        
+        
+        
+    }
+
+
+    onPageChanged(idx) {
+        if (idx == 2) {
+            const newPages = this.state.pages.map(i => (parseInt(i)+1).toString())
+            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
+        } 
+        else if (idx == 0) {
+            const newPages = this.state.pages.map(i => (parseInt(i)-1).toString())
+            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
+        }
+
     }
 
     render() {
         return (
             <SafeAreaView backgroundColor='#91C6E4' flex="1">
-                {/* <Swiper
-                loop={false}
-                showPagination={false}
-                index={1}> */}
-                    <View>
-                        {/* Displaying fetched blurry image for background */}
-                        <View>
+                {/* Display Result */}
+                <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
+                    <View style={{}}>
+                        <TouchableOpacity style={{fontSize:80}}
+                            onPress={() => this.props.navigation.goBack()}>
+                            <Image style={styles.backBtn}
+                                source={require("./assets/goBack.png")}/>
 
-
-
-
-                            {/* Display Result */}
-                            <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
-                                <View style={{}}>
-                                    <TouchableOpacity style={{fontSize:80}}
-                                        onPress={() => this.props.navigation.goBack()}>
-                                        <Image style={styles.backBtn}
-                                            source={require("./assets/goBack.png")}/>
-
-                                    </TouchableOpacity>
-                                </View>
-
-                                <View style={{}}>
-                                    <Text style={{color: "white", fontSize:30}}>Results</Text>
-                                </View>
-
-                            </View>
-
-
-                        </View>
+                        </TouchableOpacity>
                     </View>
 
+                    <View style={{}}>
+                        <Text style={{color: "white", fontSize:30}}>Results</Text>
+                    </View>
 
-                {/* </Swiper> */}
+                </View>
+
+                <Swiper
+                    index={1}
+                    key={this.state.key}
+                    loop={false}
+                    showPagination={false}
+                    // showsButtons
+                    onIndexChanged={(index) => this.onPageChanged(index)}>
+                        {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
+
+
+
+
+                    {/* <View> */}
+                        {/* Displaying fetched blurry image for background */}
+                        {/* <View>
+
+                        </View>
+
+
+
+
+                    </View> */}
+
+
+
+
+                </Swiper>
 
 
 
@@ -167,6 +221,26 @@ export class ResultPage extends React.Component {
                         renderItem={this.renderItem}
                     />
                 )} */}
+
+                {/* {
+                    this.state.ready && this.state.data && this.state.data.map((item, i) => {
+                        const photoRef = item.photos.map(item => item.photo_reference);
+                        const photoWidth = item.photos.map(item => item.width);
+                        return(
+                            
+                            <Swiper loop={false}
+                            showPagination={false}
+                            index={0}>
+                                <View> 
+                                    <Text>{item.name}</Text>
+                                    <Image style={{width: 100, height: 100}}
+                                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+                                </View>
+                            </Swiper>
+
+                        )
+                    })
+                } */}
 
             </SafeAreaView>
         );
@@ -197,6 +271,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 1,
-    }
+    },
+
+
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+      },
+      slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5',
+      },
+      text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold',
+      }
 
 });
