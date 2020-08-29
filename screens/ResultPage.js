@@ -12,6 +12,7 @@ import {
     DrawerItem,
 } from '@react-navigation/drawer';
 
+import Swiper from 'react-native-swiper';
 
 /**
 * Result Screen
@@ -51,7 +52,7 @@ export class ResultPage extends React.Component {
             where: { lat: position.coords.latitude, lng: position.coords.longitude }
         })
 
-        this.fetchData();
+        // this.fetchData();
     }
     geoFailure = (err) => {
         this.setState({ error: err.message })
@@ -74,17 +75,54 @@ export class ResultPage extends React.Component {
         const photoRef = item.photos.map(item => item.photo_reference);
         const photoWidth = item.photos.map(item => item.width);
         return (
-            <View> 
-                <Text>{item.name}</Text>
-                <Image style={{width: 100, height: 100}}
-                 source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
-            </View>
+            <Swiper>
+                <View> 
+                    <Text>{item.name}</Text>
+                    <Image style={{width: 100, height: 100}}
+                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+                </View>
+            </Swiper>
         )
     }
 
     render() {
         return (
-            <SafeAreaView backgroundColor='#116466'>
+            <SafeAreaView backgroundColor='#91C6E4' flex="1">
+                {/* <Swiper> */}
+                    <View>
+                        {/* Displaying fetched blurry image for background */}
+
+
+
+
+
+                        {/* Display Result */}
+                        <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
+                            <View style={{}}>
+                                <TouchableOpacity style={{fontSize:80}}
+                                    onPress={() => this.props.navigation.goBack()}>
+                                    <Image style={styles.backBtn}
+                                        source={require("./assets/goBack.png")}/>
+
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={{}}>
+                                <Text style={{color: "white", fontSize:30}}>Results</Text>
+                            </View>
+
+                        </View>
+
+
+
+
+
+                    </View>
+
+
+                {/* </Swiper> */}
+
+
 
                 {!this.state.ready && (
                     <Text style={styles.big}>Using GeoLocation in REACT</Text>
@@ -117,6 +155,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
+    backBtn: {
+        height: 40,
+        width: 40,
+        transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "180deg" }, { scale: .7 }]
+    },
+
+
     item: {
         flex: 1,
         alignSelf: 'stretch',

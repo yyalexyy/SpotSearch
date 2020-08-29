@@ -44,6 +44,9 @@ export class HomePageRedesign extends React.Component {
         if (this.state.option === "Dinner Date" || this.state.option === "Food Area") {
             this.setState((state) => { return { option: "restaurant" } });
         }
+        else if(this.state.option === "Vacation Spot" || this.state.option === "Hangout Spot"){
+            this.setState((state) => {return { option: "amusement_park" }});
+        }
 
         if (this.state.continColor !== 'white')
             this.props.navigation.navigate('BudgetPage', { option: this.state.option });
@@ -64,7 +67,7 @@ export class HomePageRedesign extends React.Component {
     render() {
         return (
             <SafeAreaView backgroundColor='#3AA4E0'>
-                {/* Faint line below "Catergories" */}
+                {/* Faint line below "Home" */}
                 <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'white', marginLeft: 0, marginRight: 0, zIndex: 999, opacity: .7 }} />
 
                 {/* Faint line below "Catergories" */}
