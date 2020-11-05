@@ -100,7 +100,7 @@ export class ResultPage extends React.Component {
     }
 
     fetchData = async () => {
-        const API_KEY = "AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"; //process.env.API_PLACES_KEY;
+        const API_KEY = "YOUR_API_KEY"; //process.env.API_PLACES_KEY;
         var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
