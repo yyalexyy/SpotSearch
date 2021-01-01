@@ -118,15 +118,16 @@ export class ResultPage extends React.Component {
         
         // Saving images to an array of objects with width, height, and reference
         for (let i = 0 ; i < this.state.data.length; i++) {
+            const name = this.state.data[i].name;
             const height = this.state.data[i].photos[0].height;
             const width = this.state.data[i].photos[0].width;
             const reference = this.state.data[i].photos[0].photo_reference;
-            const obj = { 'name': this.state.data[i].name, 'height': height, 'width': width, 'photo_reference': reference };
+            const obj = { 'name': name, 'height': height, 'width': width, 'photo_reference': reference };
             let newImages = [...this.state.images, obj];
             this.setState({ images: newImages });
         }
 
-        console.log(Object.values(this.state.images));     //images = [Obj = JSON ; Obj; Obj]
+        console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
 
         this.setState({loading: false});
 
@@ -137,6 +138,12 @@ export class ResultPage extends React.Component {
     }
 
     renderItem(item, idx) {
+        // console.log("Item: "+ item);
+        
+        // console.log("Idx: "+ idx);
+        // console.log("------------------------")
+
+
         const itemInt = parseInt(item)
         const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
         
@@ -144,7 +151,8 @@ export class ResultPage extends React.Component {
             <View style={view_style} key={idx}>
                 {/* <Image style={{width: 100, height: 100}}
                     source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/> */}
-                <Text style={styles.text}>{cache[item]}</Text>
+                    {/* this.state.images[item].name */}
+                <Text style={styles.text}>{this.state.images[item].name}</Text>
             </View>
         )
 
@@ -169,7 +177,7 @@ export class ResultPage extends React.Component {
     }
 
     render() {
-        console.log("Images: " +this.state.images)
+        // console.log("Images: " +this.state.images)
         if (!this.state.loading) {
             return (
                 <SafeAreaView backgroundColor='#91C6E4' flex="1">
@@ -190,7 +198,7 @@ export class ResultPage extends React.Component {
 
                     </View>
 
-                    <Swiper
+                    {/* <Swiper
                         loop={false}
                         showPagination={false}>
 
@@ -204,7 +212,7 @@ export class ResultPage extends React.Component {
                             <Text style={styles.text}>And simple {this.state.images.name}</Text>
                         </View>
 
-                    </Swiper>
+                    </Swiper> */}
 
 
 
