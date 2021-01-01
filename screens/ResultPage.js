@@ -26,7 +26,7 @@ const cache = {
     "8": "eight",
     "9": "nine",
     "10": "ten"
-}
+  }
 
 /**
 * Result Screen
@@ -51,26 +51,30 @@ export class ResultPage extends React.Component {
         }
     }
 
+
+
     /** Converting users budget to the price levels.
      *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
      * */
     priceLevelConvert() {
-        if (this.state.cost === 0) {
+        if(this.state.cost === 0){
             this.setState({ priceLvl: 0 });
         }
-        else if (this.state.cost > 0 && this.state.cost <= 10) {
+        else if(this.state.cost > 0 && this.state.cost <= 10) {
             this.setState({ priceLvl: 1 });
         }
-        else if (this.state.cost > 10 && this.state.cost <= 25) {
+        else if(this.state.cost > 10 && this.state.cost <= 25) {
             this.setState({ priceLvl: 2 });
         }
-        else if (this.state.cost > 25 && this.state.cost <= 100) {
+        else if(this.state.cost > 25 && this.state.cost <= 100) {
             this.setState({ priceLvl: 3 });
         }
-        else if (this.state.cost > 100) {
+        else if(this.state.cost > 100){
             this.setState({ priceLvl: 4 });
         }
     }
+
+
 
     componentDidMount() {
         let geoOptions = {
@@ -82,7 +86,7 @@ export class ResultPage extends React.Component {
         navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoFailure, geoOptions);
     }
     geoSuccess = (position) => {
-        console.log("Location: " + position.coords.latitude, position.coords.longitude);
+        console.log(position.coords.latitude, position.coords.longitude);
 
         this.setState({
             ready: true,
@@ -109,35 +113,79 @@ export class ResultPage extends React.Component {
         const response = await fetch(url);
         const json = await response.json();
         this.setState({ data: json.results });
-
+        // console.log(this.state.data);
+        // console.log(this.state.data[0].name);
+        
         // Saving images to an array of objects with width, height, and reference
-        // Only saving 10 different locations that match price level
-        for (let i = 0; i < 10; i++) {
-            const obj = { "name": this.state.data[i].name, "photoDetails": this.state.data[i].photos };
+        for (let i = 0 ; i < this.state.data.length; i++) {
+            const height = this.state.data[i].photos[0].height;
+            const width = this.state.data[i].photos[0].width;
+            const reference = this.state.data[i].photos[0].photo_reference;
+            const obj = { 'name': this.state.data[i].name, 'height': height, 'width': width, 'photo_reference': reference };
             let newImages = [...this.state.images, obj];
             this.setState({ images: newImages });
         }
-        this.setState({ loading: false });
-        console.log(this.state.images);
+
+        console.log(Object.values(this.state.images));     //images = [Obj = JSON ; Obj; Obj]
+
+        this.setState({loading: false});
+
+        // for (let i = 0 ; i < 5; i++) { 
+        //     console.log("Displaying item");
+        //     console.log(this.state.images[i])
+        // }
+    }
+
+    renderItem(item, idx) {
+        const itemInt = parseInt(item)
+        const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
+        
+        return (
+            <View style={view_style} key={idx}>
+                {/* <Image style={{width: 100, height: 100}}
+                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/> */}
+                <Text style={styles.text}>{cache[item]}</Text>
+            </View>
+        )
+
+        // <View> 
+        //<Text>{item.name}</Text>
+        //<Image style={{width: 100, height: 100}}
+        //  source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+        //</View>
+        
+    }
+
+
+    onPageChanged(idx) {
+        if (idx == 2) {
+            const newPages = this.state.pages.map(i => (parseInt(i)+1).toString())
+            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
+        } 
+        else if (idx == 0) {
+            const newPages = this.state.pages.map(i => (parseInt(i)-1).toString())
+            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
+        }
     }
 
     render() {
+        console.log("Images: " +this.state.images)
         if (!this.state.loading) {
             return (
                 <SafeAreaView backgroundColor='#91C6E4' flex="1">
                     {/* Display Result */}
-                    <View style={{ display: 'flex', flexDirection: "row", alignItems: "center" }}>
+                    <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
                         <View style={{}}>
-                            <TouchableOpacity style={{ fontSize: 80 }}
+                            <TouchableOpacity style={{fontSize:80}}
                                 onPress={() => this.props.navigation.goBack()}>
                                 <Image style={styles.backBtn}
-                                    source={require("./assets/goBack.png")} />
+                                    source={require("./assets/goBack.png")}/>
 
                             </TouchableOpacity>
                         </View>
 
                         <View style={{}}>
-                            <Text style={{ color: "white", fontSize: 30 }}>Results</Text>
+                            <Text style={{color: "white", fontSize:30}}>Results</Text>
                         </View>
 
                     </View>
@@ -147,41 +195,80 @@ export class ResultPage extends React.Component {
                         showPagination={false}>
 
                         <View testID="Hello" style={styles.slide1}>
-                            <Text style={styles.text}>{this.state.images[0].name}</Text>
+                            <Text style={styles.text}>Hello Swiper {this.state.images[0].name}</Text>
                         </View>
                         <View testID="Beautiful" style={styles.slide2}>
-                            <Text style={styles.text}>{this.state.images[1].name}</Text>
+                            <Text style={styles.text}>Beautiful {this.state.images.name}</Text>
                         </View>
                         <View testID="Simple" style={styles.slide3}>
-                            <Text style={styles.text}>{this.state.images[2].name}</Text>
-                        </View>
-                        <View testID="Hello" style={styles.slide1}>
-                            <Text style={styles.text}>{this.state.images[3].name}</Text>
-                        </View>
-                        <View testID="Beautiful" style={styles.slide2}>
-                            <Text style={styles.text}>{this.state.images[4].name}</Text>
-                        </View>
-                        <View testID="Simple" style={styles.slide3}>
-                            <Text style={styles.text}>{this.state.images[5].name}</Text>
-                        </View>
-                        <View testID="Hello" style={styles.slide1}>
-                            <Text style={styles.text}>{this.state.images[6].name}</Text>
-                        </View>
-                        <View testID="Beautiful" style={styles.slide2}>
-                            <Text style={styles.text}>{this.state.images[7].name}</Text>
-                        </View>
-                        <View testID="Simple" style={styles.slide3}>
-                            <Text style={styles.text}>{this.state.images[8].name}</Text>
-                        </View>
-                        <View testID="Hello" style={styles.slide1}>
-                            <Text style={styles.text}>{this.state.images[9].name}</Text>
+                            <Text style={styles.text}>And simple {this.state.images.name}</Text>
                         </View>
 
                     </Swiper>
 
+
+
+                    <Swiper
+                        index={1}
+                        key={this.state.key}
+                        loop={false}
+                        showPagination={false}
+                        showsButtons={true}
+                        onIndexChanged={(index) => this.onPageChanged(index)}>
+                            
+                            {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
+
+
+
+
+                        {/* <View> */}
+                            {/* Displaying fetched blurry image for background */}
+                            {/* <View>
+                            </View>
+                        </View> */}
+
+
+
+
+                    </Swiper>
+
+
+
+                    {/* {!this.state.ready && (
+                        <Text style={styles.big}>Using GeoLocation in REACT</Text>
+                    )}
+                    {this.state.error && (
+                        <Text style={styles.big}>{this.state.error}</Text>
+                    )}
+                    {this.state.ready && (
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={(x, i) => i}
+                            renderItem={this.renderItem}
+                        />
+                    )} */}
+
+                    {/* {
+                        this.state.ready && this.state.data && this.state.data.map((item, i) => {
+                            const photoRef = item.photos.map(item => item.photo_reference);
+                            const photoWidth = item.photos.map(item => item.width);
+                            return(
+                                
+                                <Swiper loop={false}
+                                showPagination={false}
+                                index={0}>
+                                    <View> 
+                                        <Text>{item.name}</Text>
+                                        <Image style={{width: 100, height: 100}}
+                                        source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+                                    </View>
+                                </Swiper>
+                            )
+                        })
+                    } */}
+
                 </SafeAreaView>
             );
-
         } else {
             return (
                 <SafeAreaView backgroundColor='#91C6E4' flex="1">
@@ -209,6 +296,8 @@ export class ResultPage extends React.Component {
                 </SafeAreaView>
             );
         }
+
+
     }
 }
 
@@ -243,23 +332,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#9DD6EB',
-    },
-    slide2: {
+      },
+      slide2: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#97CAE5',
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
-    text: {
+      },
+      text: {
         color: '#fff',
         fontSize: 30,
         fontWeight: 'bold',
-    }
+      }
 
 });
