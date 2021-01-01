@@ -1,3 +1,4 @@
+
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
@@ -47,6 +48,7 @@ export class ResultPage extends React.Component {
             key: 1,                 //for Swiper
             priceLvl: 0,                               //converted price levels
             images: [],
+            loading: true,
         }
     }
 
@@ -83,7 +85,6 @@ export class ResultPage extends React.Component {
         }
         this.setState({ ready: false, error: null });
         navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoFailure, geoOptions);
-
     }
     geoSuccess = (position) => {
         console.log(position.coords.latitude, position.coords.longitude);
@@ -93,6 +94,7 @@ export class ResultPage extends React.Component {
             where: { lat: position.coords.latitude, lng: position.coords.longitude }
         })
 
+        this.priceLevelConvert();
         this.fetchData();
     }
     geoFailure = (err) => {
@@ -104,25 +106,30 @@ export class ResultPage extends React.Component {
         var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
+            "&maxprice=" + `${this.state.priceLvl}` +
+            "&rankby=prominence" +
             "&type=restaurant" +
             "&key=" + API_KEY;
         console.log(url);
         const response = await fetch(url);
         const json = await response.json();
         this.setState({ data: json.results });
+        // console.log(this.state.data);
+        // console.log(this.state.data[0].name);
         
         // Saving images to an array of objects with width, height, and reference
-        for (let i = 0 ; i < 5; i++) {
-                const height = this.state.data[i].photos.map(item => item.height); 
-                const width = this.state.data[i].photos.map(item => item.width); 
-                const reference = this.state.data[i].photos.map(item => item.photo_reference);
-                const obj = {'height': height, 'width': width, 'photo_reference': reference}
-
-                const newArray = this.state.images.slice();     //Create a copy
-                newArray.push(obj); //Push the object
-
-                this.setState({ images: newArray });
+        for (let i = 0 ; i < this.state.data.length; i++) {
+            const height = this.state.data[i].photos[0].height;
+            const width = this.state.data[i].photos[0].width;
+            const reference = this.state.data[i].photos[0].photo_reference;
+            const obj = { 'name': this.state.data[i].name, 'height': height, 'width': width, 'photo_reference': reference };
+            let newImages = [...this.state.images, obj];
+            this.setState({ images: newImages });
         }
+
+        // console.log(Object.values(this.state.images));     //images = [Obj = JSON ; Obj; Obj]
+
+        this.setState({loading: false});
 
         // for (let i = 0 ; i < 5; i++) { 
         //     console.log("Displaying item");
@@ -131,15 +138,22 @@ export class ResultPage extends React.Component {
     }
 
     renderItem(item, idx) {
-        const itemInt = parseInt(item)
-        const style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
+        // const itemInt = parseInt(item)
+        const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
+        
         return (
-            <View style={style} key={idx}>
+            <View style={view_style} key={idx}>
+                {/* <Image style={{width: 100, height: 100}}
+                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/> */}
                 <Text style={styles.text}>{cache[item]}</Text>
             </View>
         )
-        
-        
+
+        // <View> 
+        //<Text>{item.name}</Text>
+        //<Image style={{width: 100, height: 100}}
+        //  source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+        //</View>
         
     }
 
@@ -153,97 +167,137 @@ export class ResultPage extends React.Component {
             const newPages = this.state.pages.map(i => (parseInt(i)-1).toString())
             this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
         }
-
     }
 
     render() {
-        return (
-            <SafeAreaView backgroundColor='#91C6E4' flex="1">
-                {/* Display Result */}
-                <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
-                    <View style={{}}>
-                        <TouchableOpacity style={{fontSize:80}}
-                            onPress={() => this.props.navigation.goBack()}>
-                            <Image style={styles.backBtn}
-                                source={require("./assets/goBack.png")}/>
+        console.log("Images: " +this.state.images)
+        if (!this.state.loading) {
+            return (
+                <SafeAreaView backgroundColor='#91C6E4' flex="1">
+                    {/* Display Result */}
+                    <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
+                        <View style={{}}>
+                            <TouchableOpacity style={{fontSize:80}}
+                                onPress={() => this.props.navigation.goBack()}>
+                                <Image style={styles.backBtn}
+                                    source={require("./assets/goBack.png")}/>
 
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={{}}>
-                        <Text style={{color: "white", fontSize:30}}>Results</Text>
-                    </View>
-
-                </View>
-
-                <Swiper
-                    index={1}
-                    key={this.state.key}
-                    loop={false}
-                    showPagination={false}
-                    // showsButtons
-                    onIndexChanged={(index) => this.onPageChanged(index)}>
-                        {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
-
-
-
-
-                    {/* <View> */}
-                        {/* Displaying fetched blurry image for background */}
-                        {/* <View>
-
+                            </TouchableOpacity>
                         </View>
 
+                        <View style={{}}>
+                            <Text style={{color: "white", fontSize:30}}>Results</Text>
+                        </View>
+
+                    </View>
+
+                    <Swiper
+                        loop={false}
+                        showPagination={false}>
+
+                        <View testID="Hello" style={styles.slide1}>
+                            <Text style={styles.text}>Hello Swiper {this.state.images[0].name}</Text>
+                        </View>
+                        <View testID="Beautiful" style={styles.slide2}>
+                            <Text style={styles.text}>Beautiful {this.state.images.name}</Text>
+                        </View>
+                        <View testID="Simple" style={styles.slide3}>
+                            <Text style={styles.text}>And simple {this.state.images.name}</Text>
+                        </View>
+
+                    </Swiper>
 
 
 
-                    </View> */}
-
-
-
-
-                </Swiper>
-
-
-
-                {/* {!this.state.ready && (
-                    <Text style={styles.big}>Using GeoLocation in REACT</Text>
-                )}
-
-                {this.state.error && (
-                    <Text style={styles.big}>{this.state.error}</Text>
-                )}
-
-                {this.state.ready && (
-                    <FlatList
-                        data={this.state.data}
-                        keyExtractor={(x, i) => i}
-                        renderItem={this.renderItem}
-                    />
-                )} */}
-
-                {/* {
-                    this.state.ready && this.state.data && this.state.data.map((item, i) => {
-                        const photoRef = item.photos.map(item => item.photo_reference);
-                        const photoWidth = item.photos.map(item => item.width);
-                        return(
+                    <Swiper
+                        index={1}
+                        key={this.state.key}
+                        loop={false}
+                        showPagination={false}
+                        showsButtons={true}
+                        onIndexChanged={(index) => this.onPageChanged(index)}>
                             
-                            <Swiper loop={false}
-                            showPagination={false}
-                            index={0}>
-                                <View> 
-                                    <Text>{item.name}</Text>
-                                    <Image style={{width: 100, height: 100}}
-                                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
-                                </View>
-                            </Swiper>
+                            {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
 
-                        )
-                    })
-                } */}
 
-            </SafeAreaView>
-        );
+
+
+                        {/* <View> */}
+                            {/* Displaying fetched blurry image for background */}
+                            {/* <View>
+                            </View>
+                        </View> */}
+
+
+
+
+                    </Swiper>
+
+
+
+                    {/* {!this.state.ready && (
+                        <Text style={styles.big}>Using GeoLocation in REACT</Text>
+                    )}
+                    {this.state.error && (
+                        <Text style={styles.big}>{this.state.error}</Text>
+                    )}
+                    {this.state.ready && (
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={(x, i) => i}
+                            renderItem={this.renderItem}
+                        />
+                    )} */}
+
+                    {/* {
+                        this.state.ready && this.state.data && this.state.data.map((item, i) => {
+                            const photoRef = item.photos.map(item => item.photo_reference);
+                            const photoWidth = item.photos.map(item => item.width);
+                            return(
+                                
+                                <Swiper loop={false}
+                                showPagination={false}
+                                index={0}>
+                                    <View> 
+                                        <Text>{item.name}</Text>
+                                        <Image style={{width: 100, height: 100}}
+                                        source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
+                                    </View>
+                                </Swiper>
+                            )
+                        })
+                    } */}
+
+                </SafeAreaView>
+            );
+        } else {
+            return (
+                <SafeAreaView backgroundColor='#91C6E4' flex="1">
+                    {/* Display Result */}
+                    <View style={{ display: 'flex', flexDirection: "row", alignItems: "center" }}>
+                        <View style={{}}>
+                            <TouchableOpacity style={{ fontSize: 80 }}
+                                onPress={() => this.props.navigation.goBack()}>
+                                <Image style={styles.backBtn}
+                                    source={require("./assets/goBack.png")} />
+
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{}}>
+                            <Text style={{ color: "white", fontSize: 30 }}>Results</Text>
+                        </View>
+
+                    </View>
+
+                    <View>
+                        <Text> LOADING </Text>
+                    </View>
+
+                </SafeAreaView>
+            );
+        }
+
 
     }
 }
