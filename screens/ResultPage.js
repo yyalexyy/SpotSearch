@@ -1,8 +1,10 @@
+
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert, FlatList } from 'react-native';
+import { ScrollView, Button, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Dimensions, Animated, Alert, FlatList } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
@@ -14,19 +16,6 @@ import {
 
 import Swiper from 'react-native-swiper';
 
-const cache = {
-    "0": "zero",
-    "1": "one",
-    "2": "two",
-    "3": "three",
-    "4": "four",
-    "5": "five",
-    "6": "six",
-    "7": "seven",
-    "8": "eight",
-    "9": "nine",
-    "10": "ten"
-  }
 
 /**
 * Result Screen
@@ -75,7 +64,6 @@ export class ResultPage extends React.Component {
     }
 
 
-
     componentDidMount() {
         let geoOptions = {
             enableHighAccuracy: true,
@@ -100,13 +88,17 @@ export class ResultPage extends React.Component {
         this.setState({ error: err.message })
     }
 
+    // var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+    // `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
+    // "&radius=" + `${this.state.radius}` +
+    // "&maxprice=" + `${this.state.priceLvl}` +
+    // "&type=restaurant" +
+    // "&key=" + API_KEY;
     fetchData = async () => {
         const API_KEY = "AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"; //process.env.API_PLACES_KEY;
         var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
-            "&maxprice=" + `${this.state.priceLvl}` +
-            "&rankby=prominence" +
             "&type=restaurant" +
             "&key=" + API_KEY;
         console.log(url);
@@ -117,61 +109,58 @@ export class ResultPage extends React.Component {
         // console.log(this.state.data[0].name);
         
         // Saving images to an array of objects with width, height, and reference
-        for (let i = 0 ; i < this.state.data.length; i++) {
-            const name = this.state.data[i].name;
-            const height = this.state.data[i].photos[0].height;
-            const width = this.state.data[i].photos[0].width;
-            const reference = this.state.data[i].photos[0].photo_reference;
-            const obj = { 'name': name, 'height': height, 'width': width, 'photo_reference': reference };
+        for (let i = 0 ; i < this.state.data.length && i < 10; i++) {
+            const location_name = this.state.data[i].name;
+            const img_height = this.state.data[i].photos[0].height;
+            const img_width = this.state.data[i].photos[0].width;
+            const img_reference = this.state.data[i].photos[0].photo_reference;
+            const obj = { 'name': location_name, 'height': img_height, 'width': img_width, 'photo_reference': img_reference };
             let newImages = [...this.state.images, obj];
             this.setState({ images: newImages });
         }
 
-        console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
+        // console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
 
         this.setState({loading: false});
-
-        // for (let i = 0 ; i < 5; i++) { 
-        //     console.log("Displaying item");
-        //     console.log(this.state.images[i])
-        // }
     }
 
     renderItem(item, idx) {
-        // console.log("Item: "+ item);
+        // const itemInt = parseInt(item)
+        // const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
+
         
-        // console.log("Idx: "+ idx);
-        // console.log("------------------------")
+        let img_height = this.state.images[item].height;
+        let img_width = this.state.images[item].width;
+        let img_reference = this.state.images[item].photo_reference;
 
 
-        const itemInt = parseInt(item)
-        const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
-        
+        // console.log("img_height: " + img_height)
+        // console.log("img_width: " + img_width)
+        // console.log("img_reference: " + img_reference)
+        // console.log("------------------------------- ")
+
+        // console.log("Item:" + item)
+        // console.log("Idx:" +idx)
+        // console.log("RenderItem Pages: " + this.state.pages);
+
         return (
-            <View style={view_style} key={idx}>
-                {/* <Image style={{width: 100, height: 100}}
-                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/> */}
-                    {/* this.state.images[item].name */}
-                <Text style={styles.text}>{this.state.images[item].name}</Text>
+            <View style={styles.backgroundImgContainer} key={idx}>
+                <ImageBackground  style={styles.backgroundImg}
+                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: {width: wp("50%"), height: hp("100%")} }}>
+                        <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text>
+                </ImageBackground>
             </View>
         )
-
-        // <View> 
-        //<Text>{item.name}</Text>
-        //<Image style={{width: 100, height: 100}}
-        //  source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
-        //</View>
-        
     }
 
-
+    // [0,1,2]     1,2,3
     onPageChanged(idx) {
-        if (idx == 2) {
-            const newPages = this.state.pages.map(i => (parseInt(i)+1).toString())
+        if (idx == 2) {     // When swiping right
+            const newPages = this.state.pages.map(i => ((parseInt(i)+1)%10).toString())      // Update the array
             this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
         } 
-        else if (idx == 0) {
-            const newPages = this.state.pages.map(i => (parseInt(i)-1).toString())
+        else if (idx == 0) {    // When swiping left
+            const newPages = this.state.pages.map(i => (( ((parseInt(i)-1)%10) + 10) % 10).toString())       // Update the array (A problem would occur when use % for negative num, so we add 10 then mod 10)
             this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
         }
     }
@@ -198,45 +187,19 @@ export class ResultPage extends React.Component {
 
                     </View>
 
-                    {/* <Swiper
-                        loop={false}
-                        showPagination={false}>
-
-                        <View testID="Hello" style={styles.slide1}>
-                            <Text style={styles.text}>Hello Swiper {this.state.images[0].name}</Text>
-                        </View>
-                        <View testID="Beautiful" style={styles.slide2}>
-                            <Text style={styles.text}>Beautiful {this.state.images.name}</Text>
-                        </View>
-                        <View testID="Simple" style={styles.slide3}>
-                            <Text style={styles.text}>And simple {this.state.images.name}</Text>
-                        </View>
-
-                    </Swiper> */}
-
 
 
                     <Swiper
                         index={1}
                         key={this.state.key}
-                        loop={false}
-                        showPagination={false}
+                        loop={true}
+                        showPagination={true}
                         showsButtons={true}
-                        onIndexChanged={(index) => this.onPageChanged(index)}>
-                            
-                            {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
-
-
-
-
-                        {/* <View> */}
-                            {/* Displaying fetched blurry image for background */}
-                            {/* <View>
-                            </View>
-                        </View> */}
-
-
-
+                        dotStyle ={{width: 0, height: 0}}
+                        activeDotStyle = {{width: 0, height: 0}}
+                        onIndexChanged={(index) => this.onPageChanged(index)}
+                    >   
+                        {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
 
                     </Swiper>
 
@@ -255,25 +218,6 @@ export class ResultPage extends React.Component {
                             renderItem={this.renderItem}
                         />
                     )} */}
-
-                    {/* {
-                        this.state.ready && this.state.data && this.state.data.map((item, i) => {
-                            const photoRef = item.photos.map(item => item.photo_reference);
-                            const photoWidth = item.photos.map(item => item.width);
-                            return(
-                                
-                                <Swiper loop={false}
-                                showPagination={false}
-                                index={0}>
-                                    <View> 
-                                        <Text>{item.name}</Text>
-                                        <Image style={{width: 100, height: 100}}
-                                        source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + photoWidth + "&photoreference=" + photoRef + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"}}/>
-                                    </View>
-                                </Swiper>
-                            )
-                        })
-                    } */}
 
                 </SafeAreaView>
             );
@@ -297,8 +241,8 @@ export class ResultPage extends React.Component {
 
                     </View>
 
-                    <View>
-                        <Text> LOADING </Text>
+                    <View style={{flex: 1, alignItems:'center', justifyContent: 'center',}}>
+                        <Text> LOADING... </Text>
                     </View>
 
                 </SafeAreaView>
@@ -323,8 +267,6 @@ const styles = StyleSheet.create({
         width: 40,
         transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "180deg" }, { scale: .7 }]
     },
-
-
     item: {
         flex: 1,
         alignSelf: 'stretch',
@@ -332,6 +274,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 1,
+    },
+    backgroundImgContainer: {
+        flex: 1, 
+        position: 'absolute',
+        width: Dimensions.get('window').width, 
+        height: Dimensions.get('window').height, 
+        top: 0, 
+        left: 0, 
+        bottom: 0, 
+        right: 0,
+    },
+    backgroundImg: {
+        flex: 1, 
+        justifyContent: 'center', 
+        resizeMode: 'cover',
     },
 
 
