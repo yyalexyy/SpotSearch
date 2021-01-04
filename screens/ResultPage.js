@@ -139,9 +139,9 @@ export class ResultPage extends React.Component {
         // console.log("img_reference: " + img_reference)
         // console.log("------------------------------- ")
 
-        // console.log("Item:" + item)
-        // console.log("Idx:" +idx)
-        // console.log("RenderItem Pages: " + this.state.pages);
+        console.log("Item:" + item)
+        console.log("Idx:" +idx)
+        console.log("RenderItem Pages: " + this.state.pages);
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
