@@ -138,14 +138,17 @@ const HomeStackScreen = ({ navigation }) => (
           )
         }} />
         <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
-          // title:"Spot",
-          headerShown: false,
+          title:"Result",
+          headerStyle:{
+            backgroundColor: 'white',
+            shadowColor: 'transparent',
+          },
           // headerRight: () => (
           //   <Icon.Button 
           //     name= "menu"
           //     size={25}
-          //     color="#000000"           //menu tab color
-          //     backgroundColor= "#3AA4E0"
+          //     color="black"           //menu tab color
+          //     backgroundColor= "white"
           //     onPress={() => navigation.toggleDrawer()}/>
           // )
         }} />
