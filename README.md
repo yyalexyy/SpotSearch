@@ -59,9 +59,9 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
 ## Authors
 
-  - **Alex Juan** - *Student* -
+  - **Alex Juan** - 
     [yyalexyy](https://github.com/yyalexyy)
-  - **Ravi Rosyidi** - *Student* -
+  - **Ravi Rosyidi** - 
     [rrosyidi](https://github.com/rrosyidi)
 
 
