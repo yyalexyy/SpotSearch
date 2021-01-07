@@ -67,7 +67,7 @@ export class HomePageRedesign extends React.Component {
     render() {
         return (
             <SafeAreaView backgroundColor='#3AA4E0'>
-                {/* Faint line below "Catergories" */}
+                {/* Faint line below "Home" */}
                 <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'white', marginLeft: 0, marginRight: 0, zIndex: 999, opacity: .7 }} />
 
                 {/* Faint line below "Catergories" */}

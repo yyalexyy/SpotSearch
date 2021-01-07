@@ -1,12 +1,12 @@
 
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Dimensions, Animated, Alert, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
+import { ImageBackground, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Swiper from 'react-native-swiper';
 import BouncingPreloader from 'react-native-bouncing-preloader';
+import Swiper from 'react-native-swiper';
 
 /**
 * Result Screen
@@ -37,19 +37,19 @@ export class ResultPage extends React.Component {
      *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
      * */
     priceLevelConvert() {
-        if(this.state.cost === 0){
+        if (this.state.cost === 0) {
             this.setState({ priceLvl: 0 });
         }
-        else if(this.state.cost > 0 && this.state.cost <= 10) {
+        else if (this.state.cost > 0 && this.state.cost <= 10) {
             this.setState({ priceLvl: 1 });
         }
-        else if(this.state.cost > 10 && this.state.cost <= 25) {
+        else if (this.state.cost > 10 && this.state.cost <= 25) {
             this.setState({ priceLvl: 2 });
         }
-        else if(this.state.cost > 25 && this.state.cost <= 100) {
+        else if (this.state.cost > 25 && this.state.cost <= 100) {
             this.setState({ priceLvl: 3 });
         }
-        else if(this.state.cost > 100){
+        else if (this.state.cost > 100) {
             this.setState({ priceLvl: 4 });
         }
     }
@@ -98,9 +98,9 @@ export class ResultPage extends React.Component {
         this.setState({ data: json.results });
         // console.log(this.state.data);
         // console.log(this.state.data[0].name);
-        
+
         // Saving images to an array of objects with width, height, and reference
-        for (let i = 0 ; i < this.state.data.length && i < 10; i++) {
+        for (let i = 0; i < this.state.data.length && i < 10; i++) {
             const location_name = this.state.data[i].name;
             const img_height = this.state.data[i].photos[0].height;
             const img_width = this.state.data[i].photos[0].width;
@@ -112,14 +112,13 @@ export class ResultPage extends React.Component {
 
         // console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
 
-        this.setState({loading: false});
+        this.setState({ loading: false });
     }
 
     renderItem(item, idx) {
         // const itemInt = parseInt(item)
         // const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
 
-        
         let img_height = this.state.images[item].height;
         let img_width = this.state.images[item].width;
         let img_reference = this.state.images[item].photo_reference;
@@ -130,9 +129,9 @@ export class ResultPage extends React.Component {
         // console.log("img_reference: " + img_reference)
         // console.log("------------------------------- ")
 
-        console.log("Item:" + item)
-        console.log("Idx:" +idx)
-        console.log("RenderItem Pages: " + this.state.pages);
+        // console.log("Item:" + item)
+        // console.log("Idx:" +idx)
+        // console.log("RenderItem Pages: " + this.state.pages);
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
@@ -167,22 +166,23 @@ export class ResultPage extends React.Component {
     // [0,1,2]     1,2,3
     onPageChanged(idx) {
         if (idx == 2) {     // When swiping right
-            const newPages = this.state.pages.map(i => ((parseInt(i)+1)%10).toString())      // Update the array
-            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
-        } 
+            const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
+        }
         else if (idx == 0) {    // When swiping left
-            const newPages = this.state.pages.map(i => (( ((parseInt(i)-1)%10) + 10) % 10).toString())       // Update the array (A problem would occur when use % for negative num, so we add 10 then mod 10)
-            this.setState({ pages: newPages, key: ((this.state.key+1)%2) })
+            const newPages = this.state.pages.map(i => ((((parseInt(i) - 1) % 10) + 10) % 10).toString())       // Update the array (A problem would occur when use % for negative num, so we add 10 then mod 10)
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
         }
     }
 
     render() {
         // console.log("Images: " +this.state.images)
+        //backgroundColor='#91C6E4'
         if (!this.state.loading) {
             return (
-                <SafeAreaView backgroundColor='#91C6E4' flex="1">
+                <SafeAreaView backgroundColor="white" flex="1">
                     {/* Display Result */}
-                    <View style={{display:'flex', flexDirection: "row", alignItems: "center", marginTop: hp("-5%")}}>
+                    <View style={{display:'flex', flex: 1, flexDirection: "row", alignItems: "center", justifyContent: 'center', marginTop: hp("-5%")}}>
                         <Swiper
                             index={1}
                             key={this.state.key}
@@ -284,17 +284,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#9DD6EB',
-      },
-      slide2: {
+    },
+    slide2: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#97CAE5',
-      },
-      text: {
+    },
+    text: {
         color: '#fff',
         fontSize: 30,
         fontWeight: 'bold',
-      }
+    }
 
 });
