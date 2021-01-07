@@ -5,17 +5,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, Button, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Dimensions, Animated, Alert, FlatList } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem,
-} from '@react-navigation/drawer';
-
 import Swiper from 'react-native-swiper';
-
+import BouncingPreloader from 'react-native-bouncing-preloader';
 
 /**
 * Result Screen
@@ -145,9 +136,29 @@ export class ResultPage extends React.Component {
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
-                <ImageBackground  style={styles.backgroundImg}
+                <ImageBackground  style={styles.backgroundImg} blurRadius={7}
                     source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: {width: wp("50%"), height: hp("100%")} }}>
-                        <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text>
+                        {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
+
+                        {/* Middle Box */}
+                        <View>
+                            {/* Photo Box */}
+                            <View style={{alignItems: 'center'}}>
+                                <Image style={{ height: hp("35%"), width: wp("70%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50}}
+                                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8" }}/>
+
+                            </View>
+
+                            <View style={{position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 70, bottom: 60}}>
+                                <Text style={{color: "#ffffff", fontSize: 24, fontWeight: "bold", textAlign: 'left'}} numberOfLines={3}  ellipsizeMode='tail' >
+                                    {this.state.images[item].name}
+                                </Text>
+                            </View>
+
+                            <View>
+
+                            </View>
+                        </View>
                 </ImageBackground>
             </View>
         )
@@ -171,80 +182,52 @@ export class ResultPage extends React.Component {
             return (
                 <SafeAreaView backgroundColor='#91C6E4' flex="1">
                     {/* Display Result */}
-                    <View style={{display:'flex', flexDirection: "row", alignItems: "center"}}>
-                        <View style={{}}>
-                            <TouchableOpacity style={{fontSize:80}}
-                                onPress={() => this.props.navigation.goBack()}>
-                                <Image style={styles.backBtn}
-                                    source={require("./assets/goBack.png")}/>
+                    <View style={{display:'flex', flexDirection: "row", alignItems: "center", marginTop: hp("-5%")}}>
+                        <Swiper
+                            index={1}
+                            key={this.state.key}
+                            loop={true}
+                            showPagination={true}
+                            showsButtons={true}
+                            dotStyle ={{width: 0, height: 0}}
+                            activeDotStyle = {{width: 0, height: 0}}
+                            onIndexChanged={(index) => this.onPageChanged(index)}
+                        >   
+                            {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
 
-                            </TouchableOpacity>
-                        </View>
+                        </Swiper>
 
-                        <View style={{}}>
-                            <Text style={{color: "white", fontSize:30}}>Results</Text>
-                        </View>
 
+
+                        {/* {!this.state.ready && (
+                            <Text style={styles.big}>Using GeoLocation in REACT</Text>
+                        )}
+                        {this.state.error && (
+                            <Text style={styles.big}>{this.state.error}</Text>
+                        )}
+                        {this.state.ready && (
+                            <FlatList
+                                data={this.state.data}
+                                keyExtractor={(x, i) => i}
+                                renderItem={this.renderItem}
+                            />
+                        )} */}
                     </View>
-
-
-
-                    <Swiper
-                        index={1}
-                        key={this.state.key}
-                        loop={true}
-                        showPagination={true}
-                        showsButtons={true}
-                        dotStyle ={{width: 0, height: 0}}
-                        activeDotStyle = {{width: 0, height: 0}}
-                        onIndexChanged={(index) => this.onPageChanged(index)}
-                    >   
-                        {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
-
-                    </Swiper>
-
-
-
-                    {/* {!this.state.ready && (
-                        <Text style={styles.big}>Using GeoLocation in REACT</Text>
-                    )}
-                    {this.state.error && (
-                        <Text style={styles.big}>{this.state.error}</Text>
-                    )}
-                    {this.state.ready && (
-                        <FlatList
-                            data={this.state.data}
-                            keyExtractor={(x, i) => i}
-                            renderItem={this.renderItem}
-                        />
-                    )} */}
-
                 </SafeAreaView>
             );
         } else {
             return (
-                <SafeAreaView backgroundColor='#91C6E4' flex="1">
-                    {/* Display Result */}
-                    <View style={{ display: 'flex', flexDirection: "row", alignItems: "center" }}>
-                        <View style={{}}>
-                            <TouchableOpacity style={{ fontSize: 80 }}
-                                onPress={() => this.props.navigation.goBack()}>
-                                <Image style={styles.backBtn}
-                                    source={require("./assets/goBack.png")} />
-
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={{}}>
-                            <Text style={{ color: "white", fontSize: 30 }}>Results</Text>
-                        </View>
-
+                <SafeAreaView backgroundColor='white' flex="1">
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: hp("30%")}}>
+                        <BouncingPreloader
+                            icons={[
+                                require('./assets/DinnerDate.png'),
+                                require('./assets/FoodAreas.png'),
+                                require('./assets/Vacation.png'),
+                                require('./assets/fireplace.png'),
+                                require('./assets/dolphin.png'),
+                            ]} />
                     </View>
-
-                    <View style={{flex: 1, alignItems:'center', justifyContent: 'center',}}>
-                        <Text> LOADING... </Text>
-                    </View>
-
                 </SafeAreaView>
             );
         }
@@ -278,17 +261,21 @@ const styles = StyleSheet.create({
     backgroundImgContainer: {
         flex: 1, 
         position: 'absolute',
+        justifyContent: "center",
         width: Dimensions.get('window').width, 
-        height: Dimensions.get('window').height, 
-        top: 0, 
-        left: 0, 
-        bottom: 0, 
-        right: 0,
+        height: Dimensions.get('window').height,
     },
     backgroundImg: {
         flex: 1, 
         justifyContent: 'center', 
         resizeMode: 'cover',
+    },
+
+    imgContainer: {
+
+    },
+    img: {
+
     },
 
 
