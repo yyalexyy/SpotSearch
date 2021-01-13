@@ -14,6 +14,7 @@ import Swiper from 'react-native-swiper';
 * @param {*} param0 
 */
 export class ResultPage extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +25,7 @@ export class ResultPage extends React.Component {
             where: { lat: null, lng: null },
             error: null,
             data: [],
-            pages: ["0", "1", "2"],
+            pages: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
             key: 1,                 //for Swiper
             priceLvl: 0,                               //converted price levels
             images: [],
@@ -32,7 +33,8 @@ export class ResultPage extends React.Component {
         }
     }
 
-
+    //Tells render to stop auto rendering and only renders once
+    shouldComponentUpdate = () => false
 
     /** Converting users budget to the price levels.
      *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
@@ -65,6 +67,7 @@ export class ResultPage extends React.Component {
         this.setState({ ready: false, error: null });
         navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoFailure, geoOptions);
     }
+
     geoSuccess = (position) => {
         console.log(position.coords.latitude, position.coords.longitude);
 
@@ -76,6 +79,7 @@ export class ResultPage extends React.Component {
         this.priceLevelConvert();
         this.fetchData();
     }
+
     geoFailure = (err) => {
         this.setState({ error: err.message })
     }
@@ -106,61 +110,65 @@ export class ResultPage extends React.Component {
             const img_height = this.state.data[i].photos[0].height;
             const img_width = this.state.data[i].photos[0].width;
             const img_reference = this.state.data[i].photos[0].photo_reference;
-            const obj = { 'name': location_name, 'height': img_height, 'width': img_width, 'photo_reference': img_reference };
+            const location = this.state.data[i].vicinity;
+            const rating = this.state.data[i].rating;
+            const obj = {'name': location_name, 'height': img_height, 'width': img_width, 'photo_reference': img_reference, 'address': location, 'rating': rating};
             let newImages = [...this.state.images, obj];
             this.setState({ images: newImages });
         }
 
-        // console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
-
+        //console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
         this.setState({ loading: false });
+
+        //Tells render to update so that it can switch from loading screen
+        this.forceUpdate();
     }
 
     renderItem(item, idx) {
         // const itemInt = parseInt(item)
         // const view_style = itemInt % 2 == 0 ? styles.slide1 : styles.slide2
 
-        let img_height = this.state.images[item].height;
         let img_width = this.state.images[item].width;
         let img_reference = this.state.images[item].photo_reference;
 
-
-        // console.log("img_height: " + img_height)
-        // console.log("img_width: " + img_width)
-        // console.log("img_reference: " + img_reference)
-        // console.log("------------------------------- ")
-
-        // console.log("Item:" + item)
-        // console.log("Idx:" +idx)
-        // console.log("RenderItem Pages: " + this.state.pages);
-
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
-                <ImageBackground  style={styles.backgroundImg} blurRadius={7}
-                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: {width: wp("50%"), height: hp("100%")} }}>
-                        {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
-
-                        {/* Middle Box */}
-                        <View>
-                            {/* Photo Box */}
-                            <View style = {{alignItems: 'center'}}>
-                                <Image style={{height: hp("35%"), width: wp("70%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50}}
-                                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8" }}/>
-
-                                    <View style={{alignItems: 'center', position: 'absolute', flexDirection: "row", marginLeft: 30, marginRight: 30}}>
-                                        <Text style={{ color: "#ffffff", fontSize: 18, fontWeight: "bold", top: 100, marginHorizontal: 10}}>{this.state.images[item].name}</Text>
-                                    </View>
-    
-                            </View>
-
-                            <View style={{position: 'absolute', }}>
-                               
-                            </View>
-
-                            <View>
-
-                            </View>
+                <ImageBackground style={styles.backgroundImg} blurRadius={7}
+                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: { width: wp("50%"), height: hp("100%") } }}>
+                    {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
+                    
+                    {/* Bottom Flap which contains location address*/}
+                    <View style = {{flexDirection: "row", position: 'absolute', width: wp("75%"), height: hp("10%"), marginHorizontal: 45, bottom: 200}}>
+                       
+                        {/* View box that contains address */}
+                        <View style = {{backgroundColor: '#A8DDFC', position: 'relative', width: wp("50%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2,height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <Text style={{ color: "#ffffff", fontSize: 15, fontWeight: "bold", textAlign: 'left', marginTop: 22, marginHorizontal: 7}}>
+                                {this.state.images[item].address}
+                            </Text>
                         </View>
+
+                        {/* View box that contains rating */}
+                        <View style = {{backgroundColor: '#B6DCF1', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <Text style={{ color: "#ffffff", fontSize: 13, fontWeight: "bold", textAlign: 'center', marginTop: 25}}>
+                                Rating: {this.state.images[item].rating}
+                            </Text>
+                        </View>
+                    </View> 
+
+                    {/* Middle Box */}
+                    <View>
+                        {/* Photo Box */}
+                        <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <Image style={{ height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50 }}
+                                source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8" }} />
+                        </View>
+
+                        <View style={{ position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 50, bottom: 60}}>
+                            <Text style={{ color: "#ffffff", fontSize: 24, fontWeight: "bold", textAlign: 'left'}} numberOfLines={3} ellipsizeMode='tail' >
+                                {this.state.images[item].name}
+                            </Text>
+                        </View>
+                    </View>
                 </ImageBackground>
             </View>
         )
@@ -203,7 +211,7 @@ export class ResultPage extends React.Component {
         } else {
             return (
                 <SafeAreaView backgroundColor='white' flex="1">
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: hp("30%")}}>
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: hp("30%") }}>
                         <BouncingPreloader
                             icons={[
                                 require('./assets/DinnerDate.png'),
@@ -244,15 +252,15 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     backgroundImgContainer: {
-        flex: 1, 
+        flex: 1,
         position: 'absolute',
         justifyContent: "center",
-        width: Dimensions.get('window').width, 
+        width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
     backgroundImg: {
-        flex: 1, 
-        justifyContent: 'center', 
+        flex: 1,
+        justifyContent: 'center',
         resizeMode: 'cover',
     },
     slide1: {
