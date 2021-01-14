@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';  // import safe a
 import { ImageBackground, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
 
@@ -133,6 +132,7 @@ export class ResultPage extends React.Component {
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
+<<<<<<< HEAD
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
                     source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: { width: wp("50%"), height: hp("100%") } }}>
                     {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
@@ -146,6 +146,26 @@ export class ResultPage extends React.Component {
                                 {this.state.images[item].address}
                             </Text>
                         </View>
+=======
+                <ImageBackground  style={styles.backgroundImg} blurRadius={7}
+                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: {width: wp("50%"), height: hp("100%")} }}>
+                        {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
+
+                        {/* Middle Box */}
+                        <View>
+                            {/* Photo Box */}
+                            <View style={{alignItems: 'center'}}>
+                                <Image style={{ height: hp("35%"), width: wp("70%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50}}
+                                    source={{uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" +  img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8" }}/>
+
+                            </View>
+
+                            <View style={{position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 70, bottom: 60}}>
+                                <Text style={{color: "#ffffff", fontSize: 24, fontWeight: "bold", textAlign: 'left'}} numberOfLines={3}  ellipsizeMode='tail' >
+                                    {this.state.images[item].name}
+                                </Text>
+                            </View>
+>>>>>>> b5972bb3779d1aa563f5553423df079f5e886f40
 
                         {/* View box that contains rating */}
                         <View style = {{backgroundColor: '#B6DCF1', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
@@ -193,18 +213,36 @@ export class ResultPage extends React.Component {
             return (
                 <SafeAreaView backgroundColor="white" flex="1">
                     {/* Display Result */}
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: hp("-5%") }}>
+                    <View style={{display:'flex', flex: 1, flexDirection: "row", alignItems: "center", justifyContent: 'center', marginTop: hp("-5%")}}>
                         <Swiper
                             index={1}
                             key={this.state.key}
                             loop={true}
                             showPagination={true}
                             showsButtons={true}
-                            dotStyle={{ width: 0, height: 0 }}
-                            activeDotStyle={{ width: 0, height: 0 }}
-                            onIndexChanged={(index) => this.onPageChanged(index)}>
+                            dotStyle ={{width: 0, height: 0}}
+                            activeDotStyle = {{width: 0, height: 0}}
+                            onIndexChanged={(index) => this.onPageChanged(index)}
+                        >   
                             {this.state.pages.map((item, idx) => this.renderItem(item, idx))}
+
                         </Swiper>
+
+
+
+                        {/* {!this.state.ready && (
+                            <Text style={styles.big}>Using GeoLocation in REACT</Text>
+                        )}
+                        {this.state.error && (
+                            <Text style={styles.big}>{this.state.error}</Text>
+                        )}
+                        {this.state.ready && (
+                            <FlatList
+                                data={this.state.data}
+                                keyExtractor={(x, i) => i}
+                                renderItem={this.renderItem}
+                            />
+                        )} */}
                     </View>
                 </SafeAreaView>
             );
@@ -263,6 +301,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         resizeMode: 'cover',
     },
+
+    imgContainer: {
+
+    },
+    img: {
+
+    },
+
+
     slide1: {
         flex: 1,
         justifyContent: 'center',
