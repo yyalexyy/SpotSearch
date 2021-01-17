@@ -11,6 +11,7 @@ import { Recent } from './Recent';
 import { Favorites } from './Favorites';
 import { HomePage } from './HomePage';
 import { HomePageRedesign } from './HomePageRedesign';
+import { RecreationTypes } from './RecTypesPage';
 import { BudgetPage } from './BudgetsPage';
 import { MaxTimePage } from './MaxTimePage';
 import { MaxDistancePage } from './MaxDistancePage';
@@ -83,75 +84,86 @@ const HomeStackScreen = ({ navigation }) => (
           color: 'black'
         },
       }}>
-        <HomeStack.Screen name="HomePageRedesign" component={HomePageRedesign} options={{ 
-          title:"Home",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#91C6E4"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
-          }} />
-        
-        <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
-          title:"Budget",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#91C6E4"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
-        }} />
-        <HomeStack.Screen name="MaxTimePage" component={MaxTimePage} options={{ title:"Time",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#91C6E4"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
-        }}  />
-        <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
-        }}  />
-        <HomeStack.Screen name="RatingPage" component={RatingPage} options={{   
-          title:"Rating",
-          headerRight: () => (
-            <Icon.Button 
-              name= "menu"
-              size={25}
-              color="#000000"           //menu tab color
-              backgroundColor= "#3AA4E0"
-              onPress={() => navigation.toggleDrawer()}/>
-          )
-        }} />
-        <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
-          title:"Result",
-          headerStyle:{
-            backgroundColor: 'white',
-            shadowColor: 'transparent',
-          },
-          // headerRight: () => (
-          //   <Icon.Button 
-          //     name= "menu"
-          //     size={25}
-          //     color="black"           //menu tab color
-          //     backgroundColor= "white"
-          //     onPress={() => navigation.toggleDrawer()}/>
-          // )
-        }} />
+    <HomeStack.Screen name="HomePageRedesign" component={HomePageRedesign} options={{ 
+      title:"Home",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#91C6E4"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+      }} />
+    
+    <HomeStack.Screen name="RecreationTypes" component={RecreationTypes} options={{ 
+      title:"Types",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#91C6E4"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+      }} />
+    <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
+      title:"Budget",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#91C6E4"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+    }} />
+    <HomeStack.Screen name="MaxTimePage" component={MaxTimePage} options={{ title:"Time",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#91C6E4"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+    }}  />
+    <HomeStack.Screen name="MaxDistancePage" component={MaxDistancePage} options={{ title:"Distance",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#3AA4E0"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+    }}  />
+    <HomeStack.Screen name="RatingPage" component={RatingPage} options={{   
+      title:"Rating",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#3AA4E0"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+    }} />
+    <HomeStack.Screen name="ResultPage" component={ResultPage} options={{ 
+      title:"Result",
+      headerStyle:{
+        backgroundColor: 'white',
+        shadowColor: 'transparent',
+      },
+      // headerRight: () => (
+      //   <Icon.Button 
+      //     name= "menu"
+      //     size={25}
+      //     color="black"           //menu tab color
+      //     backgroundColor= "white"
+      //     onPress={() => navigation.toggleDrawer()}/>
+      // )
+    }} />
     </HomeStack.Navigator>
   )
   

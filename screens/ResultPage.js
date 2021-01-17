@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';  // import safe a
 import { ImageBackground, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
 
@@ -91,7 +90,7 @@ export class ResultPage extends React.Component {
     // "&type=restaurant" +
     // "&key=" + API_KEY;
     fetchData = async () => {
-        const API_KEY = "AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8"; //process.env.API_PLACES_KEY;
+        const API_KEY = "AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0"; //process.env.API_PLACES_KEY;
         var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
@@ -134,7 +133,7 @@ export class ResultPage extends React.Component {
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
-                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8", crop: { width: wp("50%"), height: hp("100%") } }}>
+                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0", crop: { width: wp("50%"), height: hp("100%") } }}>
                     {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
                     
                     {/* Bottom Flap which contains location address*/}
@@ -160,7 +159,7 @@ export class ResultPage extends React.Component {
                         {/* Photo Box */}
                         <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
                             <Image style={{ height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50 }}
-                                source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyCFZJZFTA4espyw0NRs6MBdgc2upvYXoh8" }} />
+                                source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
                         </View>
 
                         <View style={{ position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 50, bottom: 60}}>
@@ -187,7 +186,7 @@ export class ResultPage extends React.Component {
     }
 
     render() {
-        // console.log("Images: " +this.state.images)
+        console.log("Images: " +this.state.images)
         //backgroundColor='#91C6E4'
         if (!this.state.loading) {
             return (
@@ -216,8 +215,8 @@ export class ResultPage extends React.Component {
                             icons={[
                                 require('./assets/DinnerDate.png'),
                                 require('./assets/FoodAreas.png'),
-                                require('./assets/Vacation.png'),
-                                require('./assets/fireplace.png'),
+                                require('./assets/kite.png'),
+                                require('./assets/landmark.png'),
                                 require('./assets/dolphin.png'),
                             ]} />
                     </View>

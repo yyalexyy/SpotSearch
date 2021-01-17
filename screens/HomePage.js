@@ -119,7 +119,7 @@ export const HomePage = ({ navigation }) => {
 
                       <Image
                       style = {{height: 90, width: 90, marginTop: 14}} 
-                      source={require('./assets/Vacation.png')}/>
+                      source={require('./assets/kite.png')}/>
 
                       <View style = {styles.bottomTextBorder}> 
                         <Text style = {styles.boxText}>Vacation Spot</Text>
@@ -135,7 +135,7 @@ export const HomePage = ({ navigation }) => {
 
                       <Image
                       style = {{height: 90, width: 90, marginTop: 14}} 
-                      source={require('./assets/HangoutSite.png')}/>
+                      source={require('./assets/landmark.png')}/>
 
                       <View style = {styles.bottomTextBorder}> 
                        <Text style = {styles.boxText}>Hangout Site</Text>
