@@ -58,10 +58,15 @@ export class MaxTimePage extends React.Component {
   }
 
   continue() {
-    if (this.state.drive === true || this.state.bike === true || this.state.walk === true) {
-      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius()}); 
-      }
+    if (this.state.drive === true) {
+      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "drive"}); 
     }
+    else if (this.state.bike === true) {
+      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "bike"}); 
+    }
+    else if (this.state.walk === true)
+    this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "walk"}); 
+  }
 
   render() {
     const { selectedHours, selectedMinutes } = this.state;

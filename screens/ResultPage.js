@@ -7,11 +7,11 @@ import { ImageBackground, StyleSheet, Text, View, Dimensions, Image, TouchableOp
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
-import MapView, { createOpenLink } from 'react-native-open-maps';
+import openMap from 'react-native-open-maps';
 
 
-const openMap = createOpenLink()
-const openMapZoomedOut = createOpenLink({ ...yosemite, zoom: 30 });
+// const map = createOpenLink()
+// const openMapZoomedOut = createOpenLink({ ...yosemite, zoom: 30 });
 
 /**
 * Result Screen
@@ -24,8 +24,14 @@ export class ResultPage extends React.Component {
             option: props.route.params.option,
             cost: props.route.params.cost,              //users budget
             radius: props.route.params.radius,
+            travelType: props.route.params.travelType,
             ready: false,
             where: { lat: null, lng: null },
+            destination: '',
+            location_idx: 1,
+            prev_idx: 1,
+            swipe_direc: 1,
+            first_swipe: true,
             error: null,
             data: [],
             pages: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],  //Changed to
@@ -34,6 +40,9 @@ export class ResultPage extends React.Component {
             images: [],
             loading: true,
         }
+
+        this.toLocation = this.toLocation.bind(this);
+
     }
 
     //Tells render to stop auto rendering and only renders once
@@ -64,7 +73,8 @@ export class ResultPage extends React.Component {
     // Opening google maps
 
     toLocation() {
-        MapView({ latitude: 37.865101, longitude: -119.538330 })
+        // console.log(this.state.images[this.state.location_idx].address)
+        openMap({ query:  `${this.state.images[this.state.location_idx].address}`, navigate_mode: "navigate" })
     }
 
 
@@ -190,20 +200,54 @@ export class ResultPage extends React.Component {
         )
     }
 
-    // [0,1,2]     1,2,3
-    onPageChanged(idx) {
-        if (idx == 2) {     // When swiping right
+
+    async onPageChanged(idx) {
+        //Set initial swipe_direc state (only runs once when result is first generated)
+        if (idx == 2 && this.state.first_swipe == true) {
+            await this.setState({swipe_direc: 2}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        }
+        else if (idx == 0 && this.state.first_swipe == true) {
+            await this.setState({swipe_direc: 0}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        }
+
+        // Get user's swipe direction
+        if (idx == 9 && this.state.prev_idx == 0) {         //edge case swipe left
+            await this.setState({swipe_direc: 0})
+        }
+        else if (idx == 0 && this.state.prev_idx == 9) {    //edge case swipe right
+            await this.setState({swipe_direc: 2})
+        }
+        else if (idx > this.state.prev_idx) {               //swiping right
+            await this.setState({swipe_direc: 2})
+        }
+        else if (idx < this.state.prev_idx) {               //swiping left
+            await this.setState({swipe_direc: 0})
+        }
+        
+        // Set the states
+        if (this.state.swipe_direc == 2) {     // Set state when swiping right
             const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
-            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
+
+            this.setState({ location_idx: ((this.state.location_idx + 1) % 10)})
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2), prev_idx: idx })
+
         }
-        else if (idx == 0) {    // When swiping left
+        else if (this.state.swipe_direc == 0) {    // Set state when swiping left
             const newPages = this.state.pages.map(i => ((((parseInt(i) - 1) % 10) + 10) % 10).toString())       // Update the array (A problem would occur when use % for negative num, so we add 10 then mod 10)
-            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
+            this.setState({ location_idx: ( (((this.state.location_idx - 1) % 10) +10) %10 ) })
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2), prev_idx: idx })
+
         }
+
+        // Setting first swipe state to false
+        if(this.state.first_swipe == true) {
+            this.setState({ first_swipe: false})
+        }
+        
     }
 
     render() {
-        console.log("Images: " +this.state.images)
+        // console.log("Images: " +this.state.images)
         //backgroundColor='#91C6E4'
         if (!this.state.loading) {
             return (
