@@ -2,18 +2,22 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ImageBackground, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
+import MapView, { createOpenLink } from 'react-native-open-maps';
+
+
+const openMap = createOpenLink()
+const openMapZoomedOut = createOpenLink({ ...yosemite, zoom: 30 });
 
 /**
 * Result Screen
 * @param {*} param0 
 */
 export class ResultPage extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -54,6 +58,13 @@ export class ResultPage extends React.Component {
         else if (this.state.cost > 100) {
             this.setState({ priceLvl: 4 });
         }
+    }
+
+
+    // Opening google maps
+
+    toLocation() {
+        MapView({ latitude: 37.865101, longitude: -119.538330 })
     }
 
 
@@ -147,7 +158,7 @@ export class ResultPage extends React.Component {
                         </View>
 
                         {/* View box that contains rating */}
-                        <View style = {{backgroundColor: '#B6DCF1', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                        <View style = {{backgroundColor: '#FDCC0D', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
                             <Text style={{ color: "#ffffff", fontSize: 13, fontWeight: "bold", textAlign: 'center', marginTop: 25}}>
                                 Rating: {this.state.images[item].rating}
                             </Text>
@@ -157,9 +168,15 @@ export class ResultPage extends React.Component {
                     {/* Middle Box */}
                     <View>
                         {/* Photo Box */}
-                        <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
-                            <Image style={{ height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50 }}
-                                source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
+                        <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5, top: -50}}>
+
+                            <TouchableOpacity 
+                                activeOpacity={0.8}
+                                style={{ position: 'relative', height: hp("40%"), width: wp("80%"), borderRadius: 20}}
+                                onPress={this.toLocation}>
+                                <Image style={{ position: 'absolute', height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5}}
+                                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
+                            </TouchableOpacity>
                         </View>
 
                         <View style={{ position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 50, bottom: 60}}>

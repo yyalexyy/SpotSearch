@@ -41,7 +41,7 @@ export class HomePageRedesign extends React.Component {
         }
 
         if (this.state.continColor !== 'white')
-            this.props.navigation.navigate('RecreationTypes', { option: this.state.option });
+            this.props.navigation.navigate('BudgetPage', { option: this.state.option });
     }
 
     toggle = (color) => {
