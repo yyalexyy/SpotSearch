@@ -1,11 +1,7 @@
 # SpotSearch App
 
-One Paragraph of project description goes here
+React based application that would determine best available locations based on user choices such as distance, cost, and type (fast food, restaurant, outdoor setting, etc... ). 
 
-This initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2), but as
-I can no longer open that page as there are too many comments, I have
-moved it here.
 
 ## Summary
 
