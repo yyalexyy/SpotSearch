@@ -32,18 +32,30 @@ export class HomePageRedesign extends React.Component {
 
     }
 
+    /**
+     * Route to Budget Screen
+     */
     toFineDining = () => {
         this.setState((state) => { return { option: "restaurant" } });
         this.props.navigation.navigate('BudgetPage', { option: this.state.option });
     }
+    /**
+     * Route to Casual Bites Category Screen
+     */
     toCasualBites = () => {
         this.setState((state) => { return { option: "bakery" } });
         this.props.navigation.navigate('CasualBitesTypes', { option: this.state.option });
     }
+    /**
+     * Route to Recreation Category Screen
+     */
     toRecreation = () => {
         this.setState((state) => { return { option: "amusement_park" } });
         this.props.navigation.navigate('RecreationTypes', { option: this.state.option });
     }
+    /**
+     * Route to LandMarks Screen
+     */
     toLandMarks = () => {
         this.setState((state) => { return { option: "tourist_attraction" } });
         this.props.navigation.navigate('MaxTimePage', { option: this.state.option });
@@ -67,13 +79,13 @@ export class HomePageRedesign extends React.Component {
     }
 
     toggle = (color) => {
-        if (color === 'DD') {
+        if (color === 'FD') {
             this.state.dinDateOp === .5 ? this.setState((state) => { return { dinDateOp: 1, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: .5 } }) : this.setState((state) => { return { dinDateOp: .5 } });
-        } else if (color === 'FA') {
+        } else if (color === 'CB') {
             this.state.foodAreaOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: 1, vacSpotOp: .5, hangOutOp: .5 } }) : this.setState((state) => { return { foodAreaOp: .5 } });
-        } else if (color === 'VS') {
+        } else if (color === 'Rec') {
             this.state.vacSpotOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: 1, hangOutOp: .5 } }) : this.setState((state) => { return { vacSpotOp: .5 } });
-        } else if (color === 'HS') {
+        } else if (color === 'LM') {
             this.state.hangOutOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: 1 } }) : this.setState((state) => { return { hangOutOp: .5 } });
         }
     }
@@ -104,7 +116,7 @@ export class HomePageRedesign extends React.Component {
 
                                     {/* Buttons */}
                                     <TouchableOpacity
-                                        onPress={() => { this.setColor('#9DF5F5'); this.toggle('DD'); this.setState(state => ({ option: 'Fine Dining' })); }}
+                                        onPress={() => { this.setColor('#9DF5F5'); this.toggle('FD'); this.setState(state => ({ option: 'Fine Dining' })); }}
                                         style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.preButton}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
@@ -122,7 +134,7 @@ export class HomePageRedesign extends React.Component {
 
                                     <TouchableOpacity
                                         style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.preButton}
-                                        onPress={() => { this.setColor('#87A4EF'); this.toggle('FA'); this.setState(state => ({ option: 'Casual Bites' })); }}
+                                        onPress={() => { this.setColor('#87A4EF'); this.toggle('CB'); this.setState(state => ({ option: 'Casual Bites' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
                                             <Image
@@ -138,7 +150,7 @@ export class HomePageRedesign extends React.Component {
 
                                     <TouchableOpacity
                                         style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.preButton}
-                                        onPress={() => { this.setColor('#EAED71'); this.toggle('VS'); this.setState(state => ({ option: 'Recreation' })); }}
+                                        onPress={() => { this.setColor('#EAED71'); this.toggle('Rec'); this.setState(state => ({ option: 'Recreation' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
                                             <Image
@@ -154,7 +166,7 @@ export class HomePageRedesign extends React.Component {
 
                                     <TouchableOpacity
                                         style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.preButton}
-                                        onPress={() => { this.setColor('#F08C44'); this.toggle('HS'); this.setState(state => ({ option: 'Landmarks' })); }}
+                                        onPress={() => { this.setColor('#F08C44'); this.toggle('LM'); this.setState(state => ({ option: 'Landmarks' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
                                             <Image
