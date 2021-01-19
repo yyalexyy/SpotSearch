@@ -10,9 +10,6 @@ import Swiper from 'react-native-swiper';
 import openMap from 'react-native-open-maps';
 
 
-// const map = createOpenLink()
-// const openMapZoomedOut = createOpenLink({ ...yosemite, zoom: 30 });
-
 /**
 * Result Screen
 * @param {*} param0 
@@ -50,7 +47,7 @@ export class ResultPage extends React.Component {
 
     /** Converting users budget to the price levels.
      *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
-     * */
+     */
     priceLevelConvert() {
         if (this.state.cost === 0) {
             this.setState({ priceLvl: 0 });
@@ -68,13 +65,18 @@ export class ResultPage extends React.Component {
             this.setState({ priceLvl: 4 });
         }
     }
-
-
-    // Opening google maps
-
+    /** Opening google maps
+     *  Params: 
+     *      travelType: determine transportation type. (enumeration : [drive, walk,public_transport])
+     *      end: The destination that can be interpreted as a geolocation
+     *      provider: string [google,apple]
+     *      navigate_mode: Determines whether map should open in preview mode or in navigate mode (string [preview,navigate])
+     */
     toLocation() {
-        // console.log(this.state.images[this.state.location_idx].address)
-        openMap({ query:  `${this.state.images[this.state.location_idx].address}`, navigate_mode: "navigate" })
+        openMap({ travelType: `${this.state.travelType}`, 
+            end: `${this.state.images[this.state.location_idx].address}`,
+            provider: 'google', 
+            navigate_mode: "navigate" })
     }
 
 
@@ -155,7 +157,6 @@ export class ResultPage extends React.Component {
             <View style={styles.backgroundImgContainer} key={idx}>
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
                     source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0", crop: { width: wp("50%"), height: hp("100%") } }}>
-                    {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
                     
                     {/* Bottom Flap which contains location address*/}
                     <View style = {{flexDirection: "row", position: 'absolute', width: wp("75%"), height: hp("10%"), marginHorizontal: 45, bottom: 200}}>
@@ -200,7 +201,7 @@ export class ResultPage extends React.Component {
         )
     }
 
-
+    
     async onPageChanged(idx) {
         //Set initial swipe_direc state (only runs once when result is first generated)
         if (idx == 2 && this.state.first_swipe == true) {

@@ -30,7 +30,7 @@ export class MaxTimePage extends React.Component {
       option: props.route.params.option,
       cost: props.route.params.cost,
       drive: false,
-      bike: false,
+      public_transit: false,
       walk: false,
     }
 
@@ -39,7 +39,7 @@ export class MaxTimePage extends React.Component {
   calculateRadius() {
     if (this.state.drive) 
       return this.calculateRadiusDriving();
-    else if (this.state.bike)
+    else if (this.state.public_transit)
       return this.calculateRadiusBicycle();
     else 
       return this.calculateRadiusWalking();
@@ -59,13 +59,13 @@ export class MaxTimePage extends React.Component {
 
   continue() {
     if (this.state.drive === true) {
-      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "drive"}); 
+      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: 'drive'}); 
     }
-    else if (this.state.bike === true) {
-      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "bike"}); 
+    else if (this.state.public_transit === true) {
+      this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: 'public_transport'}); 
     }
     else if (this.state.walk === true)
-    this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: "walk"}); 
+    this.props.navigation.navigate('ResultPage', {cost: this.state.cost, option: this.state.option, radius: this.calculateRadius(), travelType: 'walk'}); 
   }
 
   render() {
@@ -152,7 +152,7 @@ export class MaxTimePage extends React.Component {
                   this.setState(state => ({
                     walk: false,
                     drive: !this.state.drive,
-                    bike: false,
+                    public_transit: false,
                   }));
                 }}
 
@@ -169,13 +169,13 @@ export class MaxTimePage extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={this.state.bike ? styles.bikeOnPress : styles.button}
+                style={this.state.public_transit ? styles.publicTransitOnPress : styles.button}
                 activeOpacity={.8} 
                 onPress={() => {
                   this.setState(state => ({
                     walk: false,
                     drive: false,
-                    bike: !this.state.bike,
+                    public_transit: !this.state.public_transit,
                   }));
                 }}
               >
@@ -197,7 +197,7 @@ export class MaxTimePage extends React.Component {
                   this.setState(state => ({
                     walk: !this.state.walk,
                     drive: false,
-                    bike: false,
+                    public_transit: false,
                   }));
                 }}
               >
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 70
   },
 
-  bikeOnPress: {
+  publicTransitOnPress: {
     top: 4,
     left: 4,
     backgroundColor: 'white',
