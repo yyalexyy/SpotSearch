@@ -12,6 +12,7 @@ import { Favorites } from './Favorites';
 import { HomePage } from './HomePage';
 import { HomePageRedesign } from './HomePageRedesign';
 import { RecreationTypes } from './RecTypesPage';
+import { CasualBitesTypes } from './CasualBitesTypesPage'
 import { BudgetPage } from './BudgetsPage';
 import { MaxTimePage } from './MaxTimePage';
 import { MaxDistancePage } from './MaxDistancePage';
@@ -97,7 +98,7 @@ const HomeStackScreen = ({ navigation }) => (
       }} />
     
     <HomeStack.Screen name="RecreationTypes" component={RecreationTypes} options={{ 
-      title:"Types",
+      title:"Recreations",
       headerRight: () => (
         <Icon.Button 
           name= "menu"
@@ -107,6 +108,18 @@ const HomeStackScreen = ({ navigation }) => (
           onPress={() => navigation.toggleDrawer()}/>
       )
       }} />
+    <HomeStack.Screen name="CasualBitesTypes" component={CasualBitesTypes} options={{ 
+      title:"Bites",
+      headerRight: () => (
+        <Icon.Button 
+          name= "menu"
+          size={25}
+          color="#000000"           //menu tab color
+          backgroundColor= "#91C6E4"
+          onPress={() => navigation.toggleDrawer()}/>
+      )
+      }} />
+
     <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
       title:"Budget",
       headerRight: () => (
