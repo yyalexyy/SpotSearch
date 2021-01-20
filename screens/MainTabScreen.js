@@ -97,13 +97,17 @@ const HomeStackScreen = ({ navigation }) => (
       }} />
     
     <HomeStack.Screen name="RecreationTypes" component={RecreationTypes} options={{ 
-      title:"Types",
+      title:"Catergories",
+      headerStyle:{
+        backgroundColor: '#C7EBFF',
+        shadowColor: 'transparent',
+      },
       headerRight: () => (
         <Icon.Button 
           name= "menu"
           size={25}
           color="#000000"           //menu tab color
-          backgroundColor= "#91C6E4"
+          backgroundColor= "#C7EBFF"
           onPress={() => navigation.toggleDrawer()}/>
       )
       }} />
