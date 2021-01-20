@@ -2,26 +2,33 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ImageBackground, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
+import openMap from 'react-native-open-maps';
+
 
 /**
 * Result Screen
 * @param {*} param0 
 */
 export class ResultPage extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             option: props.route.params.option,
             cost: props.route.params.cost,              //users budget
             radius: props.route.params.radius,
+            travelType: props.route.params.travelType,
             ready: false,
             where: { lat: null, lng: null },
+            destination: '',
+            location_idx: 1,
+            prev_idx: 1,
+            swipe_direc: 1,
+            first_swipe: true,
             error: null,
             data: [],
             pages: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],  //Changed to
@@ -30,6 +37,9 @@ export class ResultPage extends React.Component {
             images: [],
             loading: true,
         }
+
+        this.toLocation = this.toLocation.bind(this);
+
     }
 
     //Tells render to stop auto rendering and only renders once
@@ -37,7 +47,7 @@ export class ResultPage extends React.Component {
 
     /** Converting users budget to the price levels.
      *  Price Levels from 0 (most affordable) ~ 4 (most expensive).
-     * */
+     */
     priceLevelConvert() {
         if (this.state.cost === 0) {
             this.setState({ priceLvl: 0 });
@@ -54,6 +64,19 @@ export class ResultPage extends React.Component {
         else if (this.state.cost > 100) {
             this.setState({ priceLvl: 4 });
         }
+    }
+    /** Opening google maps
+     *  Params: 
+     *      travelType: determine transportation type. (enumeration : [drive, walk,public_transport])
+     *      end: The destination that can be interpreted as a geolocation
+     *      provider: string [google,apple]
+     *      navigate_mode: Determines whether map should open in preview mode or in navigate mode (string [preview,navigate])
+     */
+    toLocation() {
+        openMap({ travelType: `${this.state.travelType}`, 
+            end: `${this.state.images[this.state.location_idx].address}`,
+            provider: 'google', 
+            navigate_mode: "navigate" })
     }
 
 
@@ -134,7 +157,6 @@ export class ResultPage extends React.Component {
             <View style={styles.backgroundImgContainer} key={idx}>
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
                     source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0", crop: { width: wp("50%"), height: hp("100%") } }}>
-                    {/* <Text style = {{color: "white", fontSize: 42, fontWeight: "bold", textAlign: "center", backgroundColor: "#000000a0"}}>{this.state.images[item].name}</Text> */}
                     
                     {/* Bottom Flap which contains location address*/}
                     <View style = {{flexDirection: "row", position: 'absolute', width: wp("75%"), height: hp("10%"), marginHorizontal: 45, bottom: 200}}>
@@ -147,7 +169,7 @@ export class ResultPage extends React.Component {
                         </View>
 
                         {/* View box that contains rating */}
-                        <View style = {{backgroundColor: '#B6DCF1', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                        <View style = {{backgroundColor: '#FDCC0D', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
                             <Text style={{ color: "#ffffff", fontSize: 13, fontWeight: "bold", textAlign: 'center', marginTop: 25}}>
                                 Rating: {this.state.images[item].rating}
                             </Text>
@@ -157,9 +179,15 @@ export class ResultPage extends React.Component {
                     {/* Middle Box */}
                     <View>
                         {/* Photo Box */}
-                        <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
-                            <Image style={{ height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5, top: -50 }}
-                                source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
+                        <View style={{ alignItems: 'center' , shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5, top: -50}}>
+
+                            <TouchableOpacity 
+                                activeOpacity={0.8}
+                                style={{ position: 'relative', height: hp("40%"), width: wp("80%"), borderRadius: 20}}
+                                onPress={this.toLocation}>
+                                <Image style={{ position: 'absolute', height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5}}
+                                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
+                            </TouchableOpacity>
                         </View>
 
                         <View style={{ position: 'absolute', flexDirection: "column-reverse", marginHorizontal: 50, bottom: 60}}>
@@ -173,20 +201,54 @@ export class ResultPage extends React.Component {
         )
     }
 
-    // [0,1,2]     1,2,3
-    onPageChanged(idx) {
-        if (idx == 2) {     // When swiping right
+    
+    async onPageChanged(idx) {
+        //Set initial swipe_direc state (only runs once when result is first generated)
+        if (idx == 2 && this.state.first_swipe == true) {
+            await this.setState({swipe_direc: 2}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        }
+        else if (idx == 0 && this.state.first_swipe == true) {
+            await this.setState({swipe_direc: 0}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        }
+
+        // Get user's swipe direction
+        if (idx == 9 && this.state.prev_idx == 0) {         //edge case swipe left
+            await this.setState({swipe_direc: 0})
+        }
+        else if (idx == 0 && this.state.prev_idx == 9) {    //edge case swipe right
+            await this.setState({swipe_direc: 2})
+        }
+        else if (idx > this.state.prev_idx) {               //swiping right
+            await this.setState({swipe_direc: 2})
+        }
+        else if (idx < this.state.prev_idx) {               //swiping left
+            await this.setState({swipe_direc: 0})
+        }
+        
+        // Set the states
+        if (this.state.swipe_direc == 2) {     // Set state when swiping right
             const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
-            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
+
+            this.setState({ location_idx: ((this.state.location_idx + 1) % 10)})
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2), prev_idx: idx })
+
         }
-        else if (idx == 0) {    // When swiping left
+        else if (this.state.swipe_direc == 0) {    // Set state when swiping left
             const newPages = this.state.pages.map(i => ((((parseInt(i) - 1) % 10) + 10) % 10).toString())       // Update the array (A problem would occur when use % for negative num, so we add 10 then mod 10)
-            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2) })
+            this.setState({ location_idx: ( (((this.state.location_idx - 1) % 10) +10) %10 ) })
+            this.setState({ pages: newPages, key: ((this.state.key + 1) % 2), prev_idx: idx })
+
         }
+
+        // Setting first swipe state to false
+        if(this.state.first_swipe == true) {
+            this.setState({ first_swipe: false})
+        }
+        
     }
 
     render() {
-        console.log("Images: " +this.state.images)
+        // console.log("Images: " +this.state.images)
         //backgroundColor='#91C6E4'
         if (!this.state.loading) {
             return (
