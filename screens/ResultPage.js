@@ -113,11 +113,12 @@ export class ResultPage extends React.Component {
     // "&type=restaurant" +
     // "&key=" + API_KEY;
     fetchData = async () => {
+        console.log('this.state.option: ' +this.state.option)
         const API_KEY = "AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0"; //process.env.API_PLACES_KEY;
         var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
-            "&type=restaurant" +
+            "&type=" + `${this.state.option}` +
             "&key=" + API_KEY;
         console.log(url);
         const response = await fetch(url);
@@ -204,12 +205,12 @@ export class ResultPage extends React.Component {
     
     async onPageChanged(idx) {
         //Set initial swipe_direc state (only runs once when result is first generated)
-        if (idx == 2 && this.state.first_swipe == true) {
-            await this.setState({swipe_direc: 2}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
-        }
-        else if (idx == 0 && this.state.first_swipe == true) {
-            await this.setState({swipe_direc: 0}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
-        }
+        // if (idx == 2 && this.state.first_swipe == true) {
+        //     await this.setState({swipe_direc: 2}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        // }
+        // else if (idx == 0 && this.state.first_swipe == true) {
+        //     await this.setState({swipe_direc: 0}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
+        // }
 
         // Get user's swipe direction
         if (idx == 9 && this.state.prev_idx == 0) {         //edge case swipe left
@@ -224,7 +225,7 @@ export class ResultPage extends React.Component {
         else if (idx < this.state.prev_idx) {               //swiping left
             await this.setState({swipe_direc: 0})
         }
-        
+        console.log("swipe_direc: " +this.state.swipe_direc )
         // Set the states
         if (this.state.swipe_direc == 2) {     // Set state when swiping right
             const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
@@ -240,10 +241,10 @@ export class ResultPage extends React.Component {
 
         }
 
-        // Setting first swipe state to false
-        if(this.state.first_swipe == true) {
-            this.setState({ first_swipe: false})
-        }
+        // // Setting first swipe state to false
+        // if(this.state.first_swipe == true) {
+        //     this.setState({ first_swipe: false})
+        // }
         
     }
 

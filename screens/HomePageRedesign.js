@@ -15,7 +15,8 @@ export class HomePageRedesign extends React.Component {
             vacSpotOp: .5,
             hangOutOp: .5,
             continColor: 'white',
-            option: '...'
+            isLoaded: false,
+            option: '...',
         };
     }
 
@@ -36,29 +37,26 @@ export class HomePageRedesign extends React.Component {
      * Route to Budget Screen
      */
     toFineDining = () => {
-        this.setState((state) => { return { option: "restaurant" } });
-        this.props.navigation.navigate('BudgetPage', { option: this.state.option });
+        this.setState((state) => { return { option: "restaurant"} }, () => {this.props.navigation.navigate('BudgetPage', { option: this.state.option })});
+       
     }
     /**
      * Route to Casual Bites Category Screen
      */
     toCasualBites = () => {
-        this.setState((state) => { return { option: "bakery" } });
-        this.props.navigation.navigate('CasualBitesTypes', { option: this.state.option });
+        this.setState((state) => { return { option: "bakery" } }, () => {this.props.navigation.navigate('CasualBitesTypes', { option: this.state.option })});
     }
     /**
      * Route to Recreation Category Screen
      */
     toRecreation = () => {
-        this.setState((state) => { return { option: "amusement_park" } });
-        this.props.navigation.navigate('RecreationTypes', { option: this.state.option });
+        this.setState((state) => { return { option: "amusement_park" } }, () => {this.props.navigation.navigate('RecreationTypes', { option: this.state.option })});
     }
     /**
      * Route to LandMarks Screen
      */
     toLandMarks = () => {
-        this.setState((state) => { return { option: "tourist_attraction" } });
-        this.props.navigation.navigate('MaxTimePage', { option: this.state.option });
+        this.setState((state) => { return { option: "tourist_attraction" } }, () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option })});
     }
 
     Continue = () => {
