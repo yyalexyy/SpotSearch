@@ -27,8 +27,16 @@ export class RecreationTypes extends React.Component {
                 {/* Background of page which is a linear gradiant */}
                 <LinearGradient colors={['#C7EBFF', '#609FC2']} style={styles.background}>
 
+                     {/* Header ViewBox */}
+                    <View style= {styles.header}>
+                        {/* Header Text */}
+                        <Text style={styles.headerText}>Choose a Category</Text>
+                    </View>
+
+                    <View style={styles.line}/> 
+
                     {/* Contains all the categories options */}
-                    <ScrollView style={{ top: 3, marginBottom: hp("25%") }}>
+                    <ScrollView style={{marginBottom: hp("25%") }}>
 
                         {/* View box containing ART GALLERY and ZOO buttons */}
                         <View style={styles.scroll}>
@@ -611,4 +619,27 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
     },
 
+    headerText: {
+        fontSize: 35, 
+        fontWeight: 'bold',
+    },
+
+    header: {
+        width: wp("42%"),
+        height: hp("13%"),
+        alignItems: 'center',
+        marginTop: 20,
+        marginLeft: 30,
+    },
+
+    line: {
+        marginTop: 10,
+        width: wp("88%"),
+        height: hp("1.5%"),
+        backgroundColor: "white",
+        alignSelf: 'center',
+        borderRadius: 30,
+        borderColor: "black",
+        borderWidth: 1,
+    }
 })
