@@ -19,7 +19,6 @@ export class RecreationTypes extends React.Component {
     }
 
     render() {
-        console.log(this.state.button);
         return (
             <SafeAreaView>
                 {/* Faint line below "Categories" */}
@@ -37,10 +36,38 @@ export class RecreationTypes extends React.Component {
                             {/* art gallery */}
                             <TouchableOpacity 
                                 onPress = {() => this.state.button === "Art" ? this.setState({button: ""}) : this.setState({button: "Art"})}
-                                style={this.state.button === "Art" ? styles.buttonPressed : styles.buttons}
+                                style={this.state.button === "Art" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#FB5792',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,
+                                } : 
+                                {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#FB5792',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,
+                                }}
                                 activeOpacity={.8}
                                 >
                                 <View style={this.state.button === "Art" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#FB5792" , height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white" , height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                                {/* <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#FB5792" , height: hp("14%"), width: wp("25%"), borderRadius: 25 }}> */}
                                     <Image
                                         style={{ height: hp("12%"), width: wp("20%"), marginTop: 7 }}
                                         source={require('./assets/statue.png')}
@@ -52,8 +79,37 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* zoo */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#FBEA57", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Zoo" ? this.setState({button: ""}) : this.setState({button: "Zoo"})}
+                                style={this.state.button === "Zoo" ? {
+                                backgroundColor: 'white',
+                                marginHorizontal: 25,
+                                height: wp('35%'),
+                                width: hp('20%'),
+                                borderRadius: 15,
+                                alignItems: 'center',
+                                marginLeft: 20,
+                                top: 5,
+                                left: 5,
+                                shadowColor: '#FBEA57',
+                                shadowOffset: { height: .5, width: .5 },
+                                shadowOpacity: 1,
+                                shadowRadius: 25,} 
+                                : 
+                                {backgroundColor: 'white',
+                                marginHorizontal: 25,
+                                height: wp('35%'),
+                                width: hp('20%'),
+                                borderRadius: 15,
+                                alignItems: 'center',
+                                marginLeft: 20,
+                                shadowColor: '#FBEA57',
+                                shadowOffset: { width: 4, height: 4 },
+                                shadowOpacity: 1,
+                                shadowRadius: 0,}}
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Zoo" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#FBEA57", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "white", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("22%"), marginTop: 7 }}
                                     source={require('./assets/track.png')}
@@ -68,8 +124,37 @@ export class RecreationTypes extends React.Component {
                         <View style={styles.scroll}>
 
                             {/* aquarium */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#57C0FB", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Aqua" ? this.setState({button: ""}) : this.setState({button: "Aqua"})}
+                                style={this.state.button === "Aqua" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#57C0FB',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,} 
+                                    : 
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#57C0FB',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}}
+                                    activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Aqua" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#57C0FB", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "white", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } } />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("21%"), marginTop: 7 }}
                                     source={require('./assets/seaweed.png')}
@@ -80,8 +165,36 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* park */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#5767FB", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Park" ? this.setState({button: ""}) : this.setState({button: "Park"})}
+                                style={this.state.button === "Park" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#5767FB',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    : {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#5767FB',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}}
+                                    activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Park" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#5767FB", height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
                                     <Image
                                         style={{ height: hp("10%"), width: wp("18%"), marginTop: 12 }}
                                         source={require('./assets/park.png')}
@@ -97,8 +210,36 @@ export class RecreationTypes extends React.Component {
                         <View style={styles.scroll}>
 
                             {/* movie theater */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#57FBE7", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Movie" ? this.setState({button: ""}) : this.setState({button: "Movie"})}
+                                style={this.state.button === "Movie" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#57FBE7',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    : {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#57FBE7',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}}
+                                    activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Movie" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#57FBE7", height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
                                     <Image
                                         style={{ height: hp("12%"), width: wp("20%"), marginTop: 7 }}
                                         source={require('./assets/theater.png')}
@@ -110,8 +251,36 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* museum */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#FF8E4F", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Muse" ? this.setState({button: ""}) : this.setState({button: "Muse"})}
+                                style={this.state.button === "Muse" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#FF8E4F',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    : {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#FF8E4F',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Muse" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#FF8E4F", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "white", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("22%"), marginTop: 7 }}
                                     source={require('./assets/exhibition.png')}
@@ -126,8 +295,37 @@ export class RecreationTypes extends React.Component {
                         <View style={styles.scroll}>
 
                             {/* theme park */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#FB5757", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity  
+                                onPress = {() => this.state.button === "Theme" ? this.setState({button: ""}) : this.setState({button: "Theme"})}
+                                style={this.state.button === "Theme" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#FB5757',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#FB5757',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Theme" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#FB5757", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "white", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("21%"), marginTop: 7 }}
                                     source={require('./assets/roller-coaster.png')}
@@ -138,8 +336,37 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* mall */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#C657FB", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Mall" ? this.setState({button: ""}) : this.setState({button: "Mall"})}
+                                style={this.state.button === "Mall" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#C657FB',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#C657FB',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Mall" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#C657FB", height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
                                     <Image
                                         style={{ height: hp("10%"), width: wp("18%"), marginTop: 12 }}
                                         source={require('./assets/mall.png')}
@@ -155,8 +382,37 @@ export class RecreationTypes extends React.Component {
                         <View style={styles.scroll}>
 
                             {/* bowling alley */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#76FF35", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Bowl" ? this.setState({button: ""}) : this.setState({button: "Bowl"})}
+                                style={this.state.button === "Bowl" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#76FF35',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#76FF35',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Bowl" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#76FF35", height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
                                     <Image
                                         style={{ height: hp("10.5%"), width: wp("18.5%"), marginTop: 10 }}
                                         source={require('./assets/bowling.png')}
@@ -168,8 +424,37 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* spa */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#FBB957", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Spa" ? this.setState({button: ""}) : this.setState({button: "Spa"})}
+                                style={this.state.button === "Spa" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#FBB957',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#FBB957',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Spa" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#FBB957", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "white", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("22%"), marginTop: 7 }}
                                     source={require('./assets/spa.png')}
@@ -184,8 +469,37 @@ export class RecreationTypes extends React.Component {
                         <View style={styles.scroll}>
 
                             {/* city hall */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ marginTop: 8, marginLeft: -50, backgroundColor: "#57CAFB", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "City" ? this.setState({button: ""}) : this.setState({button: "City"})}
+                                style={this.state.button === "City" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#57CAFB',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#57CAFB',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "City" ? { marginTop: 8, marginLeft: -50, backgroundColor: "#57CAFB", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 } : { marginTop: 8, marginLeft: -50, backgroundColor: "White", height: hp("1.5%"), width: wp("17%"), borderRadius: 10 }} />
                                 <Image
                                     style={{ height: hp("11.5%"), width: wp("21%"), marginTop: 7 }}
                                     source={require('./assets/city-hall.png')}
@@ -196,8 +510,37 @@ export class RecreationTypes extends React.Component {
                             </TouchableOpacity>
 
                             {/* bar */}
-                            <TouchableOpacity style={styles.buttons}>
-                                <View style={{ alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#FB57EA", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
+                            <TouchableOpacity 
+                                onPress = {() => this.state.button === "Bar" ? this.setState({button: ""}) : this.setState({button: "Bar"})}
+                                style={this.state.button === "Bar" ? {
+                                    backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    top: 5,
+                                    left: 5,
+                                    shadowColor: '#FB57EA',
+                                    shadowOffset: { height: .5, width: .5 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 25,}
+                                    :
+                                    {backgroundColor: 'white',
+                                    marginHorizontal: 25,
+                                    height: wp('35%'),
+                                    width: hp('20%'),
+                                    borderRadius: 15,
+                                    alignItems: 'center',
+                                    marginLeft: 20,
+                                    shadowColor: '#FB57EA',
+                                    shadowOffset: { width: 4, height: 4 },
+                                    shadowOpacity: 1,
+                                    shadowRadius: 0,}} 
+                                activeOpacity={.8}
+                                >
+                                <View style={this.state.button === "Bar" ? { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "#FB57EA", height: hp("14%"), width: wp("25%"), borderRadius: 25 } : { alignItems: 'center', marginTop: 10, marginHorizontal: 30, backgroundColor: "white", height: hp("14%"), width: wp("25%"), borderRadius: 25 }}>
                                     <Image
                                         style={{ height: hp("10%"), width: wp("18%"), marginTop: 12 }}
                                         source={require('./assets/bar.png')}
@@ -268,19 +611,4 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
     },
 
-    buttonPressed: {
-        backgroundColor: 'white',
-        marginHorizontal: 25,
-        height: wp('35%'),
-        width: hp('20%'),
-        borderRadius: 15,
-        alignItems: 'center',
-        marginLeft: 20,
-        top: 5,
-        left: 5,
-        shadowColor: '#FB5792',
-        shadowOffset: { height: .5, width: .5 },
-        shadowOpacity: 1,
-        shadowRadius: 4,
-    },
 })
