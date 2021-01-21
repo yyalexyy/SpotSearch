@@ -35,7 +35,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* art gallery */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Art" ? this.setState({button: ""}) : this.setState({button: "Art"})}
+                                onPress = {() => this.state.button === "Art" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Art", continColor: "#FB5792"})}
                                 style={this.state.button === "Art" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -80,7 +80,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* zoo */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Zoo" ? this.setState({button: ""}) : this.setState({button: "Zoo"})}
+                                onPress = {() => this.state.button === "Zoo" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Zoo", continColor: "#FBEA57"})}
                                 style={this.state.button === "Zoo" ? {
                                 backgroundColor: 'white',
                                 marginHorizontal: 25,
@@ -125,7 +125,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* aquarium */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Aqua" ? this.setState({button: ""}) : this.setState({button: "Aqua"})}
+                                onPress = {() => this.state.button === "Aqua" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Aqua", continColor: "#57C0FB"})}
                                 style={this.state.button === "Aqua" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -166,7 +166,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* park */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Park" ? this.setState({button: ""}) : this.setState({button: "Park"})}
+                                onPress = {() => this.state.button === "Park" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Park", continColor: "#5767FB"})}
                                 style={this.state.button === "Park" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -211,7 +211,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* movie theater */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Movie" ? this.setState({button: ""}) : this.setState({button: "Movie"})}
+                                onPress = {() => this.state.button === "Movie" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Movie", continColor: "#57FBE7"})}
                                 style={this.state.button === "Movie" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -252,7 +252,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* museum */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Muse" ? this.setState({button: ""}) : this.setState({button: "Muse"})}
+                                onPress = {() => this.state.button === "Muse" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Muse", continColor: '#FF8E4F'})}
                                 style={this.state.button === "Muse" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -296,7 +296,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* theme park */}
                             <TouchableOpacity  
-                                onPress = {() => this.state.button === "Theme" ? this.setState({button: ""}) : this.setState({button: "Theme"})}
+                                onPress = {() => this.state.button === "Theme" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Theme", continColor: "#FB5757"})}
                                 style={this.state.button === "Theme" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -337,7 +337,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* mall */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Mall" ? this.setState({button: ""}) : this.setState({button: "Mall"})}
+                                onPress = {() => this.state.button === "Mall" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Mall", continColor: "#C657FB"})}
                                 style={this.state.button === "Mall" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -383,7 +383,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* bowling alley */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Bowl" ? this.setState({button: ""}) : this.setState({button: "Bowl"})}
+                                onPress = {() => this.state.button === "Bowl" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Bowl", continColor: "#76FF35"})}
                                 style={this.state.button === "Bowl" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -425,7 +425,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* spa */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Spa" ? this.setState({button: ""}) : this.setState({button: "Spa"})}
+                                onPress = {() => this.state.button === "Spa" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Spa", continColor: "#FBB957"})}
                                 style={this.state.button === "Spa" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -470,7 +470,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* city hall */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "City" ? this.setState({button: ""}) : this.setState({button: "City"})}
+                                onPress = {() => this.state.button === "City" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "City", continColor: "#57CAFB"})}
                                 style={this.state.button === "City" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
@@ -511,7 +511,7 @@ export class RecreationTypes extends React.Component {
 
                             {/* bar */}
                             <TouchableOpacity 
-                                onPress = {() => this.state.button === "Bar" ? this.setState({button: ""}) : this.setState({button: "Bar"})}
+                                onPress = {() => this.state.button === "Bar" ? this.setState({button: "", continColor: "white"}) : this.setState({button: "Bar", continColor: "#FB57EA"})}
                                 style={this.state.button === "Bar" ? {
                                     backgroundColor: 'white',
                                     marginHorizontal: 25,
