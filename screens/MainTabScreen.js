@@ -53,7 +53,7 @@ const MainTabScreen = () => (
         tabBarIcon: ({ color, size }) => (
           <Icon name="clock-outline" color={color} size={size} />
         ),
-        tabBarBadge: 3,
+        // tabBarBadge: 3,
       }}
     />
     <Tab.Screen
