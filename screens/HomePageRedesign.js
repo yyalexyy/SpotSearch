@@ -10,12 +10,11 @@ export class HomePageRedesign extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dinDateOp: .5,
-            foodAreaOp: .5,
-            vacSpotOp: .5,
-            hangOutOp: .5,
+            finDineOp: .5,
+            casBitesOp: .5,
+            recOp: .5,
+            landmarksOp: .5,
             continColor: 'white',
-            isLoaded: false,
             option: '...',
         };
     }
@@ -78,13 +77,13 @@ export class HomePageRedesign extends React.Component {
 
     toggle = (color) => {
         if (color === 'FD') {
-            this.state.dinDateOp === .5 ? this.setState((state) => { return { dinDateOp: 1, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: .5 } }) : this.setState((state) => { return { dinDateOp: .5 } });
+            this.state.finDineOp === .5 ? this.setState((state) => { return { finDineOp: 1, casBitesOp: .5, recOp: .5, landmarksOp: .5 } }) : this.setState((state) => { return { finDineOp: .5 } });
         } else if (color === 'CB') {
-            this.state.foodAreaOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: 1, vacSpotOp: .5, hangOutOp: .5 } }) : this.setState((state) => { return { foodAreaOp: .5 } });
+            this.state.casBitesOp === .5 ? this.setState((state) => { return { finDineOp: .5, casBitesOp: 1, recOp: .5, landmarksOp: .5 } }) : this.setState((state) => { return { casBitesOp: .5 } });
         } else if (color === 'Rec') {
-            this.state.vacSpotOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: 1, hangOutOp: .5 } }) : this.setState((state) => { return { vacSpotOp: .5 } });
+            this.state.recOp === .5 ? this.setState((state) => { return { finDineOp: .5, casBitesOp: .5, recOp: 1, landmarksOp: .5 } }) : this.setState((state) => { return { recOp: .5 } });
         } else if (color === 'LM') {
-            this.state.hangOutOp === .5 ? this.setState((state) => { return { dinDateOp: .5, foodAreaOp: .5, vacSpotOp: .5, hangOutOp: 1 } }) : this.setState((state) => { return { hangOutOp: .5 } });
+            this.state.landmarksOp === .5 ? this.setState((state) => { return { finDineOp: .5, casBitesOp: .5, recOp: .5, landmarksOp: 1 } }) : this.setState((state) => { return { landmarksOp: .5 } });
         }
     }
 
@@ -115,7 +114,7 @@ export class HomePageRedesign extends React.Component {
                                     {/* Buttons */}
                                     <TouchableOpacity
                                         onPress={() => { this.setColor('#9DF5F5'); this.toggle('FD'); this.setState(state => ({ option: 'Fine Dining' })); }}
-                                        style={this.state.dinDateOp === 1 ? styles.dinDateButtonPressed : styles.preButton}
+                                        style={this.state.finDineOp === 1 ? styles.finDineButtonPressed : styles.preButton}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
 
@@ -131,7 +130,7 @@ export class HomePageRedesign extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
-                                        style={this.state.foodAreaOp === 1 ? styles.foodAreaButtonPressed : styles.preButton}
+                                        style={this.state.casBitesOp === 1 ? styles.casBitesButtonPressed : styles.preButton}
                                         onPress={() => { this.setColor('#87A4EF'); this.toggle('CB'); this.setState(state => ({ option: 'Casual Bites' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
@@ -147,7 +146,7 @@ export class HomePageRedesign extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
-                                        style={this.state.vacSpotOp === 1 ? styles.VacSpotButtonPressed : styles.preButton}
+                                        style={this.state.recOp === 1 ? styles.recButtonPressed : styles.preButton}
                                         onPress={() => { this.setColor('#EAED71'); this.toggle('Rec'); this.setState(state => ({ option: 'Recreation' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
@@ -163,7 +162,7 @@ export class HomePageRedesign extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
-                                        style={this.state.hangOutOp === 1 ? styles.HangSpotButtonPressed : styles.preButton}
+                                        style={this.state.landmarksOp === 1 ? styles.landmarksButtonPressed : styles.preButton}
                                         onPress={() => { this.setColor('#F08C44'); this.toggle('LM'); this.setState(state => ({ option: 'Landmarks' })); }}
                                         activeOpacity={.8} >
                                         <View style={{ alignItems: 'center' }}>
@@ -271,13 +270,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 20,
         top: 5,
-        shadowColor: 'white',
+        shadowColor: '#ffffff',
         shadowOffset: { width: 4, height: 4 },
         shadowOpacity: .5,
         shadowRadius: 0,
     },
 
-    dinDateButtonPressed: {
+    finDineButtonPressed: {
         backgroundColor: '#9DF5F5',
         top: 9,
         left: 4,
@@ -286,10 +285,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
-        shadowColor: 'white',
-        shadowOffset: { height: .5 },
+        shadowColor: '#9DF5F5',
+        shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 8,
     },
 
     foodAreaButton: {
@@ -306,7 +305,7 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
     },
 
-    foodAreaButtonPressed: {
+    casBitesButtonPressed: {
         backgroundColor: '#87A4EF',
         top: 9,
         left: 4,
@@ -315,10 +314,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
-        shadowColor: 'white',
-        shadowOffset: { height: .5 },
+        shadowColor: '#87A4EF',
+        shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowRadius: 8,
     },
 
     VacSpotButton: {
@@ -335,7 +334,7 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
     },
 
-    VacSpotButtonPressed: {
+    recButtonPressed: {
         backgroundColor: '#EAED71',
         top: 9,
         left: 4,
@@ -344,10 +343,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
-        shadowColor: 'white',
-        shadowOffset: { height: .5 },
+        shadowColor: '#EAED71',
+        shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowRadius: 8,
     },
 
     HangSpotButton: {
@@ -364,7 +363,7 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
     },
 
-    HangSpotButtonPressed: {
+    landmarksButtonPressed: {
         backgroundColor: '#F08C44',
         top: 9,
         left: 4,
@@ -373,11 +372,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         marginLeft: 20,
-        shadowColor: 'white',
-        shadowOffset: { height: .5 },
+        shadowColor: '#F08C44',
+        shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowRadius: 8,
     },
-
 
 });
