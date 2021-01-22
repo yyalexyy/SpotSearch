@@ -87,12 +87,16 @@ const HomeStackScreen = ({ navigation }) => (
       }}>
     <HomeStack.Screen name="HomePageRedesign" component={HomePageRedesign} options={{ 
       title:"Home",
+      headerStyle:{
+        backgroundColor: '#C7ECFF',
+        shadowColor: 'transparent',
+      },
       headerRight: () => (
         <Icon.Button 
           name= "menu"
           size={25}
           color="#000000"           //menu tab color
-          backgroundColor= "#91C6E4"
+          backgroundColor= "#C7ECFF"
           onPress={() => navigation.toggleDrawer()}/>
       )
       }} />
@@ -126,22 +130,30 @@ const HomeStackScreen = ({ navigation }) => (
 
     <HomeStack.Screen name="BudgetPage" component={BudgetPage} options={{ 
       title:"Budget",
+      headerStyle:{
+        backgroundColor: '#C7ECFF',
+        shadowColor: 'transparent',
+      },
       headerRight: () => (
         <Icon.Button 
           name= "menu"
           size={25}
           color="#000000"           //menu tab color
-          backgroundColor= "#91C6E4"
+          backgroundColor= "#C7ECFF"
           onPress={() => navigation.toggleDrawer()}/>
       )
     }} />
     <HomeStack.Screen name="MaxTimePage" component={MaxTimePage} options={{ title:"Time",
+      headerStyle:{
+        backgroundColor: '#C7ECFF',
+        shadowColor: 'transparent',
+      },
       headerRight: () => (
         <Icon.Button 
           name= "menu"
           size={25}
           color="#000000"           //menu tab color
-          backgroundColor= "#91C6E4"
+          backgroundColor= "#C7ECFF"
           onPress={() => navigation.toggleDrawer()}/>
       )
     }}  />

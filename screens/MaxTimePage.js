@@ -1,21 +1,10 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
+import { ScrollView, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from '@react-navigation/stack';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
-
 import TimePicker from 'react-native-simple-time-picker';
-
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 /**
 * Max Time Screen
@@ -73,7 +62,7 @@ export class MaxTimePage extends React.Component {
 
     return (
       //Base View
-      <SafeAreaView backgroundColor='#609FC2' style={{ flex: 1 }}>
+      <SafeAreaView backgroundColor='#91C6E4' style={{ flex: 1 }}>
 
         <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'white', marginLeft: 10, marginRight: 10, zIndex: 999, opacity: .7 }} />
 
@@ -105,7 +94,9 @@ export class MaxTimePage extends React.Component {
         <Text style={{position:'absolute', color: 'white', fontSize: 35, top: 155, left: 10, zIndex: 999, fontWeight: '700'}}>Time</Text>
 
         {/** Time Area */}
+        
         <View style={styles.timeContainer}>
+          <LinearGradient colors={['#C7EBFF', '#609FC2']}>
           {/**Timer */}
           <View style={styles.timeBox}>
             {/* <Text>{selectedHours}hr:{selectedMinutes}min</Text> */}
@@ -119,6 +110,7 @@ export class MaxTimePage extends React.Component {
               />
             </View>
           </View>
+          </LinearGradient>
         </View>
 
         <View style={{ position: 'relative', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
@@ -235,7 +227,6 @@ export class MaxTimePage extends React.Component {
 
 const styles = StyleSheet.create({
   questionContainer: {
-    backgroundColor: '#91C6E4',
     justifyContent: 'center',       // Set content's vertical alignment.
     alignItems: 'center',           // Set content's horizontal alignment.
     marginTop: -20,
@@ -258,7 +249,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#91C6E4',
     marginTop: -177,
     height: hp('64%'),
-    borderBottomRightRadius: 50
+    borderBottomRightRadius: 50,
+    overflow: 'hidden',
   },
 
   timeBox: {

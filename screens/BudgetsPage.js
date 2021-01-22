@@ -1,20 +1,9 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ScrollView, Button, Image, StyleSheet, Text, TouchableOpacity, View, Animated, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-//import logo from './assets/logo.png';     //import logo
-import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { createAppContainer, ThemeColors } from 'react-navigation';
-import { createStackNavigator } from '@react-navigation/stack';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
-import { render } from 'react-dom';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 /**
@@ -83,7 +72,6 @@ export class BudgetPage extends React.Component {
     if (isIncr == false) {    // validate if count is negative
       if ((this.state.count - num) < 0) {
         isNegative = true;    // set true since count would be negative
-        //this.budgetAlert();
         this.setState((state) => {
           return { count: 0 }
         });
@@ -99,203 +87,198 @@ export class BudgetPage extends React.Component {
 
   render() {
     return (
-      <SafeAreaView backgroundColor='#91C6E4'>
-        <View style={{ position: 'relative', marginTop: -20, height: 2, backgroundColor: 'white', marginLeft: 10, marginRight: 10, opacity: .7 }} />
-        <View>
-          <Text style={styles.mainQuestion}>What is your budget?</Text>
-        </View>
+      <SafeAreaView>
+        <LinearGradient colors={['#C7EBFF', '#609FC2']} style={{ marginTop: -20 }}>
+          {/* Faint line below "Budget" */}
+          <View style={{ position: 'relative', height: 2, backgroundColor: 'white', marginLeft: 10, marginRight: 10, opacity: .7 }} />
 
-        <View style={styles.topBox}>
-          <Text style={{ fontSize: hp('4%'), color: '#3AA4E0', marginBottom: 80, marginRight: 260}}>Max</Text>
+          {/* Header Text */}
+          <View>
+            <Text style={styles.mainQuestion}>What is your budget?</Text>
+          </View>
 
-          <View style={{ position: 'absolute', flexDirection: 'column' }}>
+          {/* Main ViewBox contains a users max budget based on what hes clicked */}
+          <View style={styles.topBox}>
+            <Text style={{ fontSize: hp('4%'), color: '#3AA4E0', marginBottom: 80, marginRight: 260 }}>Max</Text>
+            <View style={{ position: 'absolute', flexDirection: 'column' }}>
+              {/* Max budget value */}
+              <Text style={styles.amountTextColor}>${this.state.count}.00</Text>
+            </View>
+          </View>
 
-            <Text style={styles.amountTextColor}>
-              ${this.state.count}.00
-                </Text>
+          <View style={{ marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
+
+            {/** Line Seperator between the top and the scrolling view */}
+            <View style={styles.seperate} />
+
+            <ScrollView contentContainerStyle={{ paddingBottom: 225 }}
+              style={{ position: 'relative', marginTop: 100, marginBottom: 280 }}
+              showsVerticalScrollIndicator={false}>
+              {/** $1.00 view box*/}
+              <View style={styles.scrollBoxes}>
+
+                <View style={{ paddingLeft: 50, paddingRight: 50 }}>
+                  <Text style={styles.addDollarText}>$1.00</Text>
+                </View>
+
+                {/** Left decrement*/}
+                <TouchableOpacity onPress={() => this.isNegativeBudget(false, 1)}>
+                  <View style={styles.decrementBox} backgroundColor='#32D4D4'>
+
+                    <View style={styles.decrementLine} />
+                  </View>
+                </TouchableOpacity>
+
+
+                {/** Right decrement*/}
+                <TouchableOpacity
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => this.isNegativeBudget(true, 1)}
+                >
+                  <View style={styles.incrementBox} backgroundColor='#9DF5F5'>
+
+                    {/** Vertical line*/}
+                    <View style={styles.plusVerticalLine} />
+
+                    {/** Left horizontal line*/}
+                    <View style={styles.plusLeftHoriLine} />
+
+                    {/** Right horizontal line*/}
+                    <View style={styles.plusRightHoriLine} />
+
+                  </View>
+                </TouchableOpacity>
+
+              </View>
+
+              {/** $5.00 view box*/}
+              <View style={styles.scrollBoxes}>
+
+                <View style={{ paddingLeft: 48, paddingRight: 48 }}>
+                  <Text style={styles.addDollarText}>$5.00</Text>
+                </View>
+
+                {/** Left decrement*/}
+                <TouchableOpacity onPress={() => this.isNegativeBudget(false, 5)}>
+                  <View style={styles.decrementBox} backgroundColor='#4062BA'>
+
+                    <View style={styles.decrementLine} />
+                  </View>
+                </TouchableOpacity>
+
+
+
+                {/** Right decrement*/}
+                <TouchableOpacity
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => this.isNegativeBudget(true, 5)}
+                >
+                  <View style={styles.incrementBox} backgroundColor='#87A4EF'>
+
+                    {/** Vertical line*/}
+                    <View style={styles.plusVerticalLine} />
+
+                    {/** Left horizontal line*/}
+                    <View style={styles.plusLeftHoriLine} />
+
+                    {/** Right horizontal line*/}
+                    <View style={styles.plusRightHoriLine} />
+
+                  </View>
+                </TouchableOpacity>
+
+              </View>
+
+              {/** $10.00 view box*/}
+              <View style={styles.scrollBoxes}>
+
+                <View style={{ paddingLeft: 41, paddingRight: 41 }}>
+                  <Text style={styles.addDollarText}>$10.00</Text>
+                </View>
+
+                {/** Left decrement*/}
+                <TouchableOpacity onPress={() => this.isNegativeBudget(false, 10)}>
+                  <View style={styles.decrementBox} backgroundColor='#DBE011'>
+
+                    <View style={styles.decrementLine} />
+                  </View>
+                </TouchableOpacity>
+
+
+
+                {/** Right decrement*/}
+                <TouchableOpacity
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => this.isNegativeBudget(true, 10)}
+                >
+                  <View style={styles.incrementBox} backgroundColor='#EAED71'>
+
+                    {/** Vertical line*/}
+                    <View style={styles.plusVerticalLine} />
+
+                    {/** Left horizontal line*/}
+                    <View style={styles.plusLeftHoriLine} />
+
+                    {/** Right horizontal line*/}
+                    <View style={styles.plusRightHoriLine} />
+
+                  </View>
+                </TouchableOpacity>
+
+              </View>
+
+              {/** $20.00 view box*/}
+              <View style={styles.scrollBoxes}>
+
+                <View style={{ paddingLeft: 39, paddingRight: 39 }}>
+                  <Text style={styles.addDollarText}>$20.00</Text>
+                </View>
+
+                {/** Left decrement*/}
+                <TouchableOpacity onPress={() => this.isNegativeBudget(false, 20)}>
+                  <View style={styles.decrementBox} backgroundColor='#F08C44'>
+
+                    <View style={styles.decrementLine} />
+                  </View>
+                </TouchableOpacity>
+
+
+                {/** Right decrement*/}
+                <TouchableOpacity
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => this.isNegativeBudget(true, 20)}
+                >
+                  <View style={styles.incrementBox} backgroundColor='#F0AB79'>
+                    {/** Vertical line*/}
+                    <View style={styles.plusVerticalLine} />
+
+                    {/** Left horizontal line*/}
+                    <View style={styles.plusLeftHoriLine} />
+
+                    {/** Right horizontal line*/}
+                    <View style={styles.plusRightHoriLine} />
+                  </View>
+                </TouchableOpacity>
+
+              </View>
+            </ScrollView>
+          </View>
+
+          {/* The final section of the screen that contains the continue button */}
+          <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#609FC2", marginTop: hp('73%'), width: wp('100%'), height: hp('10%'), borderTopLeftRadius: 30 }}>
+
+            <TouchableOpacity
+              style={styles.continue}
+              onPress={() => this.props.navigation.push('MaxTimePage', { cost: this.state.count, option: this.state.option })} >
+
+              <View >
+                <Text style={{ fontSize: 25, color: '#000000', right: 20 }}>Continue</Text>
+              </View>
+
+            </TouchableOpacity>
 
           </View>
-        </View>
-
-        <View style={{ backgroundColor: '#91C6E4', marginTop: -65, marginBottom: 170, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
-
-          {/** Line Seperator between the top and the scrolling view */}
-          <View style={styles.seperate} />
-
-          <ScrollView contentContainerStyle={{ paddingBottom: 225 }} 
-            style={{ position: 'relative', marginTop: 100, marginBottom: 80 }}
-            showsVerticalScrollIndicator={false}>
-            {/** $1.00 view box*/}
-            <View style={styles.scrollBoxes}>
-
-              <View style={{ paddingLeft: 50, paddingRight: 50 }}>
-                <Text style={styles.addDollarText}>$1.00</Text>
-              </View>
-
-              {/** Left decrement*/}
-              <TouchableOpacity onPress={() => this.isNegativeBudget(false, 1)}>
-                <View style={styles.decrementBox} backgroundColor='#32D4D4'>
-
-                  <View style={styles.decrementLine} />
-                </View>
-              </TouchableOpacity>
-
-
-              {/** Right decrement*/}
-              <TouchableOpacity
-                style={{ justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => this.isNegativeBudget(true, 1)}
-              >
-                <View style={styles.incrementBox} backgroundColor='#9DF5F5'>
-
-                  {/** Vertical line*/}
-                  <View style={styles.plusVerticalLine} />
-
-                  {/** Left horizontal line*/}
-                  <View style={styles.plusLeftHoriLine} />
-
-                  {/** Right horizontal line*/}
-                  <View style={styles.plusRightHoriLine} />
-
-                </View>
-              </TouchableOpacity>
-
-            </View>
-
-            {/** $5.00 view box*/}
-            <View style={styles.scrollBoxes}>
-
-              <View style={{ paddingLeft: 48, paddingRight: 48 }}>
-                <Text style={styles.addDollarText}>$5.00</Text>
-              </View>
-
-              {/** Left decrement*/}
-              <TouchableOpacity onPress={() => this.isNegativeBudget(false, 5)}>
-                <View style={styles.decrementBox} backgroundColor='#4062BA'>
-
-                  <View style={styles.decrementLine} />
-                </View>
-              </TouchableOpacity>
-
-
-
-              {/** Right decrement*/}
-              <TouchableOpacity
-                style={{ justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => this.isNegativeBudget(true, 5)}
-              >
-                <View style={styles.incrementBox} backgroundColor='#87A4EF'>
-
-                  {/** Vertical line*/}
-                  <View style={styles.plusVerticalLine} />
-
-                  {/** Left horizontal line*/}
-                  <View style={styles.plusLeftHoriLine} />
-
-                  {/** Right horizontal line*/}
-                  <View style={styles.plusRightHoriLine} />
-
-                </View>
-              </TouchableOpacity>
-
-            </View>
-
-            {/** $10.00 view box*/}
-            <View style={styles.scrollBoxes}>
-
-              <View style={{ paddingLeft: 41, paddingRight: 41 }}>
-                <Text style={styles.addDollarText}>$10.00</Text>
-              </View>
-
-              {/** Left decrement*/}
-              <TouchableOpacity onPress={() => this.isNegativeBudget(false, 10)}>
-                <View style={styles.decrementBox} backgroundColor='#DBE011'>
-
-                  <View style={styles.decrementLine} />
-                </View>
-              </TouchableOpacity>
-
-
-
-              {/** Right decrement*/}
-              <TouchableOpacity
-                style={{ justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => this.isNegativeBudget(true, 10)}
-              >
-                <View style={styles.incrementBox} backgroundColor='#EAED71'>
-
-                  {/** Vertical line*/}
-                  <View style={styles.plusVerticalLine} />
-
-                  {/** Left horizontal line*/}
-                  <View style={styles.plusLeftHoriLine} />
-
-                  {/** Right horizontal line*/}
-                  <View style={styles.plusRightHoriLine} />
-
-                </View>
-              </TouchableOpacity>
-
-            </View>
-
-            {/** $20.00 view box*/}
-            <View style={styles.scrollBoxes}>
-
-              <View style={{ paddingLeft: 39, paddingRight: 39 }}>
-                <Text style={styles.addDollarText}>$20.00</Text>
-              </View>
-
-              {/** Left decrement*/}
-              <TouchableOpacity onPress={() => this.isNegativeBudget(false, 20)}>
-                <View style={styles.decrementBox} backgroundColor='#F08C44'>
-
-                  <View style={styles.decrementLine} />
-                </View>
-              </TouchableOpacity>
-
-
-              {/** Right decrement*/}
-              <TouchableOpacity
-                style={{ justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => this.isNegativeBudget(true, 20)}
-              >
-                <View style={styles.incrementBox} backgroundColor='#F0AB79'>
-
-                  {/** Vertical line*/}
-                  <View style={styles.plusVerticalLine} />
-
-                  {/** Left horizontal line*/}
-                  <View style={styles.plusLeftHoriLine} />
-
-                  {/** Right horizontal line*/}
-                  <View style={styles.plusRightHoriLine} />
-
-                </View>
-              </TouchableOpacity>
-
-            </View>
-
-
-          </ScrollView>
-
-
-        </View>
-
-        {/* The final section of the screen that contains the continue button */}
-        <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#609FC2", marginTop: hp('73%'), width: wp('100%'), height: hp('10%'), borderTopLeftRadius: 30 }}>
-
-          <TouchableOpacity
-            style={styles.continue}
-            onPress={() => this.props.navigation.push('MaxTimePage', { cost: this.state.count, option: this.state.option })} >
-
-            <View >
-              <Text style={{ fontSize: 25, color: '#000000', right: 20 }}>Continue</Text>
-            </View>
-
-          </TouchableOpacity>
-
-        </View>
-
+        </LinearGradient>
       </SafeAreaView>
     );
   }
@@ -306,10 +289,10 @@ const styles = StyleSheet.create({
   mainQuestion: {
     marginBottom: 0,
     marginLeft: 20,
-    color: 'white',
+    color: 'black',
     fontSize: 28,
     marginTop: 20,
-
+    fontWeight: 'bold',
   },
   topBox: {
     marginTop: 15,

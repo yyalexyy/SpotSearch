@@ -89,19 +89,18 @@ export class HomePageRedesign extends React.Component {
 
     render() {
         return (
-            <LinearGradient colors={['#609FC2', '#C7EBFF']} style={{position: 'absolute'}}> 
             <SafeAreaView>
                 {/* Faint line below "Home" */}
                     <View style={{ position: 'relative', marginTop: -20, marginBottom: 15, height: 2, backgroundColor: 'white', marginLeft: 0, marginRight: 0, zIndex: 999, opacity: .7 }} />
 
-                    {/* Faint line below "Catergories" */}
+                    {/* Faint line below "Categories" */}
                     <View style={{ position: 'absolute', marginTop: hp('44.5%'), height: 2, marginLeft: wp('5%'), width: 340, marginRight: wp('5%'), backgroundColor: 'white', zIndex: 999, opacity: .5 }} />
 
-                    {/* Light Blue Section that contains the Dolphin and Header */}
-                    <View style={{ backgroundColor: '#91C6E4', height: hp('100%'), width: wp('100%'), marginTop: -20 }}>
+                    {/* Background Section that contains the Dolphin and Header */}
+                    <LinearGradient colors={['#C7EBFF', '#609FC2']} style={{ backgroundColor: '#91C6E4', height: hp('100%'), width: wp('100%'), marginTop: -20 }}> 
 
                         {/* The second section of the screen that contains the horizontal scroll bar */}
-                        <View style={{ flexDirection: "row", backgroundColor: "#91C6E4", marginTop: hp('45%'), width: wp('100%'), height: hp('45%'), borderTopLeftRadius: 30 }}>
+                        <View style={{ flexDirection: "row", marginTop: hp('45%'), width: wp('100%'), height: hp('45%'), borderTopLeftRadius: 30 }}>
 
                             {/* Vertical Line that ends the scrollview */}
                             <View style={{ marginTop: 90, marginLeft: -40, position: 'absolute', height: 8, width: 150, backgroundColor: 'white', borderRadius: 20, transform: [{ rotate: "90deg" }], shadowColor: 'black', shadowRadius: 1, shadowOffset: { height: -2, width: 3 }, shadowOpacity: .5, zIndex: 999 }} />
@@ -196,15 +195,10 @@ export class HomePageRedesign extends React.Component {
                             source={require('./assets/dolphin.png')} />
 
                         {/* The Header */}
-                        <Text style={styles.header}>
-                            Categories
-                    </Text>
-
-                    </View>
+                        <Text style={styles.header}>Categories</Text>
+                    </LinearGradient>
 
             </SafeAreaView>
-            </LinearGradient> 
-
         );
     }
 }
@@ -223,6 +217,7 @@ const styles = StyleSheet.create({
         marginTop: hp('36%'),
         marginLeft: wp('4%'),
         fontSize: 40,
+        fontWeight: 'bold',
     },
 
     bottomTextBorder: {
@@ -288,7 +283,7 @@ const styles = StyleSheet.create({
         shadowColor: '#9DF5F5',
         shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 8,
+        shadowRadius: 7,
     },
 
     foodAreaButton: {
@@ -317,7 +312,7 @@ const styles = StyleSheet.create({
         shadowColor: '#87A4EF',
         shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 8,
+        shadowRadius: 7,
     },
 
     VacSpotButton: {
@@ -346,7 +341,7 @@ const styles = StyleSheet.create({
         shadowColor: '#EAED71',
         shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 8,
+        shadowRadius: 7,
     },
 
     HangSpotButton: {
@@ -375,7 +370,7 @@ const styles = StyleSheet.create({
         shadowColor: '#F08C44',
         shadowOffset: { width: .5, height: .5 },
         shadowOpacity: 1,
-        shadowRadius: 8,
+        shadowRadius: 7,
     },
 
 });
