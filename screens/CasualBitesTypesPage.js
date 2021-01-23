@@ -15,7 +15,6 @@ export class CasualBitesTypes extends React.Component {
             continColor: 'white',
             button: '',
             option: '',
-            cost: '',
         };
     }
 
@@ -25,11 +24,11 @@ export class CasualBitesTypes extends React.Component {
 
             if (this.state.button === 'Bakery') {
                 this.setState({button: ''})
-                this.setState({ option: 'bakery'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+                this.setState({ option: 'bakery'} , () => {this.props.navigation.navigate('BudgetPage', { option: this.state.option })});
             }
             else if (this.state.button === 'Cafe') {
                 this.setState({button: ''})
-                this.setState({ option: 'cafe'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+                this.setState({ option: 'cafe'} , () => {this.props.navigation.navigate('BudgetPage', { option: this.state.option })});
             }
         }
     }

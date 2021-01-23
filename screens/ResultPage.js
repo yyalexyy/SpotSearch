@@ -29,7 +29,6 @@ export class ResultPage extends React.Component {
             location_idx: 1,
             prev_idx: 1,
             swipe_direc: 1,
-            first_swipe: true,
             error: null,
             data: [],
             pages: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],  //Changed to
@@ -67,7 +66,11 @@ export class ResultPage extends React.Component {
         else if (this.state.cost > 100) {
             this.setState({ priceLvl: 4 });
         }
+        else {
+            this.setState({ priceLvl: -1 });
+        }
     }
+
     /** Opening google maps
      *  Params: 
      *      travelType: determine transportation type. (enumeration : [drive, walk,public_transport])
@@ -109,23 +112,27 @@ export class ResultPage extends React.Component {
         this.setState({ error: err.message })
     }
 
-    // var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-    // `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
-    // "&radius=" + `${this.state.radius}` +
-    // "&maxprice=" + `${this.state.priceLvl}` +
-    // "&type=restaurant" +
-    // "&key=" + API_KEY;
+
     fetchData = async () => {
-        console.log('this.state.option: ' +this.state.option)
-        console.log('this.state.cost: ' +this.state.cost)
-        console.log('this.state.radius: ' +this.state.radius)
-        console.log('this.state.travelType: ' +this.state.travelType)
         const API_KEY = "AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0"; //process.env.API_PLACES_KEY;
-        var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+        var url = "";
+
+        if (this.state.priceLvl === -1) {
+            url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
             `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
             "&radius=" + `${this.state.radius}` +
             "&type=" + `${this.state.option}` +
             "&key=" + API_KEY;
+        }
+        else {
+            url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+            `${this.state.where.lat}` + "," + `${this.state.where.lng}` +
+            "&radius=" + `${this.state.radius}` +
+            "&maxprice=" + `${this.state.priceLvl}` +
+            "&type=" + `${this.state.option}` +
+            "&key=" + API_KEY;
+        }
+
         console.log(url);
         const response = await fetch(url);
         const json = await response.json();
@@ -213,14 +220,6 @@ export class ResultPage extends React.Component {
 
     
     async onPageChanged(idx) {
-        //Set initial swipe_direc state (only runs once when result is first generated)
-        // if (idx == 2 && this.state.first_swipe == true) {
-        //     await this.setState({swipe_direc: 2}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
-        // }
-        // else if (idx == 0 && this.state.first_swipe == true) {
-        //     await this.setState({swipe_direc: 0}, () => {console.log("swipe_direc: " +this.state.swipe_direc) })
-        // }
-
         // Get user's swipe direction
         if (idx == 9 && this.state.prev_idx == 0) {         //edge case swipe left
             await this.setState({swipe_direc: 0})
@@ -236,7 +235,7 @@ export class ResultPage extends React.Component {
         }
         console.log("swipe_direc: " +this.state.swipe_direc )
         // Set the states
-        if (this.state.swipe_direc == 2) {     // Set state when swiping right
+        if (this.state.swipe_direc == 2) {          // Set state when swiping right
             const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
 
             this.setState({ location_idx: ((this.state.location_idx + 1) % 10)})
@@ -249,12 +248,6 @@ export class ResultPage extends React.Component {
             this.setState({ pages: newPages, key: ((this.state.key + 1) % 2), prev_idx: idx })
 
         }
-
-        // // Setting first swipe state to false
-        // if(this.state.first_swipe == true) {
-        //     this.setState({ first_swipe: false})
-        // }
-        
     }
 
     render() {
