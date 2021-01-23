@@ -31,7 +31,7 @@ export class ResultPage extends React.Component {
             swipe_direc: 1,
             error: null,
             data: [],
-            pages: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],  //Changed to
+            pages: [],  //Changed to
             key: 1,                 //for Swiper
             priceLvl: 0,                               //converted price levels
             images: [],
@@ -153,6 +153,15 @@ export class ResultPage extends React.Component {
             this.setState({ images: newImages });
         }
 
+        console.log("Locations Found: " + this.state.images.length)
+
+        this.setState({pages:(new Array(this.state.images.length))})
+        for (let i = 0; i < this.state.pages.length; i++) {
+            const temp = [...this.state.pages]
+            temp[i] = i.toString()
+            this.setState({pages: temp})
+        }
+
         //console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
         this.setState({ loading: false });
 
@@ -168,7 +177,7 @@ export class ResultPage extends React.Component {
         let img_reference = this.state.images[item].photo_reference;
         // let fSize = Math.sqrt(wp("30%")*hp("10%")/this.state.images[item].address.length)
         let viewBoxHeight = (10 + (this.state.images[item].address.length / 80)).toFixed(0).toString() + "%";
-        console.log(viewBoxHeight);
+        // console.log(viewBoxHeight);
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
@@ -217,7 +226,6 @@ export class ResultPage extends React.Component {
             </View>
         )
     }
-
     
     async onPageChanged(idx) {
         // Get user's swipe direction
@@ -233,7 +241,7 @@ export class ResultPage extends React.Component {
         else if (idx < this.state.prev_idx) {               //swiping left
             await this.setState({swipe_direc: 0})
         }
-        console.log("swipe_direc: " +this.state.swipe_direc )
+        // console.log("swipe_direc: " +this.state.swipe_direc )
         // Set the states
         if (this.state.swipe_direc == 2) {          // Set state when swiping right
             const newPages = this.state.pages.map(i => ((parseInt(i) + 1) % 10).toString())      // Update the array
