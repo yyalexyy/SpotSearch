@@ -47,34 +47,8 @@ export class CasualBitesTypes extends React.Component {
                         <Text style={{ fontSize: hp('3%'), color: '#fff', marginLeft: wp('3%'),}}>(Press the Icon)</Text>
                     </View>
                     
-
-                    {/* Bakery Box */}
-                    <View style ={{ position: 'absolute', backgroundColor: '#FBB957', height: hp('38%'), width: wp('85%'), right: 0, marginTop: hp('10%'), borderBottomLeftRadius: 100, borderColor: '#fff', borderWidth: 5, zIndex: 8}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <View>
-                                <Text style={{ fontSize: hp('5.5%'), fontWeight: 'bold', color: '#000', marginTop: hp('20%'), marginLeft: wp('8%'), top: 25}}>Bakery</Text>
-                            </View>
-
-                            <View>
-                                <TouchableOpacity
-                                    onPress={() => { this.state.button === "Bakery" ? this.setState({button:"", continColor: "#fff"}) : this.setState({button: "Bakery", continColor: "#FBB957"}) }}
-                                    style={ this.state.button === "Bakery" ? [styles.preButton, styles.buttonPressed, {backgroundColor: '#FBB957', marginRight: wp('1%'), marginBottom: hp('1%'), top: 80 } ] : [styles.preButton, {backgroundColor: '#FBB957', marginRight: wp('1%'), marginBottom: hp('1%'), top: 80 }]}
-                                    activeOpacity={.8}
-                                >
-                                    <Image
-                                        style={{ height: hp('17%'), width: wp('30%'), alignSelf: 'center' }}
-                                        source={require('./assets/casBitesTypeImg/bread.png')}
-                                    />
-
-                                </TouchableOpacity>
-                            </View>
-
-                        </View>
-                    </View>
-
-
                     {/* Cafe Box */}
-                    <View style ={{ position: 'absolute', backgroundColor: '#FB5757', height: hp('38%'), width: wp('85%'), marginTop: hp('32%'), borderBottomRightRadius: 100, borderColor: '#fff', borderWidth: 5 }}>
+                    <View style ={{ position: 'absolute', backgroundColor: '#FB5757', height: hp('38%'), width: wp('85%'), marginTop: hp('32%'), borderBottomRightRadius: 100, borderColor: '#fff', borderWidth: 5}}>
                         <View style={{flexDirection: 'row', alignItems: 'center' }}>
                             <View>
                                 <TouchableOpacity
@@ -93,6 +67,25 @@ export class CasualBitesTypes extends React.Component {
                             <View>
                                 <Text style={{ fontSize: hp('5.5%'), fontWeight: 'bold', color: '#000', marginLeft: wp('6%'), marginTop: hp('20%') }}>Cafe</Text>
                             </View>
+                        </View>
+                    </View>
+
+                    {/* Bakery Box */}
+                    <View style ={{ position: 'absolute', backgroundColor: '#FBB957', height: hp('38%'), width: wp('85%'), right: 0, marginTop: hp('10%'), borderBottomLeftRadius: 100, borderColor: '#fff', borderWidth: 5}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={{ fontSize: hp('5.5%'), fontWeight: 'bold', color: '#000', marginTop: hp('10%'), marginLeft: wp('8%'), top: 25}}>Bakery</Text>
+                           
+                            <TouchableOpacity
+                                    onPress={() => { this.state.button === "Bakery" ? this.setState({button: "", continColor: "#fff"}) : this.setState({button: "Bakery", continColor: "#FBB957"}) }}
+                                    style={ this.state.button === "Bakery" ? [styles.preButton, styles.buttonPressed, {backgroundColor: '#FBB957', marginRight: wp('1%'), marginBottom: hp('1%'), marginTop: hp('14%')} ] : [styles.preButton, {backgroundColor: '#FBB957', marginRight: wp('1%'), marginBottom: hp('1%'), marginTop: hp('14%')}]}
+                                    activeOpacity={.8}
+                            >
+                                <Image
+                                        style={{ height: hp('17%'), width: wp('30%'), alignSelf: 'center' }}
+                                        source={require('./assets/casBitesTypeImg/bread.png')}
+                                />
+
+                            </TouchableOpacity>
                         </View>
                     </View>
 
