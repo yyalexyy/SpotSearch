@@ -8,6 +8,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import BouncingPreloader from 'react-native-bouncing-preloader';
 import Swiper from 'react-native-swiper';
 import openMap from 'react-native-open-maps';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 /**
@@ -41,6 +42,8 @@ export class ResultPage extends React.Component {
         this.toLocation = this.toLocation.bind(this);
 
     }
+
+    
 
     //Tells render to stop auto rendering and only renders once
     shouldComponentUpdate = () => false
@@ -153,25 +156,28 @@ export class ResultPage extends React.Component {
 
         let img_width = this.state.images[item].width;
         let img_reference = this.state.images[item].photo_reference;
+        // let fSize = Math.sqrt(wp("30%")*hp("10%")/this.state.images[item].address.length)
+        let viewBoxHeight = (10 + (this.state.images[item].address.length / 80)).toFixed(0).toString() + "%";
+        console.log(viewBoxHeight);
 
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
                     source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0", crop: { width: wp("50%"), height: hp("100%") } }}>
                     
-                    {/* Bottom Flap which contains location address*/}
-                    <View style = {{flexDirection: "row", position: 'absolute', width: wp("75%"), height: hp("10%"), marginHorizontal: 45, bottom: 200}}>
+                    {/* Bottom Flap which contains location and address*/}
+                    <View style = {{flexDirection: "row", position: 'absolute', height: hp("8%"), marginHorizontal: 45, bottom: 200}}>
                        
                         {/* View box that contains address */}
-                        <View style = {{backgroundColor: '#A8DDFC', position: 'relative', width: wp("50%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2,height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
-                            <Text style={{ color: "#ffffff", fontSize: 15, fontWeight: "bold", textAlign: 'left', marginTop: 22, marginHorizontal: 7}}>
+                        <View style = {{backgroundColor: '#A8DDFC', position: 'relative', width: wp("50%"), height: hp(viewBoxHeight), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2,height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <Text style={{ color: "#ffffff", fontSize: 15, fontWeight: "bold", textAlign: 'left', marginHorizontal: 7, marginTop: 11}}>
                                 {this.state.images[item].address}
                             </Text>
                         </View>
 
                         {/* View box that contains rating */}
-                        <View style = {{backgroundColor: '#FDCC0D', position: 'relative', width: wp("25%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
-                            <Text style={{ color: "#ffffff", fontSize: 13, fontWeight: "bold", textAlign: 'center', marginTop: 25}}>
+                        <View style = {{backgroundColor: '#FDCC0D', position: 'relative', width: wp("25%"), height: hp("6%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2, height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <Text style={{ color: "#ffffff", fontSize: 13, fontWeight: "bold", textAlign: 'center', marginTop: 12.5}}>
                                 Rating: {this.state.images[item].rating}
                             </Text>
                         </View>
@@ -272,8 +278,9 @@ export class ResultPage extends React.Component {
             );
         } else {
             return (
-                <SafeAreaView backgroundColor='white' flex="1">
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: hp("30%") }}>
+                <SafeAreaView flex="1">
+                    <LinearGradient colors={['#C7EBFF', '#609FC2']} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: -20}}> 
+                        <View style={{marginTop: hp("40%")}}>
                         <BouncingPreloader
                             icons={[
                                 require('./assets/DinnerDate.png'),
@@ -282,7 +289,8 @@ export class ResultPage extends React.Component {
                                 require('./assets/landmark.png'),
                                 require('./assets/dolphin.png'),
                             ]} />
-                    </View>
+                        </View> 
+                    </LinearGradient>
                 </SafeAreaView>
             );
         }
