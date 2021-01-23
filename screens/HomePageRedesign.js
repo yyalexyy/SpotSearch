@@ -4,15 +4,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';  // import safe a
 import { ScrollView, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { LinearGradient } from 'expo-linear-gradient';
+import { ThemeColors } from 'react-navigation';
 //import logo from './assets/logo.png';     //import logo
 
 export class HomePageRedesign extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            button: "",
+            button: '',
             continColor: 'white',
-            option: "",
+            option: '',
+            cost: '',
         };
     }
 
@@ -21,19 +23,19 @@ export class HomePageRedesign extends React.Component {
             this.setState({continColor: 'white'})
             if (this.state.button === 'Restaurant') {
                 this.setState({button: ''})
-                this.setState({ option: "restaurant"} , () => {this.props.navigation.navigate('BudgetPage', { option: "restaurant" })});
+                this.setState({ option: "restaurant" } , () => {this.props.navigation.navigate('BudgetPage', { option: this.state.option })});
             }
             else if (this.state.button === 'Casual Bites') {
                 this.setState({button: ''})
-                this.setState({ option: "Casual Bites"} , () => {this.props.navigation.navigate('CasualBitesTypes', { option: "Casual Bites" })});
+                this.setState({ option: "Casual Bites" } , () => {this.props.navigation.navigate('CasualBitesTypes', { option: this.state.option  })});
             }
             else if (this.state.button === 'Recreation') {
                 this.setState({button: ''})
-                this.setState({ option: "Recreation"} , () => {this.props.navigation.navigate('RecreationTypes', { option: "Recreation" })});
+                this.setState({ option: "Recreation" } , () => {this.props.navigation.navigate('RecreationTypes', { option: this.state.option })});
             }
             else if (this.state.button === 'Landmarks') {
                 this.setState({button: ''})
-                this.setState({ option: "restaurant"} , () => {this.props.navigation.navigate('MaxTimePage', { option: "restaurant" })});
+                this.setState({ option: "tourist_attraction" } , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
             }
         }
     }

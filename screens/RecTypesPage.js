@@ -14,8 +14,65 @@ export class RecreationTypes extends React.Component {
         super(props);
         this.state = {
             continColor: 'white',
-            button: "",
+            button: '',
+            option: '',
+            cost: '',
         };
+    }
+
+    _continue = () => {
+        if (this.state.continColor !== 'white') {
+            this.setState({continColor: '#fff'})
+
+            if (this.state.button === 'Art') {
+                this.setState({button: ''})
+                this.setState({ option: 'art_gallery'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Zoo') {
+                this.setState({button: ''})
+                this.setState({ option: 'zoo'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Aqua') {
+                this.setState({button: ''})
+                this.setState({ option: 'aquarium'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Park') {
+                this.setState({button: ''})
+                this.setState({ option: 'park'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Movie') {
+                this.setState({button: ''})
+                this.setState({ option: 'movie_theater'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Muse') {
+                this.setState({button: ''})
+                this.setState({ option: 'museum'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Theme') {
+                this.setState({button: ''})
+                this.setState({ option: 'amusement_park'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Mall') {
+                this.setState({button: ''})
+                this.setState({ option: 'shopping_mall'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Bowl') {
+                this.setState({button: ''})
+                this.setState({ option: 'bowling_alley'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Spa') {
+                this.setState({button: ''})
+                this.setState({ option: 'spa'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'City') {
+                this.setState({button: ''})
+                this.setState({ option: 'city_hall'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+            else if (this.state.button === 'Bar') {
+                this.setState({button: ''})
+                this.setState({ option: 'bar'} , () => {this.props.navigation.navigate('MaxTimePage', { option: this.state.option, cost: this.state.cost })});
+            }
+        }
     }
 
     render() {
@@ -267,7 +324,7 @@ export class RecreationTypes extends React.Component {
                     {/* Viewbox that contains the continue button */}
                     <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#609FC2", marginTop: hp('73%'), width: wp('100%'), height: hp('10%'), borderTopLeftRadius: 30 }}>
                         <TouchableOpacity style={[styles.continue, { backgroundColor: this.state.continColor }]}
-                            onPress={() => this.Continue()}>
+                            onPress={() => this._continue()}>
                             <Text style={styles.continueText}>Continue</Text>
                         </TouchableOpacity>
                     </View>
