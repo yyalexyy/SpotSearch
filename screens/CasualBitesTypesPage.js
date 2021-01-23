@@ -41,9 +41,9 @@ export class CasualBitesTypes extends React.Component {
 
                 <LinearGradient colors={['#C7EBFF', '#609FC2']} style={{ marginTop: -20, height: hp('100%'), width: wp('100%'), }}>
                     {/* Header Text */}
-                    <View style={{ position: 'absolute', backgroundColor: '#000', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: hp('21%'), width: wp('85%'), marginTop: hp('3%'), borderTopRightRadius: 30, borderBottomRightRadius: 100, borderColor: '#fff', borderWidth: 5, zIndex: 10,}}>
-                        <Text style={{ fontSize: hp('5%'), color: '#fff', marginLeft: wp('3%'), }}>Choose a category</Text>
-                        <Text style={{ fontSize: hp('3%'), color: '#fff', marginLeft: wp('3%'),}}>(Press the Icon)</Text>
+                    <View style={{ position: 'absolute', backgroundColor: '#C1E9FF', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: hp('21%'), width: wp('85%'), marginTop: hp('3%'), borderTopRightRadius: 30, borderBottomRightRadius: 100, borderColor: '#fff', borderWidth: 5, zIndex: 10,}}>
+                        <Text style={{ fontSize: hp('5%'), color: '#000', marginLeft: wp('3%'), }}>Choose a category</Text>
+                        <Text style={{ fontSize: hp('3%'), color: '#000', marginLeft: wp('3%'),}}>(Press the Icon)</Text>
                     </View>
                     
                     {/* Cafe Box */}

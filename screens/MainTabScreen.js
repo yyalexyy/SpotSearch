@@ -118,12 +118,16 @@ const HomeStackScreen = ({ navigation }) => (
       }} />
     <HomeStack.Screen name="CasualBitesTypes" component={CasualBitesTypes} options={{ 
       title:"Bites",
+      headerStyle:{
+        backgroundColor: '#C7EBFF',
+        shadowColor: 'transparent',
+      },
       headerRight: () => (
         <Icon.Button 
           name= "menu"
           size={25}
           color="#000000"           //menu tab color
-          backgroundColor= "#91C6E4"
+          backgroundColor= "#C7EBFF"
           onPress={() => navigation.toggleDrawer()}/>
       )
       }} />
