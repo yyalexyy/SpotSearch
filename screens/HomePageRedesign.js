@@ -16,7 +16,7 @@ export class HomePageRedesign extends React.Component {
         };
     }
 
-    Continue = () => {
+    _continue = () => {
         if (this.state.continColor !== 'white') {
             this.setState({continColor: 'white'})
             if (this.state.button === 'Restaurant') {
@@ -134,7 +134,7 @@ export class HomePageRedesign extends React.Component {
                             {/* The final section of the screen that contains the continue button */}
                             <View style={{ alignItems: 'center', position: 'absolute', backgroundColor: "#609FC2", marginTop: hp('28%'), width: wp('100%'), height: hp('30%'), borderTopLeftRadius: 30 }}>
                                 <TouchableOpacity style={[styles.continue, { backgroundColor: this.state.continColor }]}
-                                    onPress={() => this.Continue()}>
+                                    onPress={() => this._continue()}>
                                     <Text style={styles.continueText}>Continue</Text>
                                 </TouchableOpacity>
                             </View>

@@ -269,7 +269,7 @@ export class BudgetPage extends React.Component {
 
             <TouchableOpacity
               style={styles.continue}
-              onPress={() => this.props.navigation.push('MaxTimePage', { cost: this.state.count, option: this.state.option })} >
+              onPress={() => this.props.navigation.push('MaxTimePage', { option: this.state.option, cost: this.state.count })} >
 
               <View >
                 <Text style={{ fontSize: 25, color: '#000000', right: 20 }}>Continue</Text>
