@@ -2,7 +2,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';  // import safe areas to display on screen
-import { ImageBackground, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native';
 //import logo from './assets/logo.png';     //import logo
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BouncingPreloader from 'react-native-bouncing-preloader';
@@ -176,6 +176,16 @@ export class ResultPage extends React.Component {
             //Tells render to update so that it can switch from loading screen
             this.forceUpdate();
 
+<<<<<<< HEAD
+=======
+        //Determine amount of locations found with time constraint and 
+        console.log("Locations Found: " + this.state.images.length)
+        this.setState({pages:(new Array(this.state.images.length))})
+        for (let i = 0; i < this.state.pages.length; i++) {
+            const temp = [...this.state.pages]
+            temp[i] = i.toString()
+            this.setState({pages: temp})
+>>>>>>> 8c3c5b0c961927b024322e29797f7b0c349297d5
         }
         
     }
@@ -191,7 +201,7 @@ export class ResultPage extends React.Component {
         let img_width = this.state.images[item].width;
         let img_reference = this.state.images[item].photo_reference;
         // let fSize = Math.sqrt(wp("30%")*hp("10%")/this.state.images[item].address.length)
-        let viewBoxHeight = (10 + (this.state.images[item].address.length / 80)).toFixed(0).toString() + "%";
+        let viewBoxHeight = this.state.images[item].address.length > 40 ? "10.5%" : "8%"
         // console.log(viewBoxHeight);
 
         return (
@@ -201,12 +211,14 @@ export class ResultPage extends React.Component {
                     
                     {/* Bottom Flap which contains location and address*/}
                     <View style = {{flexDirection: "row", position: 'absolute', height: hp("8%"), marginHorizontal: 45, bottom: 200}}>
-                       
+
                         {/* View box that contains address */}
-                        <View style = {{backgroundColor: '#A8DDFC', position: 'relative', width: wp("50%"), height: hp(viewBoxHeight), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2,height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
-                            <Text style={{ color: "#ffffff", fontSize: 15, fontWeight: "bold", textAlign: 'left', marginHorizontal: 7, marginTop: 11}}>
-                                {this.state.images[item].address}
-                            </Text>
+                        <View style = {{ alignItems: 'center', backgroundColor: '#A8DDFC', position: 'relative', width: wp("50%"), height: hp("8%"), borderBottomLeftRadius: 15, borderBottomRightRadius: 15, shadowOffset:{width: 2,height: 2}, shadowColor: 'black', shadowOpacity: .5}}>
+                            <ScrollView style={{marginHorizontal: 7, height: hp("8%")}}>
+                                <Text adjustsFontSizeToFit style={{backgroundColor: 'black', color: "#ffffff", fontSize: 15, fontWeight: "bold", textAlign: 'left', marginTop: 10, height: hp("8%"), width: wp("50%")}}>
+                                    {this.state.images[item].address}
+                                </Text>
+                            </ScrollView>
                         </View>
 
                         {/* View box that contains rating */}
