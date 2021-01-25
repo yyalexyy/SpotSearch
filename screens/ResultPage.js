@@ -16,6 +16,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 * @param {*} param0 
 */
 export class ResultPage extends React.Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -87,12 +89,16 @@ export class ResultPage extends React.Component {
 
 
     componentDidMount() {
+        this._isMounted = true;
+
         let geoOptions = {
             enableHighAccuracy: true,
             timeOut: 20000,   //20 sec
             maximumAge: 60 * 60 * 24
         }
-        this.setState({ ready: false, error: null });
+        if (this._isMounted) {
+            this.setState({ ready: false, error: null });
+        }
         navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoFailure, geoOptions);
     }
 
@@ -136,37 +142,46 @@ export class ResultPage extends React.Component {
         console.log(url);
         const response = await fetch(url);
         const json = await response.json();
-        this.setState({ data: json.results });
-        // console.log(this.state.data);
-        // console.log(this.state.data[0].name);
+        if (this._isMounted) {
+            this.setState({ data: json.results });
 
-        // Saving images to an array of objects with width, height, and reference
-        for (let i = 0; i < this.state.data.length && i < 10; i++) {
-            const location_name = this.state.data[i].name;
-            const img_height = this.state.data[i].photos[0].height;
-            const img_width = this.state.data[i].photos[0].width;
-            const img_reference = this.state.data[i].photos[0].photo_reference;
-            const location = this.state.data[i].vicinity;
-            const rating = this.state.data[i].rating;
-            const obj = {'name': location_name, 'height': img_height, 'width': img_width, 'photo_reference': img_reference, 'address': location, 'rating': rating};
-            let newImages = [...this.state.images, obj];
-            this.setState({ images: newImages });
+            // console.log(this.state.data);
+            // console.log(this.state.data[0].name);
+
+            // Saving images to an array of objects with width, height, and reference
+            for (let i = 0; i < this.state.data.length && i < 10; i++) {
+                const location_name = this.state.data[i].name;
+                const img_height = this.state.data[i].photos[0].height;
+                const img_width = this.state.data[i].photos[0].width;
+                const img_reference = this.state.data[i].photos[0].photo_reference;
+                const location = this.state.data[i].vicinity;
+                const rating = this.state.data[i].rating;
+                const obj = {'name': location_name, 'height': img_height, 'width': img_width, 'photo_reference': img_reference, 'address': location, 'rating': rating};
+                let newImages = [...this.state.images, obj];
+                this.setState({ images: newImages });
+            }
+
+            console.log("Locations Found: " + this.state.images.length)
+
+            this.setState({pages:(new Array(this.state.images.length))})
+            for (let i = 0; i < this.state.pages.length; i++) {
+                const temp = [...this.state.pages]
+                temp[i] = i.toString()
+                this.setState({pages: temp})
+            }
+
+            //console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
+            this.setState({ loading: false });
+
+            //Tells render to update so that it can switch from loading screen
+            this.forceUpdate();
+
         }
+        
+    }
 
-        console.log("Locations Found: " + this.state.images.length)
-
-        this.setState({pages:(new Array(this.state.images.length))})
-        for (let i = 0; i < this.state.pages.length; i++) {
-            const temp = [...this.state.pages]
-            temp[i] = i.toString()
-            this.setState({pages: temp})
-        }
-
-        //console.log(this.state.images);     //images = [Obj = JSON ; Obj; Obj]
-        this.setState({ loading: false });
-
-        //Tells render to update so that it can switch from loading screen
-        this.forceUpdate();
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     renderItem(item, idx) {
@@ -293,6 +308,7 @@ export class ResultPage extends React.Component {
                                 require('./assets/landmark.png'),
                                 require('./assets/dolphin.png'),
                             ]} />
+                            <Text>Loading</Text>
                         </View> 
                     </LinearGradient>
                 </SafeAreaView>
