@@ -176,18 +176,7 @@ export class ResultPage extends React.Component {
             //Tells render to update so that it can switch from loading screen
             this.forceUpdate();
 
-<<<<<<< HEAD
-=======
-        //Determine amount of locations found with time constraint and 
-        console.log("Locations Found: " + this.state.images.length)
-        this.setState({pages:(new Array(this.state.images.length))})
-        for (let i = 0; i < this.state.pages.length; i++) {
-            const temp = [...this.state.pages]
-            temp[i] = i.toString()
-            this.setState({pages: temp})
->>>>>>> 8c3c5b0c961927b024322e29797f7b0c349297d5
         }
-        
     }
 
     componentWillUnmount() {
