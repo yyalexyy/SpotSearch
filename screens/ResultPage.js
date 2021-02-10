@@ -120,7 +120,7 @@ export class ResultPage extends React.Component {
 
 
     fetchData = async () => {
-        const API_KEY = "AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0"; //process.env.API_PLACES_KEY;
+        const API_KEY = "Your_API_Key"; //process.env.API_PLACES_KEY;
         var url = "";
 
         if (this.state.priceLvl === -1) {
@@ -196,7 +196,7 @@ export class ResultPage extends React.Component {
         return (
             <View style={styles.backgroundImgContainer} key={idx}>
                 <ImageBackground style={styles.backgroundImg} blurRadius={7}
-                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0", crop: { width: wp("50%"), height: hp("100%") } }}>
+                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=Your_API_Key", crop: { width: wp("50%"), height: hp("100%") } }}>
                     
                     {/* Bottom Flap which contains location and address*/}
                     <View style = {{flexDirection: "row", position: 'absolute', height: hp("8%"), marginHorizontal: 45, bottom: 200}}>
@@ -228,7 +228,7 @@ export class ResultPage extends React.Component {
                                 style={{ position: 'relative', height: hp("40%"), width: wp("80%"), borderRadius: 20}}
                                 onPress={this.toLocation}>
                                 <Image style={{ position: 'absolute', height: hp("40%"), width: wp("80%"), borderRadius: 20, borderColor: "#ffffff", borderWidth: 5}}
-                                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=AIzaSyBXposMEFdpR4PI9uhKVDiwJMNo13NEV-0" }} />
+                                    source={{ uri: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + img_width + "&photoreference=" + img_reference + "&key=Your_API_Key" }} />
                             </TouchableOpacity>
                         </View>
 
